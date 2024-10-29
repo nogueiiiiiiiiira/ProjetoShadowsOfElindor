@@ -1,540 +1,427 @@
 import random
 import time
 import os
-from ttg import Truths
+import ttg
 from game.utils import escrever_lentamente
+from prettytable import PrettyTable
 
-
-# Sistema de reputação
-reputacao = {
-    "Lady Isolde": 0,
-    "Bram": 0,
-    "Sir Alaric": 0,
-    "Floris": 0,
-    "Gerhard": 0,
-    "Morgana": 0,
-    "Padre": 0
-}
-
-# Armazenamento de memórias
-memorias = []
-
-# Armazenamento de proposições
-proposicoes = []
-
-# Lista global para armazenar as proposições que o usuário considera certas e falsas
-proposicoes_certas = []
-proposicoes_falsas = []
+# Armazenamento de respostas do jogador para análise posterior
+proposicoes_escolhidas = []
 
 def interrogar_personagensFase1():
-    # Introdução
-    escrever_lentamente("Sentada em uma mesa de interrogatório, Samanta observa a porta, aguardando o primeiro suspeito aparecer.\n")
-    escrever_lentamente("Ela se pergunta sobre a natureza do crime e a relação de cada um com Baldwin, o cozinheiro morto.\n")
     
-    # Definindo os personagens e suas falas
-    personagens = {
-        "Lady Isolde": [
-            "Baldwin sempre foi difícil de lidar, mas fui pega de surpresa com sua morte. Não achei que ele tivesse tantos inimigos.",
-            "A vida ao lado dele era cheia de desafios, mas eu nunca desejaria a morte dele.",
-            "Ele era um homem complicado, e gosto de acreditar que atraímos tudo o que merecemos.",
-            "A dor que eu sinto não se compara a qualquer rivalidade que alguém possa ter com ele. No final de tudo, ele ainda era meu marido...",
-            "As coisas entre nós eram complicadas, mas eu nunca seria pega desejando a morte dele..."
-        ],
-        "Floris, o Bobo da Corte": [
-            "Baldwin era um péssimo cozinheiro e uma péssima pessoa, mas nunca pensei que alguém o mataria. Não tão cedo, ao menos.",
-            "Eu só fazia piadas sobre ele morrer, senhorita. Nunca achei que alguém realmente o mataria.",
-            "Na verdade, a corte estava feliz com suas desventuras na cozinha. E agora ela está mais feliz que ele se foi.",
-            "Eu ouvi rumores, mas isso é só conversa de bobo.",
-            "Ninguém em sã consciência mataria alguém por causa de comida. Agora por outras coisas, não tenho tanta certeza."
-        ],
-        "Gerhard, o Carrasco": [
-            "É estranho como a vida pode mudar. De repente, me vejo livre do maldito, quem diria?",
-            "A morte de Baldwin é uma pena, mas ele tinha seus inimigos. Conheço alguns eu mesmo...",
-            "Eu estava apenas fazendo meu trabalho, como sempre. Se ele caiu duro, o que isso tem a ver comigo?",
-            "Seus problemas não eram da minha conta, mas poderia ter havido motivos por trás disso. Baldwin não era, afinal de contas, um santo.",
-            "As pessoas costumam achar que só eu sou o vilão, mas nem tudo é como parece. Pode sempre haver mais que um, não concorda?"
-        ],
-        "Bram, o Ferreiro": [
-            "Baldwin não era bem-vindo nas minhas forjas. Ele sempre queria mais do que eu poderia dar e não queria dar o que eu queria.",
-            "Todos têm motivos para estarem felizes que o cozinheiro se foi. Somente o Rei que não, acho. Afinal, o Rei está triste porque o cozinheiro morreu ou porque suas comidas não serão mais as mesmas?",
-            "Eu estava longe na noite do crime, apenas cuidando do meu trabalho. Baldwin não era tão importante assim, era?.",
-            "As pessoas dizem que a verdade é como o fogo. Às vezes queima. Às vezes, perfura seu corpo como uma lâmina. Mas nunca, nunca, deixa de ser a verdade.",
-            "Eu não gostaria de ser acusado por algo que não fiz, senhorita, mesmo que seja algo que eu gostaria de ter feito."
-        ],
-        "Calistus, o Padre": [
-            "A morte de Baldwin é uma tragédia. As pessoas precisam de mais amor, não de ódio. Como vamos prosperar assim?",
-            "Eu sempre tentei ajudar os necessitados, mas há coisas que não posso revelar. Honro meu dever e meus fiéis.",
-            "Baldwin tinha seus segredos, assim como todos nós. Quem é você para julgar, senhorita?",
-            "Estou aqui para guiar as almas, não para fazer julgamentos.",
-            "Todos os homens são culpados, mas isso não quer dizer que mereçam morrer."
-        ]
+    # Armazenamento de proposições com suas verdades
+    proposicoes = {
+        "P1": {"descricao": "A faca não pertence a Diana, a cozinheira.", "verdade": True},
+        "P2": {"descricao": "Erik não gostava de Baldwin", "verdade": True},
+        "P3": {"descricao": "Diana não gostava de Baldwin", "verdade": True},
+        "P4": {"descricao": "Independentemente de suas intrigas com Baldwin, Erik provavelmente não o matou.", "verdade": True},
+        "P5": {"descricao": "Tamanho da lâmina é pequeno, sugerindo alguém de porte pequeno.", "verdade": True}
     }
-    
-    # Interrogando os personagens
-    for personagem, falas in personagens.items():
-        # Exibir comportamento inicial
-        escrever_lentamente(f"{personagem} entra na sala.\n")
-        escrever_lentamente("Samanta o(a) observa atentamente, tentando decifrar suas emoções.\n")
 
-        while True:
-            escrever_lentamente(f"Samanta: \"Gostaria de saber sua relação com Baldwin e o que aconteceu naquela noite.\"\n")
-            resposta = random.choice(falas)  # Seleciona uma fala aleatória
-            escrever_lentamente(f"{personagem}: \"{resposta}\"\n")
-            
-            # Pergunta se Samanta deseja insistir
-            insistir = input("Você deseja insistir em mais perguntas? (s/n): ")
-            if insistir.lower() != "s":
-                break
 
-            if personagem == "Lady Isolde" or personagem == "Floris, o Bobo da Corte" or personagem == "Calistus, o Padre":
-                escrever_lentamente(f"{personagem}: \"Eu ouvi uma mulher com cabelos ruivos na cozinha pouco antes do ataque. Não sei quem era, mas talvez isso ajude.\"\n")
-            else:
-                escrever_lentamente(f"{personagem}: \"Eu ouvi um homem discutindo com Baldwin na noite do crime. Não sei quem era, mas talvez isso ajude.\"\n")
-
-            # Limpa o console após cada interrogação
-            os.system("cls")
-
-    # Proposições após as interrogações
-    proposicoes = [
-        "Lady Isolde não está exatamente triste com a morte do marido.",
-        "Floris parece feliz com a morte do cozinheiro",
-        "Bram, o ferreiro, parece contente com a morte de Baldwin",
-        "Gerhard parece satisfeito com a morte de Baldwin",
-        "Calistus pode estar encobrindo o verdadeiro assassino, o que o torna suspeito.",
-        "Baldwin não era uma boa pessoa."
+    # Opções de falas para Diana e Erik
+    falasDiana = [
+        "Você está sugerindo que eu o matei? Com uma faca pequena inda? Céus! Mesmo que Baldwin fosse um canalha e um pervertido, não é como se eu tivesse a coragem de tirar uma vida.",
+        "Não sei de nada sobre essa lâmina pequena. Posso não estar lamentando a morte dele, mas isso não significa que estou comemorando também. Entendo o que você está insinuando.",
+        "A faca pequena pode até combinar com meu gosto para lâminas, mas isso não significa que gosto de enterrá-las em mulherengos estúpidos, detetive. Pode parar com suas adivinhações agora mesmo.",
+        "Está insinuando que a faca pode ser minha, detetive? Mas que... Claro que não! Acredito que atraímos tudo o que merecemos, mas não sou o tipo de juiz que faz justiça com as próprias mãos, detetive. Ainda mais com uma arma pequena como essa.",
+        "Posso ter desejado a morte daquele ferreiro maldito um milhão de vezes, detetive, mas isso não quer dizer necessariamente que foi eu quem teve a honra de matá-lo com essa coisinha afiada aí. Já entendi o que você está insinuando."
     ]
-
-    escrever_lentamente("\nApós as interrogações, Samanta anota algumas proposições sobre o crime:\n")
-    for i, prop in enumerate(proposicoes, 1):
-        escrever_lentamente(f"{i}. {prop}")
-
-    # Pergunta ao jogador sobre quais proposições ele acha que são verdadeiras
-    escolhas = input("Quais proposições você acha que são verdadeiras? (digite os números separados por vírgula): ")
-    escolhas = [int(num.strip()) for num in escolhas.split(',') if num.strip().isdigit()]
     
-    # Adiciona as proposições escolhidas pelo jogador à lista global
-    for escolha in escolhas:
-        proposicoes_certas.append(proposicoes[escolha - 1])
-
-    # Pergunta ao jogador sobre quais proposições ele acha que são falsas
-    escolhas_falsas = input("Quais proposições você acha que são falsas? (digite os números separados por vírgula): ")
-    escolhas_falsas = [int(num.strip()) for num in escolhas_falsas.split(',') if num.strip().isdigit()]
+    falasErik = [
+        "Está sugerindo que uma faca pequena dessas poderia ser minha? Que adivinhação grotesta. Gosto de matar a distância, detetive, se é que me entende. Ainda mais se forem criaturas como Baldwin. Eu não usaria uma mísera faca para matá-lo.",
+        "Está insinuando o que acho que está insinuando? Está falando sério, detetive? Baldwin me irritava, sim. E às vezes eu não queria mais nada além de meter uma bala na sua cabeça. Mas minha mulher, mesmo que o odiasse também, nunca me perdoaria por trair a confiança de Deus desse jeito.",
+        "Se eu entendi bem o que você está insinuando, detetive, só me resta dizer que essa faca não é bem o meu estilo. E que, se eu tivesse a oportunidade de matar Baldwin, eu não teria feito desse jeito. Eu teria usado algo... Mais doloroso.",
+        "Eu entendi bem o que você me perguntou? Está insinuando isso mesmo? Baldwin e eu tivemos nossas discussões sim, mas minha mulher sempre conseguia me ver a razão antes que eu fizesse algo que eu poderia me arrepender de fazer. Essa lâmina não me é familiar, detetive, mesmo que eu quisesse que fosse.",
+        "Você está me acusando, detetive? Eu não usaria algo assim para matar Baldwin. Usaria algo, na verdade, que o fizesse se arrepender por todas as vezes que ele mexeu com minha esposa."
+    ]
     
-    # Adiciona as proposições escolhidas pelo jogador à lista global
-    for escolha in escolhas_falsas:
-        proposicoes_falsas.append(proposicoes[escolha - 1])
+    # Seleciona falas aleatórias para Diana e Erik
+    falaDiana = random.choice(falasDiana)
+    falaErik = random.choice(falasErik)
 
+    # Pergunta padrão
+    escrever_lentamente("Depois de esperar os clientes sairem da estalagem, Samanta aproveita a deixa e se aproxima de sua primeira suspeita.")
+    escrever_lentamente(f"Diana, a Cozinheira da Estalagem, cruza os braços com força, o tecido velho do avental esticado sob a pressão de seus músculos, enquanto seus olhos encontram os seus. Um olhar afiado, cheio de desconfiança, examina Samanta como se ela tivesse acabado de insultar sua comida. Seu corpo inteiro emana irritação contida — as sobrancelhas cerradas, a boca apertada numa linha dura, e o peso de sua respiração se arrasta, como se estivesse contando mentalmente até dez para não explodir.")
+    escrever_lentamente("Quando percebe o brilho metálico da faca que Samanta segura, sua expressão muda num instante. Ela é inteligente. Sabe porque que Samanta está lá. Há um lampejo de surpresa que rapidamente se transforma em frustração. A incredulidade salta de seus olhos, como se a mera sugestão de que ela poderia estar envolvida na morte de Baldwin fosse uma afronta pessoal. Ela aperta os lábios até formarem uma linha pálida, os dedos batendo impacientemente na lateral do avental, indicando que não toleria a conversa que se seguiria por muito tempo.")
+    escrever_lentamente("O corpo de Samanta reclama — músculos pesados e tensos, uma dor latejante na têmpora esquerda. O ar parece espesso, e ela sennte um gosto de metal na boca, reflexo do esforço e da exaustão. Diana a observa com a mesma rigidez de uma panela fervente prestes a transbordar, mas, por fim, sua expressão volta a uma calma tensa. Está claro que ela não pretende facilitar a investigação.")
+    escrever_lentamente("Independenetemente disso, Samanta a questiona acerca da faca encontrada ao lado do corpo de Baldwin, observando tudo o que é dito e não dito.")
+
+    # Respostas dos personagens
+    escrever_lentamente(f"Diana responde, mal-humorada: {falaDiana}")
+    insistir = input("\nVocê deseja continuar com a conversa? (S/N): ").strip().lower()
+    
+    if insistir == 's' or insistir == 'S':
+        probRevelacaoDiana = random.random()
+        
+        if probRevelacaoDiana > 0.5:
+            escrever_lentamente("Diana revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que já vi você aqui antes, não vi? Nunca havia reparado como você é pequena, detetive, mesmo que seja forte' e vai embora. ")
+            
+        else:
+            escrever_lentamente("Diana revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora.")
+        
+    time.sleep(2)
+    os.system("cls")
+    escrever_lentamente("Com um suspiro, Samanta parte para encontrar Erick.")
+    time.sleep(2)
+    os.system("cls")
+    
+    escrever_lentamente("Quando finalmente o encontra, o vento frio se faz conhecido. Erik está na saída da vila. Sua capa está marcada de lama seca e folhas, e ele se move com a inquietude de alguém que preferia estar longe, sempre em alerta. Ao ver a faca na mão de Samanta, seu corpo enrijece por um momento, mas logo ele a examina com um desprezo controlado, como quem avalia a ameaça de um animal ferido.")
+    escrever_lentamente("Seus olhos, afiados como os de um predador, analisam cada detalhe da lâmina. Há cautela na forma como ele ajusta o cinto e evita a encarar por muito tempo, os dedos finos deslizando brevemente sobre o cabo da própria faca de caça. O desprezo dele é evidente, mas sutil — um meio sorriso amargo que desaparece antes que se fixá-lo.")
+    escrever_lentamente("A fadiga pesa sobre Samanta como um manto molhado. A dor de cabeça aumenta, e o gosto de metal na boca se intensifica, como se a investigação estivesse a corroendo por dentro. Erik se afasta um pouco, os olhos esquadrinhando as árvores ao redor, como se estivesse pronto para sumir a qualquer sinal de perigo. A tensão é palpável, mas ele permanece, ainda que desconfortável, enquanto seguimos pressionando.")
+    escrever_lentamente("Ele pergunta o que Samanta quer. Ela o questiona sobre a faca encontrada ao lado do corpo de Baldwin, observando como a faca é semelhante aquela que ele segura nas mãos.")
+    escrever_lentamente(f"Erik, com os lábios em uma linha reta, responde ríspido: {falaErik}")
+    
+    insistir = input("\nVocê deseja continuar com a conversa? (S/N): ").strip().lower()
+
+    probRevelacaoErik = random.random()
+
+    if probRevelacaoErik > 0.5:
+        escrever_lentamente("Erik zomba com a insistência. Sem paciência, ele diz: 'Você usa uma roupa vermelha, não usa? É interessante como alguém com uma personalidade como a sua usa uma roupa tão interessante como essa' e vai embora.")
+
+    else:
+        escrever_lentamente("Erik zomba com a insistência. Sem paciência, ele diz: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora.")
+            
+    # Exibe as proposições ao jogador
+    print("\nEscolha as proposições que você considera verdadeiras:")
+    for chave, info in proposicoes.items():
+        print(f"{chave}: {info['descricao']}")
+    
+    # Captura as escolhas do jogador
+    escolhas = input("\nDigite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
+    escolhas = [e.strip().upper() for e in escolhas]
+    proposicoes_escolhidas.extend(escolhas)
+ 
 def interrogar_personagensFase2():
-    # Introdução
-    escrever_lentamente("Samanta decide investigar mais a fundo. Ela se dirige ao local onde seus suspeitos estão e se prepara para a próxima rodada de interrogações. Sua cabeça e seu corpo ainda estão doloridos.\n")
     
-    # Definindo os personagens e suas falas
-    personagens = {
-        "Lady Isolde": [
-            "Eu sempre mantive facas em minha cozinha. É uma necessidade, não um instrumento de morte. Entendo isso tanto quanto você, detetive.",
-            "Não é verdade que eu tinha algo contra Baldwin. Ele era difícil, mas eu nunca sonharia em fazer algo contra ele diretamente.",
-            "Baldwin e eu tínhamos nossas diferenças, mas a morte dele não resolve nada para mim. Pode acreditar. Acha que eu já não leve i em conta as suspeitas que caíriam em cima de mim quando ele se fosse?",
-            "Não gosto de lembrá-la, mas nossas brigas não dizem respeito a quem não é de fora do casamento.",
-            "A vida é muito preciosa para ser desperdiçada por rivalidades mesquinhas. Ou ser desperdiçada em relacões miseráveis."
-        ],
-        "Floris, o Bobo da Corte": [
- "Facas? Eu apenas uso para preparar as comidas engraçadas que faço para a corte. Mas essa é uma boa ideia que você me deu.",
-            "Claro que tenho algumas, mas para diversão, não para brigar. Quer uma demonstração?",
-            "Nunca tive problemas com Baldwin.  Não a ponto de matá-lo., ao menos. Eu apenas gostava de fazer piadas sobre ele e como todo mundo seria mais feliz com a morte dele.",
-            "Se ele não se levasse tudo tão a sério, talvez estivesse vivo hoje. Se ele soubesse quando parar... A culpa é dele, senhorita. Dele por ser do jeito que era.",
-            "Minha relação com ele era baseada em humor, nada mais. Minhas facas não poderiam ser desperdiçadas nele."
- ],
-        "Gerhard, o Carrasco": [
-            "A lâmina do meu machado é afiada, mas eu só uso para meu trabalho. Não me envolvo com rivalidades pessoais. Ainda mais se fosse óbvio que isso me incriminaria.",
-            "A morte de Baldwin é uma questão de justiça, mas não estou aqui para julgar. O padre sabe quantos erros já carrego em meus ombros.",
-            "Baldwin sempre teve inimigos, mas eu não sou um deles. Não um desses que o mataria, ao menos.",
-            "As pessoas têm suas razões para agir, mas eu não sou quem decide quem vive ou morre. Essa é uma decisão do Rei.",
-            "Facas e machados são ferramentas. O que importa é quem as empunha. E eu as empunho na cabeça, senhorita."
-        ]
+     # Armazenamento de proposições com suas verdades
+    proposicoes = {
+        "P6": {"descricao": "Boris não está mentindo conscientemente. Ele não pode ser culpado.", "verdade": True},
+        "P7": {"descricao": "Mariana não parece guardar rancor de Baldwin. Ela não é culpada.", "verdade": True},
+        "P8": {"descricao": "Pegadas pequenas sugerem uma presença feminina.", "verdade": True},
+        "P9": {"descricao": "O relato de ambos se contradizem ", "verdade": True},
+        "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Boris fala", "verdade": True}
     }
     
-    # Interrogando os personagens
-    for personagem, falas in personagens.items():
-        # Exibir comportamento inicial
-        escrever_lentamente("\nSamanta se aproxima, pronta para questionar sobre a relação com Baldwin e o uso de objetos cortantes. O {personagem} parece já saber o que se aproxima e se prepara para as perguntas.\n")
-
-        while True:
-            resposta = random.choice(falas)  # Seleciona uma fala aleatória
-            escrever_lentamente(f"{personagem}: \"{resposta}\"\n")
-            
-            # Pergunta se Samanta deseja insistir
-            insistir = input("Você deseja insistir em mais perguntas? (s/n): ")
-            if insistir.lower() != "s":
-                break
-
-            if personagem == "Lady Isolde" or personagem == "Floris, o Bobo da Corte" or personagem == "Calistus, o Padre":
-                escrever_lentamente(f"{personagem}: \"Eu ouvi uma mulher com cabelos ruivos na cozinha pouco antes do ataque. Não sei quem era, mas talvez isso ajude.\"\n")
-            else:
-                escrever_lentamente(f"{personagem}: \"Eu ouvi um homem discutindo com Baldwin na noite do crime. Não sei quem era, mas talvez isso ajude.\"\n")
-
-            # Limpa o console após cada interrogação
-            os.system("cls")
-
-    # Proposições após as interrogações
-    proposicoes = [
-        "Lady Isolde parece já ter considerado a morte de Baldwin.",
-        "Floris parece estar tentando amenizar a morte do cozinheiro.",
-        "Gerhard pode estar usando sua posição para encobrir algo.",
-        "As facas e objetos cortantes na cozinha podem ter sido uma armadilha disfarçada.",
-        "A relação tensa entre os personagens e Baldwin pode indicar um motivo oculto para sua morte."
+    # Opções de falas para Mariana e Boris
+    falasMariana = [
+        "Admito que não me lembro de muita coisa daquele dia ou do dia anterior e sei como isso soa meio... Estranho. Mas foram dias corridos e muito chocantes, sabe, detetive? Mas acho que vi alguém saindo pela portas do fundo antes de encontrar o corpo do senhor Baldwin. Acho que poderia ser uma mulher...",
+        "Reconheço que tenho poucas lembranças daquele dia. E sei como isso me faz parecer. Mas foi um dia agitado e bastante impactante, entende, detetive? Mas creio que avistei alguém saindo pela porta dos fundos antes de descobrir o corpo do senhor Baldwin. Havia também algumas pegadas pequenas, não é? Talvez de uma mulher...?",
+        "Confesso que não recordo muitos detalhes daquele dia e sei que isso pode soar meio... Incriminador. Mas foi um dia intenso e muito surpreendente, você entende, detetive? Porém, acho que vi uma pessoa deixando o local pela porta dos fundos antes de encontrar o corpo do senhor Baldwin. Havia que vi algumas pegadas de mulher antes também...",
+        "Aceito que não me recordo de muita coisa do que aconteceu naquele dia e sei que isso pode me fazer parecer culpada. Mas foi um dia corrido e extremamente perturbador, não acha, detetive? Mas tenho a impressão de que vi alguém saindo pela porta de trás antes de encontrar o corpo do senhor Baldwin. Acho que notei algumas pegadas pequenas também... Acho que pareciam de botas femininas.",
+        "Admito que minha memória daquele dia é um pouco nebulosa e sei que isso pode me incrimar. Mas foi um dia cheio de acontecimentos e muito chocante, compreende, detetive? No entanto, acho que percebi alguém saindo pela porta dos fundos antes de eu me deparar com o corpo do senhor Baldwin. Acho que havia algumas pegadas pequenas também do lado de fora... Talvez de uma mulher?"
     ]
+    
+    falasBoris = [
+        "Lembro-me de ter visto um homem saindo da estalagem pouco antes de ouvir os gritos da senhorita Mariana, mas não me lembro. E sou um homem de idade, senhorita, então perdoe-me pela minha falta de utilidade nesse momento",
+        "Tenho a impressão de que vi um homem deixando a estalagem logo antes de ouvir os gritos da senhorita Mariana, mas não consigo me lembrar bem. E, como sou um homem idoso, senhorita, peço desculpas por não ser de muita ajuda neste momento.",
+        "Recordo de ter avistado um homem saindo da estalagem pouco antes de ouvir os gritos da senhorita Mariana, mas a memória não é clara. E, sendo um homem mais velho, senhorita, peço que me perdoe por não conseguir ser mais útil agora.",
+        "Acho que vi um homem saindo da estalagem momentos antes dos gritos da senhorita Mariana, mas não tenho certeza. E, como sou um homem de idade, senhorita, espero que compreenda minha falta de clareza neste instante.",
+        "Lembro de ter visto um homem sair da estalagem pouco antes dos gritos da senhorita Mariana, mas minha memória é vaga. E, sendo um homem mais velho, senhorita, desculpe-me por não conseguir ajudar mais neste momento."
+    ]
+    
+    # Seleciona falas aleatórias para Mariana e Boris
+    falaMariana = random.choice(falasMariana)
+    falaBoris = random.choice(falasBoris)
 
-    escrever_lentamente("Após as interrogações, Samanta anota cinco proposições sobre suas suspeitas:\n")
-    for i, prop in enumerate(proposicoes, 1):
-        escrever_lentamente(f"{i}. {prop}")
+    # Pergunta padrão
+    escrever_lentamente("Depois dos dois primeiros interrogatórios, Samanta volta novamente a estalagem para encontrar Mariana. Não demora muito para encontrá-la e deixar claro a intenção de questioná-la.")
+    escrever_lentamente("Mariana está encolhida em um canto da estalagem, os dedos finos torcendo-se nervosamente enquanto nos aproximamos. Seus olhos grandes parecem oscilar entre medo e hesitação, como se cada pergunta fosse um peso invisível aumentando sua angústia. A maneira como ela abaixa a cabeça e evita contato visual deixa evidente que algo a perturba.")
+    escrever_lentamente("Seus movimentos são rápidos e nervosos — ajeita a barra do vestido, toca nas tranças, e seus pés se mexem inquietos, como se quisesse escapar dali. Ao se falar da manhã do incidente, seus dedos apertam o tecido do vestido com tanta força que os nós dos dedos ficam brancos. Está claro que a memória do encontro com Baldwin a assombra, mas ela parece estar se debatendo entre o medo de falar demais e a necessidade de ser honesta.")
+    escrever_lentamente("O corpo de Samanta está à beira da exaustão, e a dor de cabeça se mistura ao gosto amargo que Samanta não consegue tirar da boca. Mariana percebe a sua condição e, por um momento, parece se compadecer, mas sua própria ansiedade logo a consome novamente. Ela sabe porque Samanta está ali, na frente dela.")
+    escrever_lentamente(f"Você pergunta a ela se ela se lembra de ter visto algo suspeito no dia que encontrou o corpo morto de Baldwin")
+    
+    # Respostas dos personagens
+    escrever_lentamente(f"Mariana diz, tímida: {falaMariana}")
+    
+    insistir = input("\nVocê deseja insistir na conversa? (S/N): ").strip().lower()
+ 
+    if insistir == 's' or insistir == 'S':
+        # Simulação de probabilidade para revelar mais informações
+        probRevelacaoMariana = random.random()
 
-    # Pergunta ao jogador sobre quais proposições ele a cha que são verdadeiras
-    escolhas = input("\nQuais proposições você acha que são verdadeiras? (digite os números separados por vírgula): ")
-    escolhas = [int(num.strip()) for num in escolhas.split(',') if num.strip().isdigit()]
+        if probRevelacaoMariana > 0.5:
+            escrever_lentamente("Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, seu hálito cheira a licor. Você bebe?'. Samanta pisca por um momento e, então, vai embora.")
+            
+        else:
+            escrever_lentamente("Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, acho que não consigo responder mais perguntas por hoje. Samanta pisca por um momento e, então, vai embora.")
+        
+    time.sleep(2)
+    os.system("cls")
+    escrever_lentamente("Com um suspiro, Samanta vai para o lado de fora da estalagem, onde sabe que encontrará seu próximo suspeito: Boris.")
+    time.sleep(2)
+    os.system("cls")
+    
+    escrever_lentamente("Ela o encontra rapidamente. Boris está de pé, as mãos grossas descansando nos quadris, como se a força de sua presença fosse suficiente para intimidar qualquer um. Há algo incerto em seus movimentos, no modo como ajusta a postura mais de uma vez, tentando parecer seguro, mas falhando em disfarçar a tensão quando a vê.")
+    escrever_lentamente("Ao mencionar a manhã em que ele acompanhou Mariana e o momento dos gritos, Boris franze a testa e desvia o olhar por um instante, pensativo. Ele cruza os braços e, em seguida, muda de posição, como se quisesse acabar logo com aquela conversa. Embora relutante em se envolver, é claro que a memória do que aconteceu o incomoda. Ou a falta dela. ")
+    escrever_lentamente("Samanta o questiona acerca da mesma coisa sobre o que questionou Mariana.")
+        
+    escrever_lentamente(f"Suspirando, Boris fala: {falaBoris}")
+        
+    insistir = input("\nVocê deseja insistir na conversa? (S/N): ").strip().lower()
+ 
+    if insistir == 's' or insistir == 'S':
+        probRevelacaoBoris = random.random()
+ 
+        if probRevelacaoBoris > 0.5:
+                escrever_lentamente("Boris, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Você sempre usa essa roupa vermelha, senhorita? É uma escolha ousada para alguém que se aventura em lugares como este. Não sabia que você vinha de uma família boa' e vai embora.")
 
-    # Adiciona as proposições escolhidas pelo jogador à lista global
-    for escolha in escolhas:
-        proposicoes_certas.append(proposicoes[escolha - 1])
+        else:
+            escrever_lentamente("Boris, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Acredito que tenho mais coisas para fazer do que ficar respondendo perguntas, senhorita' e vai embora.")
+            
+            
+    # Exibe as proposições ao jogador
+    print("\nEscolha as proposições que você considera verdadeiras:")
+    for chave, info in proposicoes.items():
+        print(f"{chave}: {info['descricao']}")
+    
+    # Captura as escolhas do jogador
+    escolhas = input("\nDigite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
+    escolhas = [e.strip().upper() for e in escolhas]
+    proposicoes_escolhidas.extend(escolhas)
 
 def interrogar_personagensFase3():
-    # Introdução
-    escrever_lentamente("Samanta encontrou algumas cartas de amor escondidas e decidiu interrogar os suspeitos para descobrir mais sobre elas.\n")
     
-    # Definindo os personagens e suas falas
-    personagens = {
-        "Padre Calistus": [
-            "As cartas de amor? Não tenho nada a ver com isso, sou um homem de fé. Meu único amor está para com Deus.",
-            "O amor é um sentimento poderoso, mas deve ser guiado por princípios. E os princípios dos homens são questionáveis.",
-            "Se alguém escreveu cartas, pode haver uma razão oculta, mas não é minha intenção investigar. E nem contar.",
-            "A vida amorosa de outros não deve ser meu foco, estou aqui para ajudar os necessitados e ouvir os seus arrependimentos.",
-            "Se as cartas estão ligadas à morte de Baldwin, isso é uma questão mais profunda do que aparenta. Sou um homem simples, senhorita, não espere muito de mim."
-        ],
-        "Lady Isolde": [
-            "A-As cartas? Eu nunca as vi. Se são de amor, não são minhas.",
-            "Nunca lhe disseram que é falta de privacidade invadir os aposentos de uma mulher de luto?",
-            "Se alguém escreveu cartas, deveria ser entre amantes, não entre inimigos e, tampouco, intrometidos.",
-            "As palavras podem ser traiç oeiras. É fácil se enganar com sentimentos ou com alucinações. Tem certeza que leu as cartas direito, detetive?",
-            "Meu coração está livre de rivalidades, e não desejo ser ligada a essa situação. Sou uma mulher fiél."
-        ],
-        "Bram, o Ferreiro": [
-            "Cartas de amor? Isso é novidade para mim. Não me importo com os relacionamentos dos outros. E não vejo porque você deveria se importar.",
-            "Se alguém está apaixonado, que mantenha suas cartas em segredo. E que quem não esteja, não se intrometa.",
-            "As palavras escritas são só isso, palavras. Não têm peso se não forem acompanhadas por ações.",
-            "Se Isolde recebeu algo, ela provavelmente fez algo para merecer. Mas não entendo como isso tem haver comigo?",
-            "Estou mais preocupado em forjar minha próxima espada do que em romances, senhorita."
-        ]
+    proposicoes = {
+        "P11": {"descricao": "O tecido é da capa de Madame Lavínia. Ela pode ser culpada. ", "verdade": False},
+        "P12": {"descricao": "De acordo com a Lavínia, o tecido é mesmo caro, indicando alguém de classe elevada ou média.", "verdade": True},
+        "P13": {"descricao": "Madame Lavínia está na defensiva com a acusação. Ela não é culpada.", "verdade": True},
+        "P14": {"descricao": "Madame Lavínia dá a entender que sua relação com Baldwin não era complicada", "verdade": False},
+        "P15": {"descricao": "Baldwin era um homem violento. Madame Lavínia dá a entender que ele se aproveitava de mulheres.", "verdade": True}
     }
-    
-    # Interrogando os personagens
-    for personagem, falas in personagens.items():
-        # Exibir comportamento inicial
-        escrever_lentamente(f"{personagem} entra na sala de acordo com o pedido de Samanta, parecendo intrigado e defensivo.\n")
-        escrever_lentamente("Samanta observa atentamente, procurando sinais de nervosismo.\n")
-
-        while True:
-            escrever_lentamente(f"Samanta: \"Ouvi falar de algumas cartas de amor. O que você sabe sobre elas?\"\n")
-            resposta = random.choice(falas)  # Seleciona uma fala aleatória
-            escrever_lentamente(f"{personagem}: \"{resposta}\"\n")
-            
-            # Pergunta se Samanta deseja insistir
-            insistir = input("Você deseja insistir em mais perguntas? (s/n): ")
-            if insistir.lower() != "s":
-                break
-
-            if personagem == "Lady Isolde" or personagem == "Floris, o Bobo da Corte" or personagem == "Calistus, o Padre":
-                escrever_lentamente(f"{personagem}: \"Eu ouvi uma mulher com cabelos ruivos na cozinha pouco antes do ataque. Não sei quem era, mas talvez isso ajude.\"\n")
-            else:
-                escrever_lentamente (f"{personagem}: \"Eu ouvi um homem discutindo com Baldwin na noite do crime. Não sei quem era, mas talvez isso ajude.\"\n")
-
-            # Limpa o console após cada interrogação
-            os.system("cls")
-
-    # Proposições após as interrogações
-    proposicoes = [
-        "Padre Calistus pode estar ocultando algo sobre seus relacionamentos e responsabilidades.",
-        "Lady Isolde tem motivos para mentir sobre as cartas se estiver envolvida em um romance proibido.",
-        "Bram pode ter sentimentos não correspondidos que o ligam à situação das cartas.",
-        "As cartas de amor podem estar ligadas a ciúmes que resultaram na morte de Baldwin.",
-        "A relação entre os personagens e Baldwin pode ser mais complexa do que se imagina."
+     
+    # Opções de falas para Madame Lavínia
+    falasLavinia = [
+        "Baldwin sempre foi um homem... peculiar, detetive. Ele frequentemente procurava consolo e autoestima em locais que não eram apropriados e muitas vezes a força. E, se eu estiver entendendo bem o que a senhorita está insinuando, posso lhe dizer, sem dúvidas, que eu não sou a única vitíma de Baldwin que tem certo prestigío na vida.",
+        "O Baldwin sempre foi um sujeito... peculiar, detetive. Ele buscava conforto e autoestima em lugares pouco apropriados e muitas vezes a força. Se estou captando o que a senhorita está errôneamente insinuando, posso lhe garantir que não sou a única pessoa de prestígio que sofreu nas mãos de Baldwin.",
+        "Baldwin sempre teve um comportamento... diferente, detetive. Frequentemente, ele procurava segurança e reconhecimento em lugares inapropriados e muitas vezes a força. Se entendi bem a sua insinuação, uma da qual não estou contente em participar, posso dizer que não sou a única pessoa de posição que foi alvo de Baldwin.",
+        "Sempre considerei Baldwin um homem... peculiar, detetive. Ele costumava buscar consolo e autoafirmação em locais inadequados e muitas vezes a força. Se estou certa quanto ao que está sugerindo, posso lhe assegurar que não fui a única pessoa de destaque que teve problemas com Baldwin. Vá fazer melhores suposições, detetive. De preferência, críveis.",
+        "aldwin sempre teve um jeito... singular, detetive. Ele buscava apoio e validação em contextos que não eram apropriados e muitas vezes a força. E se eu estiver interpretando corretamente o que a senhorita insinua, posso afirmar que não sou a única pessoa de prestígio a quem ele causou transtornos."
     ]
+    
+    # Seleciona uma fala aleatória para Madame Lavínia
+    falaLavinia = random.choice(falasLavinia)
 
-    escrever_lentamente("\nApós as interrogações, Samanta anota cinco proposições sobre o crime:\n")
-    for i, prop in enumerate(proposicoes, 1):
-        escrever_lentamente(f"{i}. {prop}")
+    # Pergunta padrão
+    escrever_lentamente("No dia seguinte, Samanta se aventura na casa de Madame Lavínia após conseguir uma licença para investigar mais afundo o caso de Baldwin.")
+    escrever_lentamente("Madame Lavínia a recebe com a frieza de um mármore esculpido. Seus olhos, calculistas e atentos, a medem como se ela estivesse ali para uma negociação que já estivesse decidida antes mesmo de começar. Sua postura é impecável, sem um único gesto que não seja deliberadamente controlado.")
+    escrever_lentamente("Quando Samanta mostra o pedaço de tecido vermelho silenciosamente, seus dedos finos e adornados com anéis mal se movem, mas há uma rigidez sutil nos ombros, como se aquela evidência fosse uma afronta inesperada. O rosto dela permanece impassível, embora seus olhos brilhem brevemente com uma sombra de irritação. Ela entende a insinuação que Samanta a faz.")
+    escrever_lentamente("Os músculos de Samanta protestam com cada movimento que ela faz ao se preparar para a interrogação, e a dor de cabeça latejante deixa tudo levemente desfocado. Lavínia continua imperturbável, a analisando como se tentasse adivinhar seus próximos passos, jogando um xadrez mental onde cada palavra vale uma jogada.")
+    escrever_lentamente(f"Samanta questiona Madame Lavínia sobre Baldwin e seu comportamento.")
+    
+    # Resposta de Madame Lavínia
+    escrever_lentamente(f"Madame Lavínia, com uma careta, responde: {falaLavinia}")
 
-    # Pergunta ao jogador sobre quais proposições ele acha que são verdadeiras
-    escolhas = input("\nQuais proposições você acha que são verdadeiras? (digite os números separados por vírgula): ")
-    escolhas = [int(num.strip()) for num in escolhas.split(',') if num.strip().isdigit()]
+    # Pergunta se o jogador deseja insistir em mais perguntas
+    insistir = input("\nVocê deseja na conversa? (S/N): ").strip().lower()
+    
+    if insistir == 's' or insistir == 'S':
+        # Simulação de probabilidade para revelar mais informações
+        probRevelacaoLavinia = random.random()
 
-    # Adiciona as proposições escolhidas pelo jogador à lista global
-    for escolha in escolhas:
-        proposicoes_certas.append(proposicoes[escolha - 1])
+        if probRevelacaoLavinia > 0.5:
+            escrever_lentamente("Madame Lavínia, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência,, dizendo: 'É curioso, detetive, muito curioso você ter a audácia de me acusar e, ainda assim, eu ter te visto na companhia de Baldwin diversas vezes com essa roupa vermelha' e fecha a porta. ")
+
+        else:
+            escrever_lentamente("Madame Lavínia, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e fecha a porta.")
+            
+    # Exibe as proposições ao jogador
+    print("\nEscolha as proposições que você considera verdadeiras:")
+    for chave, info in proposicoes.items():
+        print(f"{chave}: {info['descricao']}")
+    
+    # Captura as escolhas do jogador
+    escolhas = input("\nDigite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
+    escolhas = [e.strip().upper() for e in escolhas]
+    proposicoes_escolhidas.extend(escolhas)
 
 def interrogar_personagensFase4():
-    # Introdução
-    escrever_lentamente("Samanta decide investigar as bebidas de Morgana, a Curandeira, e como elas podem estar ligadas à morte de Baldwin. Ela também decide investigar mais sobre a pessoa de Baldwin em si.\n")
     
-    # Definindo os personagens e suas falas
-    personagens = {
-        "Morgana": [
-            "Minhas bebidas são feitas com ervas raras, mas não sou responsável pelo que os outros fazem com elas. Elas podem tanto curar quanto matar, sim, mas isso não é problema meu.",
-            "Baldwin era um homem forte, mas todos têm fraquezas, não é mesmo? A sua, infelizmente, estava na bebida.",
-            "Se ele se deixou levar por algo que eu preparei, isso é culpa dele. Só faço o que me pedem.",
-            "As pessoas buscam poder nas bebidas, mas não podem se esquecer das consequências. Esse erro é unicamente de Baldwin.",
-            "Não posso controlar o que as pessoas fazem depois de beberem, mas o conhecimento é poder. "
-        ],
-        "Floris, o Bobo da Corte": [
-            "Baldwin era, como já suspeito que você saiba, senhorita, incrivelmente desprezado.",
-            "Ele não era fácil de lidar; muitos o achavam insuportável. Eu me incluo nessa lista admiravelmente longa.",
-            "A corte sempre teve uma relação complicada com Baldwin. Ele tinha seu jeito de desagradar assim como também sabia cozinhar incrivelmente bem.",
-            "Dizem que ele poderia intimidar até o mais corajoso dos homens se sua autoestima não fosse tão baixa.",
-            "Se você se opusesse a ele, é melhor estar preparado para a luta. Não que eu ache que você perderia, senhorita. Você parece ter talento para quebrar alguns rostos."
-        ],
-        "Gerhard, o Carrasco": [
-            "Baldwin era um homem grande e imponente, mas todos têm um ponto fraco. A dele estava na inteligência dele.",
-            "Já vi homens maiores do que ele caírem se forem pegos de surpresos. No entanto, é admirável que sua surpresa fosse sempre a bebida.",
-            "A força nem sempre garante a vitória. Estratégia é essencial. E, felizmente, Baldwin era carente nesse aspecto.",
-            "Não posso dizer que ele era fácil de derrubar, mas não era impossível. Eu saberia. Já quebrei ossos dele o suficiente para que isso fosse uma segunda natureza nesse ponto.",
-            "Uma luta pode mudar rapidamente; você nunca pode subestimar seu oponente, seja homem ou mulher. Ainda mais se o oponente não for burro."
-        ]
+    proposicoes = {
+        "P16": {"descricao": "O licor achado junto ao corpo de Baldwin foi comprado por intermédio de uma mulher. ", "verdade": True},
+        "P17": {"descricao": "Quem comprou o licor foi Madame Lavínia. ", "verdade": True},
+        "P18": {"descricao": "Rodrigo, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte. ", "verdade": True},
+        "P19": {"descricao": "Dado aos rumores das ações de Baldwin, ele provavelmente utilizaria o licor de modo indevido", "verdade": True},
+        "P20": {"descricao": "O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém.", "verdade": True}
     }
     
-    # Interrogando os personagens
-    for personagem, falas in personagens.items():
-        # Exibir comportamento inicial
-        escrever_lentamente(f"{personagem} entra na sala, olhando intrigado para Samanta.\n")
-        escrever_lentamente("Samanta, por sua vez, observa atentamente, aval iando suas reações.\n")
-
-        while True:
-            # Interação
-            if personagem == "Morgana":
-                escrever_lentamente(f"Samanta: \"Morgana, eu quero saber sobre suas bebidas e se elas têm alguma ligação com a morte de Baldwin.\"\n")
-            elif personagem == "Floris":
-                escrever_lentamente(f"Samanta: \"Floris, qual é a reputação de Baldwin na corte? Por que ele tinha tantos inimigos?\"\n")
-            elif personagem == "Gerhard":
-                escrever_lentamente(f"Samanta: \"Gerhard, Baldwin era fácil de derrubar em uma luta? O que você sabe sobre isso?\"\n")
-            
-            resposta = random.choice(falas)  # Seleciona uma fala aleatória
-            escrever_lentamente(f"{personagem}: \"{resposta}\"\n")
-            
-            # Pergunta se Samanta deseja insistir
-            insistir = input("Você deseja insistir em mais perguntas? (s/n): ")
-            if insistir.lower() != "s":
-                break
-
-            if personagem == "Lady Isolde" or personagem == "Floris, o Bobo da Corte" or personagem == "Calistus, o Padre":
-                escrever_lentamente(f"{personagem}: \"Eu ouvi uma mulher com cabelos ruivos na cozinha pouco antes do ataque. Não sei quem era, mas talvez isso ajude.\"\n")
-            else:
-                escrever_lentamente(f"{personagem}: \"Eu ouvi um homem discutindo com Baldwin na noite do crime. Não sei quem era, mas talvez isso ajude.\"\n")
-
-            # Limpa o console após cada interrogação
-            os.system("cls")
-
-    # Proposições após as interrogações
-    proposicoes = [
-        "Morgana pode estar escondendo algo sobre a verdadeira natureza de suas bebidas.",
-        "Floris acredita que Baldwin tinha muitos inimigos, o que o tornaria um alvo fácil.",
-        "Gerhard sabe mais sobre a força de Baldwin do que admite, e isso pode ser relevante.",
-        "As fraquezas de Baldwin podem ter sido exploradas por aqueles que o cercavam ou que fossem minimamente inteligentes.",
-        "As bebidas de Morgana podem ter contribuído para a morte de Baldwin de uma forma inesperada."
+    # Opções de falas para Rodrigo
+    falasRodrigo = [
+        "Baldwin... Ele não era bem-vindo por aqui, então não vendi nada para ele. Não que eu saiba, ao menos. Quero dizer, não tenho nada contra ele, pessoalmente. Na verdade, tenho sim... Afinal, suas escolhas e ações com mulheres eram... digamos, questionáveis. A única pessoa que me lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - era uma mulher com vestes vermelhas, mas ela tinha alguma coisa no rosto, então... Não posso te falar quem era exatamente.",
+        "Baldwin… Ele não era exatamente bem-vindo por aqui, então não cheguei a vender nada para ele. Ou, pelo menos, não que eu lembre. Quer dizer, não tenho nada contra ele, pessoalmente. Bem, talvez até tenha… Afinal, suas atitudes com mulheres eram, digamos, duvidosas. Enfim, a única pessoa que me lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - foi uma mulher vestida de vermelho, mas ela tinha algo cobrindo o rosto, então… Não posso dizer quem era com certeza.",
+        "Baldwin… Ele não era muito aceito por essas partes, então nunca vendi nada diretamente para ele. Ao menos, não que eu saiba. Não que eu tenha algo contra ele, pessoalmente… Bem, na verdade, até tenho. Até porque suas ações com mulheres eram, digamos, discutíveis. Mas, é... Bem, a única pessoa que lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - foi uma mulher de vermelho, mas ela usava algo no rosto, então… Não sei exatamente quem era.",
+        "Baldwin… Não era alguém bem-recebido por aqui, então não cheguei a vender nada a ele. Pelo menos, não que eu me recorde. Quer dizer, não tenho algo contra ele, exatamente. Na verdade, talvez tenha… Mas, é, bem... Enfim, suas atitudes com as mulheres eram, digamos, um tanto suspeitas. Mas, né... Eh... A única pessoa que lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - era uma mulher vestida de vermelho, mas ela tinha algo cobrindo o rosto, então… Não consigo dizer com certeza quem era.",
+        "Baldwin… Ele não era bem-visto por aqui, então nunca vendi nada a ele, ao menos que eu saiba. Não que eu tivesse algo contra ele… Bem, talvez tenha, tivesse, sim. Suas ações com mulheres eram, afinal, questionáveis. Mas bem... A única pessoa que lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - foi uma mulher de roupas vermelhas, mas ela tinha o rosto coberto por algo, então… Não posso afirmar quem era, exatamente."
     ]
+    
+    # Seleciona uma fala aleatória para Rodrigo
+    falaRodrigo = random.choice(falasRodrigo)
 
-    escrever_lentamente("\nApós as interrogações, Samanta anota cinco proposições sobre o crime:\n")
-    for i, prop in enumerate(proposicoes, 1):
-        escrever_lentamente(f"{i}. {prop}")
+    # Pergunta padrão
+    escrever_lentamente("No último dia de sua investigação, você parte para a adega onde costuma-se vender o licor que foi encontrado junto ao corpo de Baldwin.")
+    escrever_lentamente("Quando Samanta entra pela porta, Rodrigo se encontra encostado preguiçosamente em um barril, os braços musculosos cruzados sobre o peito. Seu olhar é pesado, mas desinteressado, como se a investigação fosse uma interrupção desagradável na sua rotina. Ele se movimenta devagar, sem pressa, como quem tem certeza de que nada o atinge.")
+    escrever_lentamente("Ao mencionar o  licor encontrado com o corpo de Baldwin, ele ergue uma sobrancelha com uma mistura de enfado e curiosidade. Ajusta a faixa vermelha na cintura, como se quisesse enfatizar que nada o preocupa. A respiração dele é tranquila, e ele não parece intimidado, embora a postura relaxada esconda uma vigilância silenciosa.")
+    escrever_lentamente("A sensação de peso nos ombros é quase insuportável, e o gosto amargo da bebida na boca nos faz sentir cada vez mais exaustos. Rodrigo continua ali, imperturbável, como se estivesse disposto a ouvir o tempo que fosse necessário, sem nunca se envolver mais do que o estritamente necessário.")
+    escrever_lentamente(f"Samanta questiona Rodrigo sobre seu conhecimento a respeito de Baldwin e sobre o licor que ela se lembra de ver na cena do crime")
+    
+    # Resposta de Rodrigo
+    escrever_lentamente(f"Rodrigo, depois de pensar por um momento, responde: {falaRodrigo}")
 
-    # Pergunta ao jogador sobre quais proposições ele acha que são verdadeiras
-    escolhas = input("\nQuais proposições você acha que são verdadeiras? (digite os números separados por vírgula): ")
-    escolhas = [int(num.strip()) for num in escolhas.split(',') if num.strip().isdigit()]
+    # Pergunta se o jogador deseja insistir em mais perguntas
+    insistir = input("\nVocê deseja insistir na conversa? (S/N): ").strip().lower()
+    
+    if insistir == 's' or insistir == 'S':
+        # Simulação de probabilidade para revelar mais informações
+        probRevelacaoRodrigo = random.random()
 
-    # Adiciona as proposições escolhidas pelo jogador à lista global
-    for escolha in escolhas:
-        proposicoes_certas.append(proposicoes[escolha - 1])
+        if probRevelacaoRodrigo > 0.8:
+            escrever_lentamente("Rodrigo boceja com a insistência. Ao ver que alguns clientes entram na loga, ele diz apenas: 'Você sabe os efeitos colaterais que esse licor causa, detetive? Como é muito forte, depois que é tomado, as pessoas costumam reclamar de dores e amnésia' e a deixa para atender os clientes.")
+
+        else:
+            escrever_lentamente("Rodrigo boceja com a insistência. Ao ver que alguns clientes entram na loga, ele diz apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e a deixa para atender os clientes.")
+            
+    # Exibe as proposições ao jogador
+    print("\nEscolha as proposições que você considera verdadeiras:")
+    for chave, info in proposicoes.items():
+        print(f"{chave}: {info['descricao']}")
+    
+    # Captura as escolhas do jogador
+    escolhas = input("\nDigite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
+    escolhas = [e.strip().upper() for e in escolhas]
+    proposicoes_escolhidas.extend(escolhas)
+
 
 def interrogar_personagensFase5():
-    # Introdução
-    escrever_lentamente("Samanta decide interrogar o Padre Calistus e Bram sobre bebidas calmantes e seus paradeiros no dia da morte de Baldwin.\n")
     
-    # Definindo os personagens e suas falas
-    personagens = {
-        "Calistus, o Padre": [
-            "As bebidas são uma maneira de aliviar o estresse, mas não tenho nada a esconder. Não sou perfeito, senhorita, e preciso me acalmar acerca das confissões que recebo.",
-            "Estava na igreja, orando e ajudando aqueles que precisavam de conforto e desejando para mim mesmo conforto também.",
-            "Se alguém roubou bebidas, não sei quem poderia ter sido. Sou um homem de Deus, senhorita. Essas ações estão abaixo de mim.",
-            "A vida é cheia de provações, mas não acho que isso tenha a ver com a morte de Baldwin. Se sua morte foi trazida pela bebida, por que não me diz logo?",
-            "Acredito que as bebidas devem ser usados com responsabilidade, mas o que aconteceu foi uma tragédia. Morgana, como uma mulher respeit ável, deveria saber melhor."
-        ],
-        "Bram, o Ferreiro": [
-            "Tomar bebidas calmantes é uma prática comum, especialmente para lidar com o estresse do trabalho.",
-            "Eu estava em minha forja, longe de qualquer problema que não fosse o meu próprio. Me perdoe se uma garrafa discarça um pouco o cheiro de fumaça, senhorita.",
-            "Se as bebidas foram roubadas, isso é preocupante, mas não posso estar por trás disso. Meus calçados deixariam marcas, tenho certeza disso.",
-            "Baldwin e eu não éramos amigos, mas não tenho motivos para querer que ele morresse, mesmo que ele me desse vários.",
-            "Eu sempre achei  que bebidas eram apenas uma forma de escape, não uma solução para os problemas. Por que não me disse isso antes?"
-        ]
-    }
+    os.system("cls")
+    escrever_lentamente("Chegou a hora de escolher um assassino:")
+    time.sleep(2)
+    os.system("cls")
     
-    # Interrogando os personagens
-    for personagem, falas in personagens.items():
-        # Exibir comportamento inicial
-        escrever_lentamente(f"{personagem} entra na sala, com uma expressão cautelosa.\n")
-        escrever_lentamente("Samanta observa atentamente, buscando sinais de desonestidade.\n")
-
-        while True:
-            # Interação
-            if personagem == "Calistus, o Padre":
-                escrever_lentamente(f"Samanta: \"Calistus, quero saber sobre as bebidas calmantes que você toma e onde estava no dia em que Baldwin morreu.\"\n")
-            elif personagem == "Bram":
-                escrever_lentamente(f"Samanta: \"Bram, você pode me contar sobre as bebidas calmantes e seu paradeiro no dia da morte de Baldwin?\"\n")
+    # Proposições corretas para desbloquear a opção "Ninguém é culpado"
+    proposicoes_corretas = [
+        "P1",  # "A faca não pertence a Diana, a cozinheira."
+        "P4",  # "Independentemente de suas intrigas com Baldwin, Erik provavelmente não o matou."
+        "P6",  # "Boris não está mentindo conscientemente. Ele não pode ser culpado."
+        "P7",  # "Mariana não parece guardar rancor de Baldwin. Ela não é culpada."
+        "P13", # "Madame Lavínia está na defensiva com a acusação. Ela não é culpada."
+        "P18"  # "Rodrigo, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte."
+    ]
+  
+    # Verifica se o jogador selecionou todas as proposições corretas
+    desbloqueiaNinguem = all(proposicao in proposicoes_escolhidas for proposicao in proposicoes_corretas)
+    
+    # Lista de suspeitos interrogados
+    suspeitos = ["Diana", "Erik", "Mariana", "Boris", "Madame Lavínia", "Rodrigo"]
+    
+    # Opção final de escolha do assassino
+    print("\nCom base em suas investigações, quem você acredita ser o assassino?")
+    for idx, suspeito in enumerate(suspeitos, 1):
+        print(f"{idx}. {suspeito}")
+    
+    # Adiciona a opção de "ninguém é culpado" se o jogador tiver desbloqueado essa possibilidade
+    if desbloqueiaNinguem:
+        print(f"{len(suspeitos) + 1}. Ninguém é culpado")
+    
+    # Captura a escolha final do jogador
+    escolha = input("\nDigite o número correspondente à sua escolha: ").strip()
+    
+    # Define finais diferentes para cada escolha
+    if escolha.isdigit():
+        escolha = int(escolha)
+        if escolha in range(1, len(suspeitos) + 1):
+            suspeito_escolhido = suspeitos[escolha - 1]
+            print(f"\nVocê escolheu {suspeito_escolhido}.")
+            # Final individual para cada suspeito
+            if suspeito_escolhido == "Diana":
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Diana perde o controle. Seu rosto, normalmente endurecido, se contorce de raiva. Ela grita e se debate como se lutasse contra uma injustiça, os braços tentando se livrar das amarras. O olhar que ela lança sobre Samanta é cheio de ódio — não pela prisão, mas pelo insulto à sua honra.")
+                time.sleep(2)
+                os.system("cls")
+                escrever_lentamente("Você perdeu... Diana não é a assassina.")
+                
+            elif suspeito_escolhido == "Erik":
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Erik não se debate. Seus olhos se estreitam, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo.")
+                time.sleep(2)
+                os.system("cls")
+                escrever_lentamente("Você perdeu... Erik não é o assassino.")
+                
+            elif suspeito_escolhido == "Mariana":
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam, e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo.")
+                time.sleep(2)
+                os.system("cls")
+                escrever_lentamente("Você perdeu... Mariana não é a assassina.")
+                
+            elif suspeito_escolhido == "Boris":
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita,  Boris permanece em silêncio, mas a tensão em seu corpo é evidente. Ele aperta os punhos e respira fundo, como se estivesse segurando toda a frustração para não explodir. O olhar que ele dirige a Samanta é frio e cheio de decepção, como se esperasse mais dela.")
+                time.sleep(2)
+                os.system("cls")
+                escrever_lentamente("Você perdeu... Boris não é o assassino.")
+                
+            elif suspeito_escolhido == "Madame Lavínia":
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Lavínia mantém a compostura até o último instante. Não há lágrimas, nem gritos. Apenas um olhar de puro desprezo direcionado a Samanta, como se ela fosse um verme ousando perturbá-la. Ela caminha com dignidade, mas seus olhos prometem uma vingança silenciosa.")
+                time.sleep(2)
+                os.system("cls")
+                escrever_lentamente("Você perdeu... Madame Lavínia não é a assassina.")
+                
+            elif suspeito_escolhido == "Rodrigo":
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, odrigo se deixa levar sem resistência, um sorriso cansado e cínico nos lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo.")
+                time.sleep(2)
+                os.system("cls")
+                escrever_lentamente("Você perdeu... Rodrigo não é o assassino.")
+                
+        elif desbloqueiaNinguem and escolha == len(suspeitos) + 1:
             
-            resposta = random.choice(falas)  # Seleciona uma fala aleatória
-            escrever_lentamente(f"{personagem}: \"{resposta}\"\n")
+            escrever_lentamente("A verdade surge em nossa mente como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante de nós — Diana furiosa, Erik cauteloso, Mariana desesperada, Boris incerto, Lavínia arrogante, e Rodrigo indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é nossa.")
+            escrever_lentamente("A dor de cabeça lateja com mais força agora, como se as próprias lembranças, até então fragmentadas e distantes, finalmente se alinhassem. O gosto metálico que insiste em não sair da boca de Samanta é mais do que um reflexo da fadiga. É o sabor da culpa.")
+            escrever_lentamente("Samanta se lembra do licor. O jeito que ele sorriu, confiante e cruel, enquanto despejava o líquido âmbar no copo. “Apenas um pouco para relaxar”, foi o que ele disse — uma gentileza traiçoeira. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais.")
+            escrever_lentamente("Ele tentou a silenciar com o álcool. Tentou transformar a sua resistência em obediência. Mas ela não deixou. Agimndo antes que ele pudesse tomar o que queria. Agindo sem pensar, com uma mão trêmula e um coração disparado. Samanta pegou a faca mais próxima. A lâmina perfurou a carne dele como um ato desesperado — rápido, brutal e inevitável.")
+            escrever_lentamente("Agora, tudo parece claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si também.")
+            escrever_lentamente("E ela não sabe como se sentir a respeito disso...")
             
-            # Pergunta se Samanta deseja insistir
-            insistir = input("Você deseja insistir em mais perguntas? (s/n): ")
-            if insistir.lower() != "s":
-                break
-
-            if personagem == "Lady Isolde" or personagem == "Floris, o Bobo da Corte" or personagem == "Calistus, o Padre":
-                escrever_lentamente(f"{personagem}: \"Eu ouvi uma mulher com cabelos ruivos na cozinha pouco antes do ataque. Não sei quem era, mas talvez isso ajude.\"\n")
-            else:
-                escrever_lentamente(f"{personagem}: \"Eu ouvi um homem discutindo com Baldwin na noite do crime. Não sei quem era, mas talvez isso ajude.\"\n")
-
-            # Limpa o console após cada interrogação
+            time.sleep(2)
             os.system("cls")
+            escrever_lentamente("Você ganhou... Você é o assassino...")
+            
+        else:
+            print("Escolha inválida.")
+    else:
+        print("Escolha inválida.")
+        
+    mostrar_tabelas(proposicoes_escolhidas)
 
-    # Proposições após as interrogações
-    proposicoes = [
-        "Calistus pode estar escondendo o fato de que estava envolvido com os chás roubados.",
-        "Bram afirma estar trabalhando na forja, mas não há testemunhas que confirmem isso.",
-        "Ambos têm acesso as bebidas e poderiam tê-las usadas como parte de um plano.",
-        "A relação de Bram com Baldwin poderia ter motivado uma ação drástica.",
-        "As bebidas são um tema comum, não tem como eles, de fato, terem sido usados propositalmente com Balwin."
-    ]
+def mostrar_tabelas(proposicoes_escolhidas):
+    todas_proposicoes = {
+        "P1": {"descricao": "A faca não pertence a Diana, a cozinheira.", "verdade": True},
+        "P2": {"descricao": "Erik não gostava de Baldwin.", "verdade": True},
+        "P3": {"descricao": "Diana não gostava de Baldwin.", "verdade": True},
+        "P4": {"descricao": "Independentemente de suas intrigas com Baldwin, Erik provavelmente não o matou.", "verdade": True},
+        "P5": {"descricao": "Tamanho da lâmina é pequeno, sugerindo alguém de porte pequeno.", "verdade": True},
+        "P6": {"descricao": "Boris não está mentindo conscientemente. Ele não pode ser culpado.", "verdade": True},
+        "P7": {"descricao": "Mariana não parece guardar rancor de Baldwin. Ela não é culpada.", "verdade": True},
+        "P8": {"descricao": "Pegadas pequenas sugerem uma presença feminina.", "verdade": True},
+        "P9": {"descricao": "O relato de ambos se contradizem.", "verdade": True},
+        "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Boris fala.", "verdade": True},
+        "P11": {"descricao": "O tecido é da capa de Madame Lavínia. Ela pode ser culpada.", "verdade": False},
+        "P12": {"descricao": "De acordo com a Lavínia, o tecido é mesmo caro, indicando alguém de classe elevada ou média.", "verdade": True},
+        "P13": {"descricao": "Madame Lavínia está na defensiva com a acusação. Ela não é culpada.", "verdade": True},
+        "P14": {"descricao": "Madame Lavínia dá a entender que sua relação com Baldwin não era complicada.", "verdade": False},
+        "P15": {"descricao": "Baldwin era um homem violento. Madame Lavínia dá a entender que ele se aproveitava de mulheres.", "verdade": True},
+        "P16": {"descricao": "O licor achado junto ao corpo de Baldwin foi comprado por intermédio de uma mulher.", "verdade": True},
+        "P17": {"descricao": "Quem comprou o licor foi Madame Lavínia.", "verdade": True},
+        "P18": {"descricao": "Rodrigo, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte.", "verdade": True},
+        "P19": {"descricao": "Dado aos rumores das ações de Baldwin, ele provavelmente utilizaria o licor de modo indevido.", "verdade": True},
+        "P20": {"descricao": "O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém.", "verdade": True},
+    }
 
-    escrever_lentamente("Após as interrogações, Samanta anota cinco proposições sobre o crime:\n")
-    for i, prop in enumerate(proposicoes, 1):
-        escrever_lentamente(f"{i}. {prop}")
+    resposta = input("Você gostaria de ver as respostas que deu? (S/N): ").strip().lower()
+    if resposta == 's':
+        tabela = PrettyTable()
+        tabela.field_names = ["Proposição", "Descrição", "Verdade", "Sua Resposta"]
 
-    # Pergunta ao jogador sobre quais proposições ele acha que são verdadeiras
-    escolhas = input("Quais proposições você acha que são verdadeiras? (digite os números separados por vírgula): ")
-    escolhas = [int (num.strip()) for num in escolhas.split(',') if num.strip().isdigit()]
+        for chave, info in todas_proposicoes.items():
+            estado = "Verdadeiro" if info["verdade"] else "Falso"
+            resposta_jogador = "Verdadeiro" if chave in proposicoes_escolhidas else "Falso"
+            tabela.add_row([chave, info["descricao"], estado, resposta_jogador])
 
-    # Adiciona as proposições escolhidas pelo jogador à lista global
-    for escolha in escolhas:
-        proposicoes_certas.append(proposicoes[escolha - 1])
-
-def interrogar_personagensFase6():
-    # Proposições que Samanta considerou certas durante o jogo
-    global proposicoes_certas
-
-    # Introdução à interrogação
-    escrever_lentamente("Samanta entra na sala, sentindo o peso das suas investigações. Ela olha para os suspeitos que estão presentes e começa a refletir sobre tudo que ouviu.\n")
-
-    # Exibindo as proposições que ela considerou certas
-    escrever_lentamente("Após refletir, Samanta lista as proposições que considera verdadeiras:\n")
-    for i, prop in enumerate(proposicoes_certas, 1):
-        escrever_lentamente(f"{i}. {prop}")
-
-    # Lista dos personagens suspeitos
-    personagens = ["Lady Isolde", "Floris", "Gerhard", "Bram", "Padre"]
-    escrever_lentamente("\nSamanta deve escolher um culpado entre os presentes. Quem você acha que ela deve escolher?")
-
-    # Exibir lista numerada dos personagens
-    for i, personagem in enumerate(personagens, 1):
-        escrever_lentamente(f"{i}. {personagem}")
-    escrever_lentamente(f"{len(personagens) + 1}. Nenhum")
-
-    # Obter escolha do jogador pelo número
-    while True:
-        try:
-            escolha_num = int(input("Digite o número correspondente ao suspeito: "))
-            if 1 <= escolha_num <= len(personagens) + 1:
-                break
-            else:
-                escrever_lentamente("Escolha inválida. Digite um número da lista.")
-        except ValueError:
-            escrever_lentamente("Por favor, digite um número.")
-
-    # Mapeando a escolha do jogador para o nome do personagem
-    escolha = personagens[escolha_num - 1] if escolha_num <= len(personagens) else "nenhum"
-
-    # Reações baseadas na escolha de Samanta
-    if escolha == "Lady Isolde":
-        escrever_lentamente("\nA sala está abafada, as chamas nas tochas dançam de forma inquieta, projetando sombras alongadas nas paredes de pedra.\n")
-        escrever_lentamente("Samanta lança um olhar decidido a Lady Isolde, a viúva ainda envolta em luto, com o rosto pálido e as mãos apertadas no regaço.\n")
-        escrever_lentamente("Samanta, com uma voz fria, dispara: \"Você sempre teve razões para desejar a morte de Baldwin, não é?\"")
-        escrever_lentamente("Lady Isolde ergue o olhar, as lágrimas lutando para escapar: \"Você ousa? Ele era meu marido! Eu o amava... ao menos, tentei amá-lo.\"\n")
-        escrever_lentamente("Nesse momento, Bram, o ferreiro robusto, baixa o olhar, desconfortável. Todos sabem do caso entre ele e Lady Isolde.\n")
-        escrever_lentamente("O padre limpa a garganta, perturbado. Ele também sabia da traição, mas nunca pensou que Lady Isolde fosse capaz de algo assim.\n")
-        escrever_lentamente("O ar está pesado, as suspeitas giram no ambiente, e alguns começam a sussurrar entre si.\n")
-        escrever_lentamente("Finalmente, Lady Isolde solta um grito abafado: \"Vocês não entendem... sim, eu tive sentimentos, mas jamais o teria matado!\"")
-        escrever_lentamente("A tensão atinge seu auge, mas Samanta percebe que não há evidências suficientes. Aos poucos, as acusações se esvaem, deixando um rastro de incerteza.\n")
-
-    elif escolha == "Floris":
-        escrever_lentamente("\nO ambiente parece mais sombrio enquanto Samanta se aproxima de Floris, o bobo da corte, que usualmente trazia alegria, mas agora mantém um sorriso tenso.\n")
-        escrever_lentamente("Samanta, com olhar penetrante, o acusa: \"Sempre fez piadas sobre a morte de Baldwin... Seria possível que isso fosse uma pista para algo mais sério?\"")
-        escrever_lentamente("Floris solta uma risada nervosa, quase histérica: \"Ora, sou apenas um bobo da corte, não um assassino! Minha vida é entreter, Samanta!\"\n")
-        escrever_lentamente("Os outros presentes trocam olhares desconfortáveis, e Gerhard, o carrasco, revira os olhos, murmurando algo sobre 'brincadeiras sem graça'.\n")
-        escrever_lentamente("Lady Isolde observa de canto de olho, claramente perturbada. Ela, mais do que qualquer um, sabe o quanto Baldwin desprezava Floris e o quanto o bobo suportava com desprezo.\n")
-        escrever_lentamente("Floris então se encolhe, mais pálido, e murmura: \"Era só piada... eu juro... eu nunca o faria...\"")
-        escrever_lentamente("Mas a suspeita persiste por um momento antes de se desfazer em um silêncio embaraçoso. Todos na sala sentem a tensão entre Samanta e Floris, mas a dúvida lentamente desaparece, deixando um clima de desconforto no ar.\n")
-
-    elif escolha == "Gerhard":
-        escrever_lentamente("\nO ambiente parece ainda mais carregado quando Samanta se vira para Gerhard, o carrasco de aparência severa e semblante fechado.\n")
-        escrever_lentamente("Samanta, em tom acusatório, aponta: \"Você sempre estava por perto... sabia de tudo. Diga, Gerhard, o que realmente aconteceu na noite em que Baldwin morreu?\"")
-        escrever_lentamente("Gerhard ergue o olhar, seus olhos são frios, como aço: \"Meu trabalho é executar sob ordens, não matar por vontade própria. Eu sou um carrasco, não um assassino!\"")
-        escrever_lentamente("Ele cerra os punhos, o corpo inteiro tenso, como se estivesse tentando reprimir uma raiva profunda. Floris, à distância, engole em seco, evitando o olhar de Gerhard.\n")
-        escrever_lentamente("Bram o observa cauteloso, enquanto o padre parece recitar silenciosamente uma prece, perturbado pela brutalidade que Gerhard representa.\n")
-        escrever_lentamente("O silêncio é quase palpável, como se a sala inteira estivesse à beira de explodir. Samanta hesita por um instante, percebendo que, embora Gerhard pareça capaz de matar, ele o faz sob ordens, e não há evidência suficiente para ligá-lo ao crime.\n")
-
-    elif escolha == "Bram":
-        escrever_lentamente("\nA sala parece encolher enquanto Samanta se aproxima de Bram, o ferreiro. Ele limpa as mãos sujas de fuligem na túnica, mas seu olhar permanece firme, sem desviar.\n")
-        escrever_lentamente("Samanta, com a voz baixa e acusadora, diz: \"Você amava Lady Isolde... e Baldwin era o único obstáculo. É fácil ver o que isso significa, Bram.\"")
-        escrever_lentamente("Bram estreita os olhos, sua voz sai grave e controlada: \"Amar alguém não significa que eu tiraria uma vida por ela.\"")
-        escrever_lentamente("Lady Isolde arregala os olhos, as mãos trêmulas, e olha para Bram, dividida entre a culpa e a surpresa.\n")
-        escrever_lentamente("O padre se benze, e Floris observa com o olhar baixo, claramente desconfortável, mas não surpreso.\n")
-        escrever_lentamente("O ar é pesado, e todos sentem o peso da acusação. Mas Samanta percebe, pouco a pouco, que Bram não carrega qualquer culpa, apenas um amor proibido e imprudente. A suspeita sobre ele se dissolve, mas o impacto de sua acusação permanece no ar, criando um clima de desconfiança sutil.\n")
-
-    elif escolha == "Padre":
-        escrever_lentamente("\nA sala inteira sente um frio repentino quando Samanta se aproxima do padre, cuja expressão piedosa contrasta com a atmosfera sombria.\n")
-        escrever_lentamente("Samanta, encarando-o fixamente, murmura: \"Você sabia dos pecados de todos, inclusive de Baldwin... Será que tomou as dores de quem ele feriu?\"")
-        escrever_lentamente("O padre recua um passo, a voz trêmula mas firme: \"Meu dever é oferecer salvação, não julgamento. Eu perdoei Baldwin, assim como perdoaria qualquer um de vocês.\"")
-        escrever_lentamente("Os outros trocam olhares desconfiados; Bram parece particularmente inquieto, lembrando-se de suas próprias confissões.\n")
-        escrever_lentamente("Floris afasta-se sutilmente, o semblante desconfortável, enquanto Gerhard observa em silêncio, com um olhar de desprezo.\n")
-        escrever_lentamente("O padre fecha os olhos, balbuciando uma oração, e Samanta percebe que, apesar das suspeitas, não há nada que realmente ligue o padre ao crime. A tensão começa a se dissipar, mas o peso de suas palavras continua.\n")
-
-    elif escolha == "nenhum":
-        escrever_lentamente("\nO silêncio na sala é denso, e o ar parece vibrar com a ansiedade e o medo de cada um ali presente.\n")
-        escrever_lentamente("Samanta respira fundo, seus olhos percorrendo cada rosto. Ela percebe que, por mais que todos pareçam culpados em algum momento, nada realmente se encaixa.\n")
-        escrever_lentamente("Ela se vira, decidida a investigar mais um pouco, enquanto os outros a observam com um misto de alívio e apreensão.\n")
-
-    # Finalizando a interrogação
-    escrever_lentamente("A sala mergulha em um silêncio intenso, com todos, inclusive Samanta, ponderando sobre o que acabaram de testemunhar e sobre o preço da verdade.\n")
-
-def gerar_tabela_verdade():
-    # Definindo as proposições
-    proposicoes = [
-        "Lady Isolde não está exatamente triste com a morte do marido.",
-        "Floris parece feliz com a morte do cozinheiro",
-        "Bram, o ferreiro, parece contente com a morte de Baldwin",
-        "Gerhard parece satisfeito com a morte de Baldwin",
-        "Calistus pode estar encobrindo o verdadeiro assassino, o que o torna suspeito.",
-        "Baldwin não era uma boa pessoa."
-    ]
-
-    # Definindo as proposições verdadeiras e falsas
-    verdadeiros = proposicoes_certas
-    falsos = proposicoes_falsas
-
-    # Gerando a tabela verdade
-    tabela_verdade = Truths(verdadeiros, falsos)
-
-    # Exibindo a tabela verdade
-    escrever_lentamente("\nTabela Verdade:\n")
-    escrever_lentamente(tabela_verdade)
-
-def mostrar_tabela_verdade():
-    # Pergunta ao usuário se ele deseja ver a tabela verdade
-    resposta = input("Deseja ver a tabela verdade que você deveria ter chegado e a que você realmente chegou? (s/n): ")
-    if resposta.lower() == "s":
-        gerar_tabela_verdade()
+        print(tabela)
