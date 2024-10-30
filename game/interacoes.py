@@ -22,16 +22,16 @@ def interrogar_personagensFase1():
 
     # Opções de falas para Diana e Erik
     falasDiana = [
-        "Você está sugerindo que eu o matei? Com uma faca pequena inda? Céus! Mesmo que Baldwin fosse um canalha e um pervertido, não é como se eu tivesse a coragem de tirar uma vida.",
-        "Não sei de nada sobre essa lâmina pequena. Posso não estar lamentando a morte dele, mas isso não significa que estou comemorando também. Entendo o que você está insinuando.",
+        "Você está sugerindo que eu o matei? Com uma faca pequena inda? Céus! Mesmo que Baldwin fosse um canalha e um pervertido, não é como se eu tivesse a coragem de tirar uma vida, detetive.",
+        "Não sei de nada sobre essa lâmina pequena. Posso não estar lamentando a morte dele, mas isso não significa que estou comemorando também. Entendo o que você está insinuando, detetive.",
         "A faca pequena pode até combinar com meu gosto para lâminas, mas isso não significa que gosto de enterrá-las em mulherengos estúpidos, detetive. Pode parar com suas adivinhações agora mesmo.",
-        "Está insinuando que a faca pode ser minha, detetive? Mas que... Claro que não! Acredito que atraímos tudo o que merecemos, mas não sou o tipo de juiz que faz justiça com as próprias mãos, detetive. Ainda mais com uma arma pequena como essa.",
+        "Está insinuando que a faca pode ser minha, detetive? Mas que... Claro que não! Acredito que atraímos tudo o que merecemos, isso é verdade, mas não sou o tipo de juíza que faz justiça com as próprias mãos, querida. Ainda mais com uma arma pequena como essa.",
         "Posso ter desejado a morte daquele ferreiro maldito um milhão de vezes, detetive, mas isso não quer dizer necessariamente que foi eu quem teve a honra de matá-lo com essa coisinha afiada aí. Já entendi o que você está insinuando."
     ]
     
     falasErik = [
         "Está sugerindo que uma faca pequena dessas poderia ser minha? Que adivinhação grotesta. Gosto de matar a distância, detetive, se é que me entende. Ainda mais se forem criaturas como Baldwin. Eu não usaria uma mísera faca para matá-lo.",
-        "Está insinuando o que acho que está insinuando? Está falando sério, detetive? Baldwin me irritava, sim. E às vezes eu não queria mais nada além de meter uma bala na sua cabeça. Mas minha mulher, mesmo que o odiasse também, nunca me perdoaria por trair a confiança de Deus desse jeito.",
+        "Está insinuando o que acho que está insinuando? Está falando sério, detetive? Baldwin me irritava, sim. E, às vezes, eu não queria mais nada além de meter uma bala na sua cabeça. Mas minha mulher, mesmo que o odiasse também, nunca me perdoaria por trair a confiança de Deus desse jeito.",
         "Se eu entendi bem o que você está insinuando, detetive, só me resta dizer que essa faca não é bem o meu estilo. E que, se eu tivesse a oportunidade de matar Baldwin, eu não teria feito desse jeito. Eu teria usado algo... Mais doloroso.",
         "Eu entendi bem o que você me perguntou? Está insinuando isso mesmo? Baldwin e eu tivemos nossas discussões sim, mas minha mulher sempre conseguia me ver a razão antes que eu fizesse algo que eu poderia me arrepender de fazer. Essa lâmina não me é familiar, detetive, mesmo que eu quisesse que fosse.",
         "Você está me acusando, detetive? Eu não usaria algo assim para matar Baldwin. Usaria algo, na verdade, que o fizesse se arrepender por todas as vezes que ele mexeu com minha esposa."
@@ -42,46 +42,49 @@ def interrogar_personagensFase1():
     falaErik = random.choice(falasErik)
 
     # Pergunta padrão
-    escrever_lentamente("Depois de esperar os clientes sairem da estalagem, Samanta aproveita a deixa e se aproxima de sua primeira suspeita.")
-    escrever_lentamente(f"Diana, a Cozinheira da Estalagem, cruza os braços com força, o tecido velho do avental esticado sob a pressão de seus músculos, enquanto seus olhos encontram os seus. Um olhar afiado, cheio de desconfiança, examina Samanta como se ela tivesse acabado de insultar sua comida. Seu corpo inteiro emana irritação contida — as sobrancelhas cerradas, a boca apertada numa linha dura, e o peso de sua respiração se arrasta, como se estivesse contando mentalmente até dez para não explodir.")
-    escrever_lentamente("Quando percebe o brilho metálico da faca que Samanta segura, sua expressão muda num instante. Ela é inteligente. Sabe porque que Samanta está lá. Há um lampejo de surpresa que rapidamente se transforma em frustração. A incredulidade salta de seus olhos, como se a mera sugestão de que ela poderia estar envolvida na morte de Baldwin fosse uma afronta pessoal. Ela aperta os lábios até formarem uma linha pálida, os dedos batendo impacientemente na lateral do avental, indicando que não toleria a conversa que se seguiria por muito tempo.")
-    escrever_lentamente("O corpo de Samanta reclama — músculos pesados e tensos, uma dor latejante na têmpora esquerda. O ar parece espesso, e ela sennte um gosto de metal na boca, reflexo do esforço e da exaustão. Diana a observa com a mesma rigidez de uma panela fervente prestes a transbordar, mas, por fim, sua expressão volta a uma calma tensa. Está claro que ela não pretende facilitar a investigação.")
-    escrever_lentamente("Independenetemente disso, Samanta a questiona acerca da faca encontrada ao lado do corpo de Baldwin, observando tudo o que é dito e não dito.")
+    escrever_lentamente("Depois de esperar os clientes sairem da estalagem, Samanta aproveita a brecha e se aproxima de sua primeira suspeita.")
+    escrever_lentamente(f"\nDiana, a Cozinheira da Estalagem, cruza os braços com força, o tecido velho do avental esticado sob a pressão de seus músculos enquanto seus olhos encontram os de Samanta. Um olhar afiado, cheio de desconfiança, a examina como se ela tivesse acabado de insultar sua comida. Seu corpo inteiro emana irritação contida — as sobrancelhas cerradas, a boca apertada numa linha dura e o peso de sua respiração se arrasta, como se estivesse contando mentalmente até dez para não explodir.")
+    escrever_lentamente("\nQuando percebe o brilho metálico da faca que Samanta segura, sua expressão muda num instante. Ela é inteligente. Ela sabe porque que Samanta está ali. Há um lampejo de surpresa que rapidamente se transforma em frustração. A incredulidade salta de seus olhos, como se a mera sugestão de que ela poderia estar envolvida na morte de Baldwin fosse uma afronta pessoal. Ela aperta os lábios até formarem uma linha reta, os dedos batendo impacientemente na lateral do avental, indicando que não toleria a conversa que se seguiria por muito tempo.")
+    escrever_lentamente("O corpo de Samanta reclama com a provação que sabe que virá a seguir — músculos pesados e tensos, uma dor latejante na têmpora esquerda. O ar parece espesso e ela sente um gosto de metal na boca, reflexo do esforço e da exaustão. Diana a observa com a mesma rigidez de uma panela fervente prestes a transbordar, mas, por fim, sua expressão volta a uma calma tensa. Está claro que ela não pretende facilitar a investigação.")
+    escrever_lentamente("\nIndependenetemente disso, no entanto, Samanta a questiona acerca da faca encontrada ao lado do corpo de Baldwin, observando tudo o que é dito e não dito por parte dela.")
 
     # Respostas dos personagens
-    escrever_lentamente(f"Diana responde, mal-humorada: {falaDiana}")
+    escrever_lentamente(f"\nDiana responde, mal-humorada: '{falaDiana}'")
     insistir = input("\nVocê deseja continuar com a conversa? (S/N): ").strip().lower()
     
     if insistir == 's' or insistir == 'S':
         probRevelacaoDiana = random.random()
         
         if probRevelacaoDiana > 0.5:
-            escrever_lentamente("Diana revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que já vi você aqui antes, não vi? Nunca havia reparado como você é pequena, detetive, mesmo que seja forte' e vai embora. ")
+            escrever_lentamente("\nDiana revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que já vi sua presença intromedita aqui antes, não vi? Nunca havia reparado como você é pequena, detetive, mesmo que seja forte' e vai embora. ")
             
         else:
-            escrever_lentamente("Diana revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora.")
+            escrever_lentamente("\nDiana revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora.")
         
     time.sleep(2)
     os.system("cls")
-    escrever_lentamente("Com um suspiro, Samanta parte para encontrar Erick.")
+    escrever_lentamente("\nCom um suspiro, Samanta parte para encontrar Erick, o Caçador.")
     time.sleep(2)
     os.system("cls")
     
-    escrever_lentamente("Quando finalmente o encontra, o vento frio se faz conhecido. Erik está na saída da vila. Sua capa está marcada de lama seca e folhas, e ele se move com a inquietude de alguém que preferia estar longe, sempre em alerta. Ao ver a faca na mão de Samanta, seu corpo enrijece por um momento, mas logo ele a examina com um desprezo controlado, como quem avalia a ameaça de um animal ferido.")
-    escrever_lentamente("Seus olhos, afiados como os de um predador, analisam cada detalhe da lâmina. Há cautela na forma como ele ajusta o cinto e evita a encarar por muito tempo, os dedos finos deslizando brevemente sobre o cabo da própria faca de caça. O desprezo dele é evidente, mas sutil — um meio sorriso amargo que desaparece antes que se fixá-lo.")
-    escrever_lentamente("A fadiga pesa sobre Samanta como um manto molhado. A dor de cabeça aumenta, e o gosto de metal na boca se intensifica, como se a investigação estivesse a corroendo por dentro. Erik se afasta um pouco, os olhos esquadrinhando as árvores ao redor, como se estivesse pronto para sumir a qualquer sinal de perigo. A tensão é palpável, mas ele permanece, ainda que desconfortável, enquanto seguimos pressionando.")
+    escrever_lentamente("Quando finalmente o encontra, o vento frio se faz conhecido. Erik está na saída da vila. Sua capa está marcada de lama seca e folhas, e ele se move com a inquietude de alguém que está sempre em alerta. Ao ver a faca na mão de Samanta, seu corpo enrijece por um momento, mas logo ele a examina com um desprezo controlado, como quem avalia a ameaça de um animal ferido.")
+    escrever_lentamente("\nSeus olhos, afiados como os de um predador, analisam cada detalhe da lâmina. Há cautela na forma como ele ajusta o cinto e evita a encarar por muito tempo, os dedos finos deslizando brevemente sobre o cabo da própria faca de caça. O desprezo dele é evidente, mas sutil — um meio sorriso amargo que desaparece antes que se possa fixá-lo.")
+    escrever_lentamente("\nA fadiga pesa sobre Samanta como um manto molhado ao prever mais discussão. A dor de cabeça aumenta  e o gosto de metal na boca se intensifica, como se a investigação estivesse a corroendo por dentro. Erik se afasta um pouco, os olhos esquadrinhando as árvores ao redor, como se estivesse pronto para sumir a qualquer sinal de perigo. A tensão é palpável, mas ele permanece, ainda que desconfortável, enquanto Samanta o encara.")
     escrever_lentamente("Ele pergunta o que Samanta quer. Ela o questiona sobre a faca encontrada ao lado do corpo de Baldwin, observando como a faca é semelhante aquela que ele segura nas mãos.")
-    escrever_lentamente(f"Erik, com os lábios em uma linha reta, responde ríspido: {falaErik}")
+    escrever_lentamente(f"\nErik, com os lábios em uma linha reta, responde ríspido: '{falaErik}'")
     
     insistir = input("\nVocê deseja continuar com a conversa? (S/N): ").strip().lower()
 
     probRevelacaoErik = random.random()
 
     if probRevelacaoErik > 0.5:
-        escrever_lentamente("Erik zomba com a insistência. Sem paciência, ele diz: 'Você usa uma roupa vermelha, não usa? É interessante como alguém com uma personalidade como a sua usa uma roupa tão interessante como essa' e vai embora.")
+        escrever_lentamente("\nErik zomba com a insistência. Sem paciência, ele diz: 'Você usa uma roupa vermelha, não usa? É interessante como alguém com uma personalidade como a sua usa uma roupa tão interessante como essa' e vai embora.")
 
     else:
-        escrever_lentamente("Erik zomba com a insistência. Sem paciência, ele diz: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora.")
+        escrever_lentamente("\nErik zomba com a insistência. Sem paciência, ele diz: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora.")
+
+    time.sleep(3)
+    os.system("cls")
             
     # Exibe as proposições ao jogador
     print("\nEscolha as proposições que você considera verdadeiras:")
@@ -127,13 +130,13 @@ def interrogar_personagensFase2():
 
     # Pergunta padrão
     escrever_lentamente("Depois dos dois primeiros interrogatórios, Samanta volta novamente a estalagem para encontrar Mariana. Não demora muito para encontrá-la e deixar claro a intenção de questioná-la.")
-    escrever_lentamente("Mariana está encolhida em um canto da estalagem, os dedos finos torcendo-se nervosamente enquanto nos aproximamos. Seus olhos grandes parecem oscilar entre medo e hesitação, como se cada pergunta fosse um peso invisível aumentando sua angústia. A maneira como ela abaixa a cabeça e evita contato visual deixa evidente que algo a perturba.")
-    escrever_lentamente("Seus movimentos são rápidos e nervosos — ajeita a barra do vestido, toca nas tranças, e seus pés se mexem inquietos, como se quisesse escapar dali. Ao se falar da manhã do incidente, seus dedos apertam o tecido do vestido com tanta força que os nós dos dedos ficam brancos. Está claro que a memória do encontro com Baldwin a assombra, mas ela parece estar se debatendo entre o medo de falar demais e a necessidade de ser honesta.")
+    escrever_lentamente("\nMariana está encolhida em um canto da estalagem, os dedos finos torcendo-se nervosamente enquanto Samanta se aproxima. Seus olhos grandes parecem oscilar entre medo e hesitação, como se cada pergunta fosse um peso invisível aumentando sua angústia. A maneira como ela abaixa a cabeça e evita contato visual deixa evidente que algo a perturba.")
+    escrever_lentamente("\nSeus movimentos são rápidos e nervosos — ajeita a barra do vestido, toca nas tranças e seus pés se mexem inquietos, como se quisesse escapar dali. Quando Samanta fala da manhã do incidente, seus dedos apertam o tecido do vestido com tanta força que os nós dos dedos ficam brancos. Está claro que a memória do encontro com Baldwin a assombra, mas ela parece estar se debatendo entre o medo de falar demais e a necessidade de ser honesta.")
     escrever_lentamente("O corpo de Samanta está à beira da exaustão, e a dor de cabeça se mistura ao gosto amargo que Samanta não consegue tirar da boca. Mariana percebe a sua condição e, por um momento, parece se compadecer, mas sua própria ansiedade logo a consome novamente. Ela sabe porque Samanta está ali, na frente dela.")
-    escrever_lentamente(f"Você pergunta a ela se ela se lembra de ter visto algo suspeito no dia que encontrou o corpo morto de Baldwin")
+    escrever_lentamente(f"\Samanta pergunta a ela se ela se lembra de ter visto algo suspeito nos dias que se antecederam a morte de Baldwin")
     
     # Respostas dos personagens
-    escrever_lentamente(f"Mariana diz, tímida: {falaMariana}")
+    escrever_lentamente(f"\nMariana diz, tímida: '{falaMariana}'")
     
     insistir = input("\nVocê deseja insistir na conversa? (S/N): ").strip().lower()
  
@@ -142,10 +145,10 @@ def interrogar_personagensFase2():
         probRevelacaoMariana = random.random()
 
         if probRevelacaoMariana > 0.5:
-            escrever_lentamente("Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, seu hálito cheira a licor. Você bebe?'. Samanta pisca por um momento e, então, vai embora.")
+            escrever_lentamente("\nMariana se encolhe, meio desconfortável com a insistência. Hesitante, ela muda de assunto: 'Se me permite dizer, detetive, de mulher para mulher, seu hálito cheira a licor. Você bebe?'. Samanta pisca por um momento e, então, entendendo a dica, vai embora.")
             
         else:
-            escrever_lentamente("Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, acho que não consigo responder mais perguntas por hoje. Samanta pisca por um momento e, então, vai embora.")
+            escrever_lentamente("\nMariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, acho que não consigo responder mais perguntas por hoje. Samanta pisca por um momento e, então, entendendo a dica, vai embora.")
         
     time.sleep(2)
     os.system("cls")
@@ -154,10 +157,10 @@ def interrogar_personagensFase2():
     os.system("cls")
     
     escrever_lentamente("Ela o encontra rapidamente. Boris está de pé, as mãos grossas descansando nos quadris, como se a força de sua presença fosse suficiente para intimidar qualquer um. Há algo incerto em seus movimentos, no modo como ajusta a postura mais de uma vez, tentando parecer seguro, mas falhando em disfarçar a tensão quando a vê.")
-    escrever_lentamente("Ao mencionar a manhã em que ele acompanhou Mariana e o momento dos gritos, Boris franze a testa e desvia o olhar por um instante, pensativo. Ele cruza os braços e, em seguida, muda de posição, como se quisesse acabar logo com aquela conversa. Embora relutante em se envolver, é claro que a memória do que aconteceu o incomoda. Ou a falta dela. ")
-    escrever_lentamente("Samanta o questiona acerca da mesma coisa sobre o que questionou Mariana.")
+    escrever_lentamente("Ao mencionar a manhã em que ele acompanhou Mariana e o momento dos gritos que se seguiram, Boris franze a testa e desvia o olhar por um instante, pensativo. Ele cruza os braços e, em seguida, muda de posição, como se quisesse acabar logo com aquela conversa. Embora relutante em se envolver, é claro que a memória do que aconteceu o incomoda. Ou a falta dela. ")
+    escrever_lentamente("\nSamanta o questiona acerca da mesma coisa sobre o que questionou Mariana.")
         
-    escrever_lentamente(f"Suspirando, Boris fala: {falaBoris}")
+    escrever_lentamente(f"\nSuspirando, Boris admite: '{falaBoris}'")
         
     insistir = input("\nVocê deseja insistir na conversa? (S/N): ").strip().lower()
  
@@ -165,12 +168,15 @@ def interrogar_personagensFase2():
         probRevelacaoBoris = random.random()
  
         if probRevelacaoBoris > 0.5:
-                escrever_lentamente("Boris, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Você sempre usa essa roupa vermelha, senhorita? É uma escolha ousada para alguém que se aventura em lugares como este. Não sabia que você vinha de uma família boa' e vai embora.")
+            escrever_lentamente("\nBoris, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Você sempre usa essa roupa vermelha, senhorita? É uma escolha ousada para alguém que se aventura em lugares como este. Não sabia que você vinha de uma família boa' e vai embora.")
 
         else:
-            escrever_lentamente("Boris, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Acredito que tenho mais coisas para fazer do que ficar respondendo perguntas, senhorita' e vai embora.")
+            escrever_lentamente("\nBoris, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Acredito que tenho mais coisas para fazer do que ficar respondendo perguntas, senhorita' e vai embora.")
             
-            
+
+    time.sleep(3)
+    os.system("cls")
+    
     # Exibe as proposições ao jogador
     print("\nEscolha as proposições que você considera verdadeiras:")
     for chave, info in proposicoes.items():
@@ -205,13 +211,13 @@ def interrogar_personagensFase3():
 
     # Pergunta padrão
     escrever_lentamente("No dia seguinte, Samanta se aventura na casa de Madame Lavínia após conseguir uma licença para investigar mais afundo o caso de Baldwin.")
-    escrever_lentamente("Madame Lavínia a recebe com a frieza de um mármore esculpido. Seus olhos, calculistas e atentos, a medem como se ela estivesse ali para uma negociação que já estivesse decidida antes mesmo de começar. Sua postura é impecável, sem um único gesto que não seja deliberadamente controlado.")
-    escrever_lentamente("Quando Samanta mostra o pedaço de tecido vermelho silenciosamente, seus dedos finos e adornados com anéis mal se movem, mas há uma rigidez sutil nos ombros, como se aquela evidência fosse uma afronta inesperada. O rosto dela permanece impassível, embora seus olhos brilhem brevemente com uma sombra de irritação. Ela entende a insinuação que Samanta a faz.")
-    escrever_lentamente("Os músculos de Samanta protestam com cada movimento que ela faz ao se preparar para a interrogação, e a dor de cabeça latejante deixa tudo levemente desfocado. Lavínia continua imperturbável, a analisando como se tentasse adivinhar seus próximos passos, jogando um xadrez mental onde cada palavra vale uma jogada.")
-    escrever_lentamente(f"Samanta questiona Madame Lavínia sobre Baldwin e seu comportamento.")
+    escrever_lentamente("\nMadame Lavínia a recebe com a frieza de um mármore esculpido. Seus olhos, calculistas e atentos, a medem como se ela estivesse ali para uma negociação que já estivesse decidida antes mesmo de começar. Sua postura é impecável, sem um único gesto que não seja deliberadamente controlado.")
+    escrever_lentamente("\nQuando Samanta mostra o pedaço de tecido vermelho silenciosamente, seus dedos finos e adornados com anéis mal se movem, mas há uma rigidez sutil nos ombros, como se aquela evidência fosse uma afronta inesperada. O rosto dela permanece impassível, embora seus olhos brilhem brevemente com uma sombra de irritação. Ela entende a insinuação que Samanta faz silenciosamente.")
+    escrever_lentamente("Os músculos de Samanta protestam com cada movimento que ela faz ao ver o desprezo de Madame Lavínia sobre ela. Sua dor de cabeça latejante aumenta, deixado tudo levemente desfocado. Lavínia continua imperturbável, a analisando como se tentasse adivinhar seus próximos passos, jogando um xadrez mental onde cada palavra vale uma jogada.")
+    escrever_lentamente(f"\nSamanta questiona Madame Lavínia sobre Baldwin e seu comportamento.")
     
     # Resposta de Madame Lavínia
-    escrever_lentamente(f"Madame Lavínia, com uma careta, responde: {falaLavinia}")
+    escrever_lentamente(f"\nMadame Lavínia, com uma careta, responde: '{falaLavinia}'")
 
     # Pergunta se o jogador deseja insistir em mais perguntas
     insistir = input("\nVocê deseja na conversa? (S/N): ").strip().lower()
@@ -221,11 +227,14 @@ def interrogar_personagensFase3():
         probRevelacaoLavinia = random.random()
 
         if probRevelacaoLavinia > 0.5:
-            escrever_lentamente("Madame Lavínia, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência,, dizendo: 'É curioso, detetive, muito curioso você ter a audácia de me acusar e, ainda assim, eu ter te visto na companhia de Baldwin diversas vezes com essa roupa vermelha' e fecha a porta. ")
+            escrever_lentamente("\nMadame Lavínia, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo: 'É curioso, detetive, muito curioso você ter a audácia de me acusar e, ainda assim, eu ter te visto na companhia de Baldwin diversas vezes, bebendo com ele' e fecha a porta. ")
 
         else:
-            escrever_lentamente("Madame Lavínia, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e fecha a porta.")
-            
+            escrever_lentamente("\nMadame Lavínia, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e fecha a porta.")
+
+    time.sleep(3)
+    os.system("cls")
+    
     # Exibe as proposições ao jogador
     print("\nEscolha as proposições que você considera verdadeiras:")
     for chave, info in proposicoes.items():
@@ -259,14 +268,14 @@ def interrogar_personagensFase4():
     falaRodrigo = random.choice(falasRodrigo)
 
     # Pergunta padrão
-    escrever_lentamente("No último dia de sua investigação, você parte para a adega onde costuma-se vender o licor que foi encontrado junto ao corpo de Baldwin.")
-    escrever_lentamente("Quando Samanta entra pela porta, Rodrigo se encontra encostado preguiçosamente em um barril, os braços musculosos cruzados sobre o peito. Seu olhar é pesado, mas desinteressado, como se a investigação fosse uma interrupção desagradável na sua rotina. Ele se movimenta devagar, sem pressa, como quem tem certeza de que nada o atinge.")
-    escrever_lentamente("Ao mencionar o  licor encontrado com o corpo de Baldwin, ele ergue uma sobrancelha com uma mistura de enfado e curiosidade. Ajusta a faixa vermelha na cintura, como se quisesse enfatizar que nada o preocupa. A respiração dele é tranquila, e ele não parece intimidado, embora a postura relaxada esconda uma vigilância silenciosa.")
+    escrever_lentamente("No último dia de sua investigação, Samanta parte para a adega onde costuma-se vender o licor que foi encontrado junto ao corpo de Baldwin.")
+    escrever_lentamente("\nQuando Samanta entra pela porta, Rodrigo se encontra encostado preguiçosamente em um barril, os braços musculosos cruzados sobre o peito. Seu olhar é pesado, mas desinteressado. Ele se movimenta devagar, sem pressa, como quem tem certeza de que nada o atinge.")
+    escrever_lentamente("\nAo mencionar o  licor encontrado com o corpo de Baldwin para o mesmo, ele apenas ergue uma sobrancelha com uma mistura de enfado e curiosidade. ELe ajusta a faixa vermelha na cintura, como se quisesse enfatizar que nada o preocupa. A respiração dele é tranquila e ele não parece intimidado com a acusação silenciosa que é feita, embora a postura relaxada esconda certa vigilância.")
     escrever_lentamente("A sensação de peso nos ombros é quase insuportável, e o gosto amargo da bebida na boca nos faz sentir cada vez mais exaustos. Rodrigo continua ali, imperturbável, como se estivesse disposto a ouvir o tempo que fosse necessário, sem nunca se envolver mais do que o estritamente necessário.")
-    escrever_lentamente(f"Samanta questiona Rodrigo sobre seu conhecimento a respeito de Baldwin e sobre o licor que ela se lembra de ver na cena do crime")
+    escrever_lentamente(f"\nSamanta questiona Rodrigo sobre seu conhecimento a respeito de Baldwin e sobre o licor que ela se lembra de ver na cena do crime")
     
     # Resposta de Rodrigo
-    escrever_lentamente(f"Rodrigo, depois de pensar por um momento, responde: {falaRodrigo}")
+    escrever_lentamente(f"\nRodrigo, depois de pensar por um momento, responde: '{falaRodrigo}'")
 
     # Pergunta se o jogador deseja insistir em mais perguntas
     insistir = input("\nVocê deseja insistir na conversa? (S/N): ").strip().lower()
@@ -276,11 +285,14 @@ def interrogar_personagensFase4():
         probRevelacaoRodrigo = random.random()
 
         if probRevelacaoRodrigo > 0.8:
-            escrever_lentamente("Rodrigo boceja com a insistência. Ao ver que alguns clientes entram na loga, ele diz apenas: 'Você sabe os efeitos colaterais que esse licor causa, detetive? Como é muito forte, depois que é tomado, as pessoas costumam reclamar de dores e amnésia' e a deixa para atender os clientes.")
+            escrever_lentamente("\nRodrigo boceja com a insistência. Ao ver que alguns clientes entram na loga, ele diz apenas: 'Você sabe os efeitos colaterais que esse licor causa, detetive? Como é muito forte, depois que é tomado, as pessoas costumam reclamar de dores e amnésia' e a deixa para atender os clientes.")
 
         else:
-            escrever_lentamente("Rodrigo boceja com a insistência. Ao ver que alguns clientes entram na loga, ele diz apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e a deixa para atender os clientes.")
-            
+            escrever_lentamente("\nRodrigo boceja com a insistência. Ao ver que alguns clientes entram na loga, ele diz apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e a deixa para atender os clientes.")
+
+    time.sleep(3)
+    os.system("cls")
+    
     # Exibe as proposições ao jogador
     print("\nEscolha as proposições que você considera verdadeiras:")
     for chave, info in proposicoes.items():
@@ -341,13 +353,13 @@ def interrogar_personagensFase5():
                 escrever_lentamente("Você perdeu... Diana não é a assassina.")
                 
             elif suspeito_escolhido == "Erik":
-                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Erik não se debate. Seus olhos se estreitam, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo.")
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Erik não se debate. Seus olhos se estreitam, no entanto, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo.")
                 time.sleep(2)
                 os.system("cls")
                 escrever_lentamente("Você perdeu... Erik não é o assassino.")
                 
             elif suspeito_escolhido == "Mariana":
-                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam, e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo.")
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero e traição, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo.")
                 time.sleep(2)
                 os.system("cls")
                 escrever_lentamente("Você perdeu... Mariana não é a assassina.")
@@ -365,23 +377,23 @@ def interrogar_personagensFase5():
                 escrever_lentamente("Você perdeu... Madame Lavínia não é a assassina.")
                 
             elif suspeito_escolhido == "Rodrigo":
-                escrever_lentamente("Quando a algema é colocada e a sentença é feita, odrigo se deixa levar sem resistência, um sorriso cansado e cínico nos lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo.")
+                escrever_lentamente("Quando a algema é colocada e a sentença é feita, Rodrigo se deixa levar sem resistência, um sorriso cansado e cínico dorme em seus lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo.")
                 time.sleep(2)
                 os.system("cls")
                 escrever_lentamente("Você perdeu... Rodrigo não é o assassino.")
                 
         elif desbloqueiaNinguem and escolha == len(suspeitos) + 1:
             
-            escrever_lentamente("A verdade surge em nossa mente como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante de nós — Diana furiosa, Erik cauteloso, Mariana desesperada, Boris incerto, Lavínia arrogante, e Rodrigo indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é nossa.")
+            escrever_lentamente("A verdade surge na mente de Samanta como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante dela — Diana furiosa, Erik cauteloso, Mariana desesperada, Boris incerto, Lavínia arrogante e um Rodrigo indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é dela.")
             escrever_lentamente("A dor de cabeça lateja com mais força agora, como se as próprias lembranças, até então fragmentadas e distantes, finalmente se alinhassem. O gosto metálico que insiste em não sair da boca de Samanta é mais do que um reflexo da fadiga. É o sabor da culpa.")
-            escrever_lentamente("Samanta se lembra do licor. O jeito que ele sorriu, confiante e cruel, enquanto despejava o líquido âmbar no copo. “Apenas um pouco para relaxar”, foi o que ele disse — uma gentileza traiçoeira. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais.")
+            escrever_lentamente("\nSamanta se lembra do licor. Ela se lembra do jeito que Baldwin sorriu, confiante e cruel, enquanto despejava o líquido âmbar no copo. 'Apenas um pouco para relaxar' foi o que ele disse — uma gentileza traiçoeira, que ela só foi perceber um pouco tarde demais. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais, sobre ela.")
             escrever_lentamente("Ele tentou a silenciar com o álcool. Tentou transformar a sua resistência em obediência. Mas ela não deixou. Agimndo antes que ele pudesse tomar o que queria. Agindo sem pensar, com uma mão trêmula e um coração disparado. Samanta pegou a faca mais próxima. A lâmina perfurou a carne dele como um ato desesperado — rápido, brutal e inevitável.")
-            escrever_lentamente("Agora, tudo parece claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si também.")
-            escrever_lentamente("E ela não sabe como se sentir a respeito disso...")
+            escrever_lentamente("\nAgora, tudo parecia mais claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si mesma também.")
+            escrever_lentamente("\nE ela não sabe como se sentir a respeito disso...")
             
             time.sleep(2)
             os.system("cls")
-            escrever_lentamente("Você ganhou... Você é o assassino...")
+            escrever_lentamente("Você ganhou... Você é a assassina...")
             
         else:
             print("Escolha inválida.")
@@ -414,7 +426,10 @@ def mostrar_tabelas(proposicoes_escolhidas):
         "P20": {"descricao": "O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém.", "verdade": True},
     }
 
-    resposta = input("Você gostaria de ver as respostas que deu? (S/N): ").strip().lower()
+    time.sleep(2)
+    os.system("cls")
+
+    resposta = input("Você gostaria de ver as respostas que deu e compará-las com as respostas verdadeiras? (S/N): ").strip().lower()
     if resposta == 's':
         tabela = PrettyTable()
         tabela.field_names = ["Proposição", "Descrição", "Verdade", "Sua Resposta"]
@@ -424,4 +439,6 @@ def mostrar_tabelas(proposicoes_escolhidas):
             resposta_jogador = "Verdadeiro" if chave in proposicoes_escolhidas else "Falso"
             tabela.add_row([chave, info["descricao"], estado, resposta_jogador])
 
+        time.sleep(2)
+        os.system("cls")
         print(tabela)
