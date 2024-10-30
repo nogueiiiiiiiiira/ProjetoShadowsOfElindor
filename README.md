@@ -2,21 +2,21 @@
 ### Tabela-Verdade das Proposições
 
 | Fase       | Proposição | Descrição                                                                                        | Verdadeiro/Falso | Contribuição                     
-|------------|------------|--------------------------------------------------------------------------------------------------|------------------|--------------------------------------
+|------------|------------|--------------------------------------------------------------------------------------------------|------------------|------------
 |            |            |                                                                                                  |                  |
 | **Fase 1** | P1         | A faca não pertence a Diana, a cozinheira.                                                       | Verdadeira       | **Essencial para a conclusão final**
 |            | P2         | Erik não gostava de Baldwin.                                                                     | Verdadeira       | Nenhuma
 |            | P3         | Diana não gostava de Baldwin                                                                     | Verdadeira       | Nenhuma
 |            | P4         | Independentemente de suas intrigas com Baldwin, Erik provavelmente não o matou.                  | Verdadeira       | **Essencial para a conclusão final**
 |            | **P5**     | Tamanho da lâmina é pequeno, sugerindo alguém de porte pequeno                                   | **Verdadeira**   | Bastante
-|            |            |                                                                                                  |                  |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|            |            |                                                                                                  |                  |------------
 |            |            |                                                                                                  |                  |
 | **Fase 2** | P1         | Boris não está mentindo conscientemente. Ele não pode ser culpado.                               | Verdadeira       | **Essencial para a conclusão final**
 |            | P2         | Mariana não parece guardar rancor de Baldwin. Ela não é culpada.                                 | Verdadeira       | **Essencial para a conclusão final**
 |            | **P3**     | Pegadas pequenas sugerem uma presença feminina.                                                  | **Verdadeira**   | Bastante
 |            | P4         | O relato de ambos se contradizem                                                                 | Verdadeira       | Nenhuma
 |            | P5         | Dado a sua idade, não é possível confiar no que Boris fala                                       | Verdadeira       | Nenhuma
-|            |            |                                                                                                  |                  |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|            |            |                                                                                                  |                  |------------
 |            |            |                                                                                                  |                  |
 | **Fase 3** | P1         | O tecido é da capa de Madame Lavínia. Ela pode ser culpada.                                      | Falsa            | Nenhuma                
 |            | P2         | De acordo com a Lavínia, o tecido é mesmo caro, indicando alguém de classe elevada ou média.     | Verdadeira       | Médio
@@ -30,7 +30,7 @@
 |            | **P3**     | Rodrigo, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte.           | **Verdadeira**   | **Essencial para a conclusão final** 
 |            | P4         | Dado aos rumores das ações de Baldwin, ele provavelmente utilizaria o licor de modo indevido     | Verdadeira       | Nenhuma
 |            | P5         | O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém.       | Verdadeira       | Nenhuma 
-|            |            |                                                                                                  |                  |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|            |            |                                                                                                  |                  |------------
 
 ### Conclusão
 
