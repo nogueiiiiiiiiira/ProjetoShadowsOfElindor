@@ -34,6 +34,7 @@
 
 ### Conclusão
 
-Ao longo das investigações, as proposições essenciais (destacadas em negrito na tabela) revelam que o perfil do assassino é inconsistente com os suspeitos. Isso leva o detetive a concluir que o crime não foi cometido por nenhum dos suspeitos.
+Ao longo das investigações, as proposições essenciais (destacadas em negrito na tabela) revelam que o perfil do assassino é inconsistente com os suspeitos. Isso leva o detetive a concluir que o crime não foi cometido por nenhum dos suspeitos. O usuário tem que considerar as preposições P1, P4, P6, P7 e P13 como verdadeiras para chegar a conclusão final. Caso considere uma delas como falsa, o usuário não consiguirá vencer o jogo. As outras preposições são dicas para o jogador, mas não contribuem necessariamente para o final certo do jogo.
 
-Conclusão ≡ (P1 ∧ P4 ∧ P6 ∧ P7 ∧ P13) ^ (P2 ∨ P3∨ … ∨ P20)
+Conclusão ≡ (P1 ∧ P4 ∧ P6 ∧ P7 ∧ P13) or (P2 ∨ P3∨ … ∨ P20)
+
