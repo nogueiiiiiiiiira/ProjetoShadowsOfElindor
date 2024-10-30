@@ -36,4 +36,4 @@
 
 Ao longo das investigações, as proposições essenciais (destacadas em negrito na tabela) revelam que o perfil do assassino é inconsistente com os suspeitos. Isso leva o detetive a concluir que o crime não foi cometido por nenhum dos suspeitos.
 
-Conclusão ≡ (P1 ∧ P4 ∧ P6 ∧ P7 ∧ P13) v (P2 ∨ P3∨ … ∨ P20)
+Conclusão ≡ (P1 ∧ P4 ∧ P6 ∧ P7 ∧ P13) ^ (P2 ∨ P3∨ … ∨ P20)
