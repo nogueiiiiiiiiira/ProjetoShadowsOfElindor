@@ -2,7 +2,7 @@ import time
 import sys
 
 # Função para simular a escrita lenta na tela
-def escrever_lentamente(texto, velocidade = 0.005):
+def escrever_lentamente(texto, velocidade = 0.5):
     for char in texto:
         sys.stdout.write(char)
         sys.stdout.flush()
