@@ -30,20 +30,21 @@ def fase1():
     escrever_lentamente("\nErik, o Caçador: um homem magro e ágil, com olhos afiados como os de uma raposa. Ele usa uma capa marrom suja de terra e folhas, sugerindo que passou a maior parte do dia na floresta. Ele sempre carrega uma pequena faca de caça presa ao cinto e suas botas estão cobertas de lama seca. Erik evita contato visual e parece estar sempre inquieto, como se estivesse pronto para desaparecer na floresta a qualquer instante. Embora reservado, os aldeões o respeitam por seu conhecimento das matas e de tudo o que vive nelas, mas sua relação com Baldwin, o ferreiro, era tensa, pois Baldwin costumava atrapalhar seus negócios com armas e mexer com sua esposa de tempos em tempos.")
     escrever_lentamente("\nMariana, a Donzela da Estalagem: uma jovem de aparência delicada, com cabelos castanhos trançados e um vestido simples, embora bem cuidado. Ela é ágil e discreta, movendo-se com a graça de alguém acostumada a servir e a observar em silêncio. Mariana tem um semblante nervoso e seus dedos finos se retorcem enquanto fala, o que sugere que algo a preocupa profundamente. Rumores dizem que Baldwin dava alguns avanços indesejados nela, mas que ela nunca deu indicíos de desprezá-lo. Foi ela quem encontrou o corpo de Baldwin.")
     escrever_lentamente("\nBoris, o Guardião da Vila: com uma expressão carrancuda e um corpo grande e musculoso, Boris é a imagem do típico guardião. Suas roupas de couro grosso e suas mãos calejadas mostram que está acostumado a trabalhos pesados. Ele usa uma barba bem aparada, e seus olhos severos revelam uma autoridade silenciosa, que poucos ousam questionar. Boris é direto e econômico nas palavras, falando apenas o necessário. Ele é conhecido por sua lealdade, mas também por seu comportamento discreto e relutante em se envolver em questões alheias. Mais de uma vez, já entrou em brigas e discussões com Baldwin pelo mesmo não respeitar as mulheres. Foi ele quem, após socorrer uma Mariana desesperada, mandou a jovem estranha encontrar Samanta.")
-    escrever_lentamente("\nMadame Lavínia, a Nobre da Vila: é uma mulher de porte elegante, de pele pálida e cabelos loiros finamente arrumados. Veste-se com roupas de linho vermelho e jóias discretas e é sempre vista com uma postura altiva e fria. Madame Lavínia raramente interage com os aldeões e poucos ousam se aproximar dela. Seus olhos calculistas analisam cada movimento das pessoas ao seu redor, como se tentassem prever cada pergunta. Aparentemente, Lavínia guarda rancores, principalmente de Baldwin, por motivos que ninguém suspeito do porquê.")
-    escrever_lentamente("\nRodrigo é um homem robusto, com braços fortes e calejados pelo trabalho constante nas tavernas e armazéns. Ele veste roupas simples de couro marrom, manchadas por anos de manipulação de barris de vinho e licores. Uma túnica de linho grosso cobre seu peito e uma faixa de tecido vermelho em torno da cintura sugere um toque pessoal de orgulho em seu ofício. Seu cabelo é curto e escuro, já mostrando sinais de grisalho nas têmporas e uma barba rala cobre seu queixo, sempre perfumada pelo leve aroma de especiarias e álcool. O licor encontrado junto ao corpo de Baldwin provém de seus negócios.")
+    escrever_lentamente("\nMadame Lavínia, a Nobre da Vila: uma mulher de porte elegante, de pele pálida e cabelos loiros finamente arrumados. Veste-se com roupas de linho vermelho e jóias discretas e é sempre vista com uma postura altiva e fria. Madame Lavínia raramente interage com os aldeões e poucos ousam se aproximar dela. Seus olhos calculistas analisam cada movimento das pessoas ao seu redor, como se tentassem prever cada pergunta. Aparentemente, Lavínia guarda rancores, principalmente de Baldwin, por motivos que ninguém suspeito do porquê.")
+    escrever_lentamente("\nRodrigo, o Balcosnista: um homem robusto, com braços fortes e calejados pelo trabalho constante nas tavernas e armazéns. Ele veste roupas simples de couro marrom, manchadas por anos de manipulação de barris de vinho e licores. Uma túnica de linho grosso cobre seu peito e uma faixa de tecido vermelho em torno da cintura sugere um toque pessoal de orgulho em seu ofício. Seu cabelo é curto e escuro, já mostrando sinais de grisalho nas têmporas e uma barba rala cobre seu queixo, sempre perfumada pelo leve aroma de especiarias e álcool. O licor encontrado junto ao corpo de Baldwin provém de seus negócios.")
     time.sleep(3)
     os.system("cls")
 
     escrever_lentamente("Uma investigação em torno da faca será o primeiro passo que Samanta tomará. Dentre os suspeitos que ela já reuniu pistas, somente dois podem ser ligados à lâmica: Diana, a Cozinheira, Erik, o Caçador.")
     time.sleep(3)
+    os.system("cls")
     interrogar_personagensFase1()
     pass 
 
 def fase2():
     os.system("cls")
     escrever_lentamente("Após o interrogatório inicial, Samanta reflete sobre o que descobriu. Diana e Erik, os dois que lidavam com facas, mostraram reações diferentes. Diana admitiu ter tido conflitos com Baldwin, e sua irritação ficou evidente, embora ela aparentemente não reconhecesse a faca. Já Erik, que parecia mais cauteloso, também confessou um histórico de desavenças com o ferreiro, embora insistisse que aquele tipo de faca não era seu. As suas suspeitas se intensificam enquanto Samanta se recorda que a lâmina parecia fina, mais próxima de uma faca de cozinha do que de uma arma de caça.")
-    escrever_lentamente("\nIndependentemente disso, as pegadas são o próximo passo a ser investigado; Samanta decide que a próxima investigação será sobre as pegadas próximas à porta dos fundos e quem poderia ter acesso a esse local.")
+    escrever_lentamente("\nIndependentemente disso, as pegadas são o próximo passo a ser investigado; Samanta decide que a próxima investigação será sobre as pegadas próximas à porta dos fundos e que estavam próximos do estabelecimento pela manhã. Dentre os suspeitos que ela já reuniu pistas, as próximas pessoas que Samanta irá investigar serão: Mariana, a Donzela, e Boris, o Guardião.")
     
     time.sleep(3)
     os.system("cls")
@@ -52,8 +53,8 @@ def fase2():
 
 def fase3():
     os.system("cls")
-    escrever_lentamente("Após conversar com Mariana e Boris, você recolhe mais informações sobre as pegadas na porta dos fundos. Mariana menciona ter visto uma figura saindo apressadamente, mas não conseguiu ver detalhes. Boris, mesmo hesitante, confirma ter avistado alguém encapuzado saindo com algo nas mãos, mas reluta em dar mais detalhes por não ter confiança em suas lembranças.")
-    escrever_lentamente("\nAs pegadas eram pequenas e leves. Você sente que alguém está escondendo detalhes importantes e decide seguir a próxima pista: os fragmentos de pano vermelho, o que a leva à figura imponente de Madame Lavínia.")
+    escrever_lentamente("Após conversar com Mariana e Boris, Samanta recolheu mais informações sobre as pegadas na porta dos fundos. Mariana menciona ter visto uma figura saindo apressadamente, mas não conseguiu ver detalhes. Boris, mesmo hesitante, confirma ter avistado alguém encapuzado saindo com algo nas mãos, mas reluta em dar mais detalhes por não ter confiança em suas lembranças.")
+    escrever_lentamente("\nAs pegadas eram pequenas e leves. Como Samanta sente que está esquecendo detalhes importantes, ela decide seguir a próxima pista: os fragmentos de pano vermelho, o que a leva à figura imponente de Madame Lavínia.")
     
     time.sleep(3)
     os.system("cls")
@@ -62,8 +63,8 @@ def fase3():
 
 def fase4():
     os.system("cls")
-    escrever_lentamente("Após conversar com Madame Lavínia, que é fria e altiva em suas respostas, você decide seguir adiante com suas investigações.")
-    escrever_lentamente("\nA cor e a qualidade do tecido apontam para alguém de recursos ou posição elevada, reforçando a hipótese de uma presença feminina e distinta. Você decide que é hora de investigar a garrafa quebrada e o licor, que talvez possa levá-la a mais informações sobre a possível conexão de Lavínia ou outra pessoa com Baldwin.")
+    escrever_lentamente("Após conversar com Madame Lavínia, que é fria e altiva em suas respostas, Samanta decide seguir adiante com suas investigações.")
+    escrever_lentamente("\nA cor e a qualidade do tecido apontam para alguém de recursos ou posição elevada. Independentemente disso, no entanto, Samanta decide que é hora de investigar a garrafa quebrada e o licor, que talvez possa levá-la a mais informações sobre a possível conexão de Lavínia ou outra pessoa com Baldwin. É hora de interrogar a figura simples de Rodrigo, o Balconista.")
     
     time.sleep(3)
     os.system("cls")
@@ -72,7 +73,7 @@ def fase4():
 
 def fase5():
     os.system("cls")
-    escrever_lentamente("\nFinalmente, com todas as peças do quebra-cabeças reunidas, você percebe que chegou a hora de escolher um assassino. Você sente que cada detalhe aponta para uma verdade oculta, e a dor de cabeça lateja como um tambor de advertência.")
+    escrever_lentamente("\nFinalmente, com todas as peças do quebra-cabeças reunidas, Samanta percebe que chegou a hora de escolher um assassino. Ela sente que cada detalhe aponta para uma verdade oculta e a dor de cabeça lateja como um tambor de advertência.")
 
     time.sleep(3)
     os.system("cls")
