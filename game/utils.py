@@ -1,6 +1,8 @@
 import time
 import sys
 import textwrap
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 LARGURA_TERMINAL = 110
 
@@ -25,3 +27,11 @@ def escrever_lentamente(texto, delay=0.000000000000000000005, espacos_esquerda=4
                 time.sleep(delay)
             sys.stdout.write('\n')  # Nova linha após a parte completa
             sys.stdout.flush()  # Atualiza a tela
+
+# Função para mostrar a imagem do personagem
+def mostrar_imagem_personagem(nome_imagem):
+    img = mpimg.imread(f'imagens/{nome_imagem}')  # Certifique-se de ajustar o caminho da imagem
+    plt.imshow(img)
+    plt.axis('off')  # Remove os eixos para melhor visualização
+    plt.show()
+    
