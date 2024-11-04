@@ -7,6 +7,47 @@ from game.utils import escreverLentamente, mostrarImagem, limparConsole
 
 LARGURA_TERMINAL = 110
 
+def instrucoes():
+        
+    limparConsole()
+    
+    escreverLentamente("    Bem-vindo, detetive! Prepare-se para desvendar um mistério ambientado na era medieval, onde cada detalhe pode esconder uma pista crucial. Siga as instruções abaixo e embarque nessa intrigante jornada. ", espacosEsquerda = 4) 
+    escreverLentamente("    Você é Samanta, uma detetive astuta e sagaz, conhecida por seu faro aguçado para desvendar segredos e intrigas. O jogo se passa em uma pequena vila medieval cercada por bosques misteriosos e imponentes castelos de pedra. A calmaria da vila foi interrompida por um crime, e cabe a você descobrir quem é o responsável. Mas cuidado: nem tudo é o que parece, e os suspeitos são mestres na arte de esconder suas verdadeiras intenções. ", espacosEsquerda = 4)
+    escreverLentamente("    Seu objetivo é resolver o mistério principal identificando o culpado e o motivo por trás do crime. Para isso, você precisará examinar todas as pistas, decidir entre o que é verdadeiro e falso e interrogar os suspeitos com cuidado. ", espacosEsquerda = 4)
+    
+    time.sleep(5)
+    limparConsole()
+    
+    escreverLentamente("    - Mecânica do Jogo: O jogo começa com uma breve introdução sobre a história e o cenário. Isso inclui detalhes sobre o crime, o local e o clima de tensão entre os habitantes da vila. Fique atento: detalhes aparentemente comuns podem esconder pistas importantes! ", espacosEsquerda = 4)
+    escreverLentamente("    - Personagens Suspeitos: Após a introdução, você conhecerá os principais suspeitos. Cada um possui uma personalidade distinta, um possível motivo e histórias entrelaçadas que podem ajudar (ou confundir) em sua investigação. ", espacosEsquerda = 4)
+    escreverLentamente("    - Sistema de Proposições Verdadeiras e Falsas: Ao longo do jogo, você encontrará 20 proposições – afirmações que poderão ou não ser verdadeiras. A cada proposição, você terá a chance de decidir se acredita nela ou não. Se você optar por marcar uma proposição como verdadeira, ela será considerada como parte das pistas para solucionar o caso. As proposições que você não marcar como verdadeiras serão automaticamente atribuídas como falsas", espacosEsquerda = 4)
+
+    time.sleep(5)
+    limparConsole()
+    
+    escreverLentamente("    Interrogando os Suspeitos: Ao conversar com os suspeitos, você poderá receber informações variadas: ", espacosEsquerda = 4)
+    escreverLentamente("    - Pistas confirmadas: algumas serão essenciais para avançar na trama. ", espacosEsquerda = 4)
+    escreverLentamente("    - Pistas aleatórias baseadas na “sorte”: se insistir nas perguntas, pode acabar obtendo respostas que dependem de um pouco de sorte, como informações extras ou contradições sutis que só surgem quando você pergunta no momento certo. ", espacosEsquerda = 4)
+
+    time.sleep(5)
+    limparConsole()
+    
+    escreverLentamente("    Detalhes na Narração: Fique atento à narração do jogo, pois nem todas as pistas estão nas proposições ou falas diretas dos personagens. Muitas vezes, os detalhes estão descritos na ambientação, nos gestos dos personagens e nas mudanças de humor ou expressão. ", espacosEsquerda = 4)
+
+    time.sleep(5)
+    limparConsole()
+    
+    escreverLentamente("    Ao final da sua investigação, você poderá fazer suas acusações e descrever o que acredita ser o desenrolar dos fatos. Se desejar, o jogo lhe dará a opção de comparar suas respostas com a solução real. Essa comparação revelará quais proposições eram verdadeiras ou falsas, ajudando você a entender o que deixou passar e aperfeiçoar suas habilidades de detetive para a próxima partida!", espacosEsquerda = 4)
+
+    time.sleep(5)
+    limparConsole()
+
+    escreverLentamente("    Boa Sorte, Detetive! ", espacosEsquerda = 4)
+    escreverLentamente("    Use seu instinto, raciocínio lógico e sua habilidade de ler nas entrelinhas. Boa sorte em resolver o mistério e trazer justiça à vila! ", espacosEsquerda = 4)
+    escreverLentamente("    Preparada? O jogo está prestes a começar! ", espacosEsquerda = 4)
+    
+    time.sleep(2)
+
 # Funções das fases
 def fase1():
     limparConsole()

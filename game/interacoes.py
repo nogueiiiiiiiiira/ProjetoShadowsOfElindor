@@ -106,7 +106,7 @@ def interrogar2():
         "P7": {"descricao": "Mariana não parece guardar rancor de Baldwin. Ela não é culpada. ", "verdade": True},
         "P8": {"descricao": "Pegadas pequenas sugerem uma presença feminina. ", "verdade": True},
         "P9": {"descricao": "O relato de ambos se contradizem ", "verdade": True},
-        "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Gerhard fala", "verdade": True}
+        "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Gerhard fala", "verdade": False}
     }
     
     # Opções de falas para Mariana e Gerhard
@@ -253,7 +253,7 @@ def interrogar4():
         "P16": {"descricao": "O licor achado junto ao corpo de Baldwin foi comprado por intermédio de uma mulher. ", "verdade": True},
         "P17": {"descricao": "Quem comprou o licor foi Madame Morgana. ", "verdade": True},
         "P18": {"descricao": "Floris, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte. ", "verdade": True},
-        "P19": {"descricao": "Dado aos rumores das ações de Baldwin, ele provavelmente utilizaria o licor de modo indevido", "verdade": True},
+        "P19": {"descricao": "Dado aos rumores das ações de Baldwin, ele provavelmente não utilizaria o licor de modo indevido", "verdade": True},
         "P20": {"descricao": "O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém. ", "verdade": True}
     }
     
@@ -423,7 +423,7 @@ def mostrarTabela(proposicoesEscolhidas):
         "P7": {"descricao": "Mariana não parece guardar rancor de Baldwin. Ela não é culpada. ", "verdade": True},
         "P8": {"descricao": "Pegadas pequenas sugerem uma presença feminina. ", "verdade": True},
         "P9": {"descricao": "O relato de ambos se contradizem. ", "verdade": True},
-        "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Gerhard fala. ", "verdade": True},
+        "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Gerhard fala. ", "verdade": False},
         "P11": {"descricao": "O tecido é da capa de Madame Morgana. Ela pode ser culpada. ", "verdade": False},
         "P12": {"descricao": "De acordo com a Morgana, o tecido é mesmo caro, indicando alguém de classe elevada ou média. ", "verdade": True},
         "P13": {"descricao": "Madame Morgana está na defensiva com a acusação. Ela não é culpada. ", "verdade": True},
@@ -432,7 +432,7 @@ def mostrarTabela(proposicoesEscolhidas):
         "P16": {"descricao": "O licor achado junto ao corpo de Baldwin foi comprado por intermédio de uma mulher. ", "verdade": True},
         "P17": {"descricao": "Quem comprou o licor foi Madame Morgana. ", "verdade": True},
         "P18": {"descricao": "Floris, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte. ", "verdade": True},
-        "P19": {"descricao": "Dado aos rumores das ações de Baldwin, ele provavelmente utilizaria o licor de modo indevido. ", "verdade": True},
+        "P19": {"descricao": "Dado aos rumores das ações de Baldwin, ele provavelmente não utilizaria o licor de modo indevido. ", "verdade": False},
         "P20": {"descricao": "O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém. ", "verdade": True},
     }
 

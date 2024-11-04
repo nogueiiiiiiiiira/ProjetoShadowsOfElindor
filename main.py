@@ -3,7 +3,7 @@ import time
 import curses
 from colorama import init
 import pyfiglet
-from game.fases import fase1, fase2, fase3, fase4, fase5
+from game.fases import instrucoes, fase1, fase2, fase3, fase4, fase5
 
 init(autoreset=True)
 
@@ -75,6 +75,8 @@ if __name__ == "__main__":
     curses.wrapper(main)  # Inicializa a interface curses
     
     # Executa as fases do jogo
+    
+    instrucoes()
     fase1()
     fase2()
     fase3()
