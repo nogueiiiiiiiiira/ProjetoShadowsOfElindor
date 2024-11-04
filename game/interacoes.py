@@ -4,13 +4,13 @@ import random
 import time
 import os
 import ttg
-from game.utils import escrever_lentamente
+from game.utils import escreverLentamente, limparConsole
 from prettytable import PrettyTable
 
 # Armazenamento de respostas do jogador para análise posterior
-proposicoes_escolhidas = []
+proposicoesEscolhidas = []
 
-def interrogar_personagensFase1():
+def interrogar1():
     
     # Armazenamento de proposições com suas verdades
     proposicoes = {
@@ -44,49 +44,49 @@ def interrogar_personagensFase1():
     falaCalistus = random.choice(falasCalistus)
 
     # Pergunta padrão
-    escrever_lentamente("   Depois de esperar os clientes sairem da estalagem, Samanta aproveita a brecha e se aproxima de sua primeira suspeita. ")
-    escrever_lentamente(f"\n   Isolde, a Cozinheira da Estalagem, cruza os braços com força, o tecido velho do avental esticado sob a pressão de seus músculos enquanto seus olhos encontram os de Samanta. Um olhar afiado, cheio de desconfiança, a examina como se ela tivesse acabado de insultar sua comida. Seu corpo inteiro emana irritação contida — as sobrancelhas cerradas, a boca apertada numa linha dura e o peso de sua respiração se arrasta, como se estivesse contando mentalmente até dez para não explodir. ")
-    escrever_lentamente("\n    Quando percebe o brilho metálico da faca que Samanta segura, sua expressão muda num instante. Ela é inteligente. Ela sabe porque que Samanta está ali. Há um lampejo de surpresa que rapidamente se transforma em frustração. A incredulidade salta de seus olhos, como se a mera sugestão de que ela poderia estar envolvida na morte de Baldwin fosse uma afronta pessoal. Ela aperta os lábios até formarem uma linha reta, os dedos batendo impacientemente na lateral do avental, indicando que não toleria a conversa que se seguiria por muito tempo. ")
-    escrever_lentamente("   O corpo de Samanta reclama com a provação que sabe que virá a seguir — músculos pesados e tensos, uma dor latejante na têmpora esquerda. O ar parece espesso e ela sente um gosto de metal na boca, reflexo do esforço e da exaustão. Isolde a observa com a mesma rigidez de uma panela fervente prestes a transbordar, mas, por fim, sua expressão volta a uma calma tensa. Está claro que ela não pretende facilitar a investigação. ")
-    escrever_lentamente("\n   Independenetemente disso, no entanto, Samanta a questiona acerca da faca encontrada ao lado do corpo de Baldwin, observando tudo o que é dito e não dito por parte dela. ")
+    escreverLentamente("   Depois de esperar os clientes sairem da estalagem, Samanta aproveita a brecha e se aproxima de sua primeira suspeita. ")
+    escreverLentamente(f"\n   Isolde, a Cozinheira da Estalagem, cruza os braços com força, o tecido velho do avental esticado sob a pressão de seus músculos enquanto seus olhos encontram os de Samanta. Um olhar afiado, cheio de desconfiança, a examina como se ela tivesse acabado de insultar sua comida. Seu corpo inteiro emana irritação contida — as sobrancelhas cerradas, a boca apertada numa linha dura e o peso de sua respiração se arrasta, como se estivesse contando mentalmente até dez para não explodir. ")
+    escreverLentamente("\n    Quando percebe o brilho metálico da faca que Samanta segura, sua expressão muda num instante. Ela é inteligente. Ela sabe porque que Samanta está ali. Há um lampejo de surpresa que rapidamente se transforma em frustração. A incredulidade salta de seus olhos, como se a mera sugestão de que ela poderia estar envolvida na morte de Baldwin fosse uma afronta pessoal. Ela aperta os lábios até formarem uma linha reta, os dedos batendo impacientemente na lateral do avental, indicando que não toleria a conversa que se seguiria por muito tempo. ")
+    escreverLentamente("   O corpo de Samanta reclama com a provação que sabe que virá a seguir — músculos pesados e tensos, uma dor latejante na têmpora esquerda. O ar parece espesso e ela sente um gosto de metal na boca, reflexo do esforço e da exaustão. Isolde a observa com a mesma rigidez de uma panela fervente prestes a transbordar, mas, por fim, sua expressão volta a uma calma tensa. Está claro que ela não pretende facilitar a investigação. ")
+    escreverLentamente("\n   Independenetemente disso, no entanto, Samanta a questiona acerca da faca encontrada ao lado do corpo de Baldwin, observando tudo o que é dito e não dito por parte dela. ")
 
     # Respostas dos personagens
-    escrever_lentamente(f"\n   Isolde responde, mal-humorada: '{falaIsolde}' ")
+    escreverLentamente(f"\n   Isolde responde, mal-humorada: '{falaIsolde}' ")
     insistir = input("\n       Você deseja continuar com a conversa? (S/N): ").strip().lower()
     
     if insistir == 's' or insistir == 'S':
         probRevelacaoIsolde = random.random()
         
         if probRevelacaoIsolde > 0.5:
-            escrever_lentamente("\n   Isolde revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que já vi sua presença intromedita aqui antes, não vi? Nunca havia reparado como você é pequena, detetive, mesmo que seja forte' e vai embora. ")
+            escreverLentamente("\n   Isolde revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que já vi sua presença intromedita aqui antes, não vi? Nunca havia reparado como você é pequena, detetive, mesmo que seja forte' e vai embora. ")
             
         else:
-            escrever_lentamente("\n   Isolde revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora. ")
+            escreverLentamente("\n   Isolde revira os olhos com a insistência. Vendo que mais pessoas chegam a estalagem e prevendo uma chance de escapar do interrogatória, ela somente zomba: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora. ")
         
     time.sleep(2)
-    os.system("cls")
-    escrever_lentamente("\n   Com um suspiro, Samanta parte para encontrar Erick, o Caçador. ")
+    limparConsole()
+    escreverLentamente("\n   Com um suspiro, Samanta parte para encontrar Erick, o Caçador. ")
     time.sleep(2)
-    os.system("cls")
+    limparConsole()
     
-    escrever_lentamente("   Quando finalmente o encontra, o vento frio se faz conhecido. Calistus está na saída da vila. Sua capa está marcada de lama seca e folhas, e ele se move com a inquietude de alguém que está sempre em alerta. Ao ver a faca na mão de Samanta, seu corpo enrijece por um momento, mas logo ele a examina com um desprezo controlado, como quem avalia a ameaça de um animal ferido. ")
-    escrever_lentamente("\n   Seus olhos, afiados como os de um predador, analisam cada detalhe da lâmina. Há cautela na forma como ele ajusta o cinto e evita a encarar por muito tempo, os dedos finos deslizando brevemente sobre o cabo da própria faca de caça. O desprezo dele é evidente, mas sutil — um meio sorriso amargo que desaparece antes que se possa fixá-lo. ")
-    escrever_lentamente("\n   A fadiga pesa sobre Samanta como um manto molhado ao prever mais discussão. A dor de cabeça aumenta  e o gosto de metal na boca se intensifica, como se a investigação estivesse a corroendo por dentro. Calistus se afasta um pouco, os olhos esquadrinhando as árvores ao redor, como se estivesse pronto para sumir a qualquer sinal de perigo. A tensão é palpável, mas ele permanece, ainda que desconfortável, enquanto Samanta o encara. ")
-    escrever_lentamente("   Ele pergunta o que Samanta quer. Ela o questiona sobre a faca encontrada ao lado do corpo de Baldwin, observando como a faca é semelhante aquela que ele segura nas mãos. ")
-    escrever_lentamente(f"\n   Calistus, com os lábios em uma linha reta, responde ríspido: '{falaCalistus}'")
+    escreverLentamente("   Quando finalmente o encontra, o vento frio se faz conhecido. Calistus está na saída da vila. Sua capa está marcada de lama seca e folhas, e ele se move com a inquietude de alguém que está sempre em alerta. Ao ver a faca na mão de Samanta, seu corpo enrijece por um momento, mas logo ele a examina com um desprezo controlado, como quem avalia a ameaça de um animal ferido. ")
+    escreverLentamente("\n   Seus olhos, afiados como os de um predador, analisam cada detalhe da lâmina. Há cautela na forma como ele ajusta o cinto e evita a encarar por muito tempo, os dedos finos deslizando brevemente sobre o cabo da própria faca de caça. O desprezo dele é evidente, mas sutil — um meio sorriso amargo que desaparece antes que se possa fixá-lo. ")
+    escreverLentamente("\n   A fadiga pesa sobre Samanta como um manto molhado ao prever mais discussão. A dor de cabeça aumenta  e o gosto de metal na boca se intensifica, como se a investigação estivesse a corroendo por dentro. Calistus se afasta um pouco, os olhos esquadrinhando as árvores ao redor, como se estivesse pronto para sumir a qualquer sinal de perigo. A tensão é palpável, mas ele permanece, ainda que desconfortável, enquanto Samanta o encara. ")
+    escreverLentamente("   Ele pergunta o que Samanta quer. Ela o questiona sobre a faca encontrada ao lado do corpo de Baldwin, observando como a faca é semelhante aquela que ele segura nas mãos. ")
+    escreverLentamente(f"\n   Calistus, com os lábios em uma linha reta, responde ríspido: '{falaCalistus}'")
     
     insistir = input("\n       Você deseja continuar com a conversa? (S/N): ").strip().lower()
 
     probRevelacaoCalistus = random.random()
 
     if probRevelacaoCalistus > 0.5:
-        escrever_lentamente("\n   Calistus zomba com a insistência. Sem paciência, ele diz: 'Você usa uma roupa vermelha, não usa? É interessante como alguém com uma personalidade como a sua usa uma roupa tão interessante como essa' e vai embora. ")
+        escreverLentamente("\n   Calistus zomba com a insistência. Sem paciência, ele diz: 'Você usa uma roupa vermelha, não usa? É interessante como alguém com uma personalidade como a sua usa uma roupa tão interessante como essa' e vai embora. ")
 
     else:
-        escrever_lentamente("\n   Calistus zomba com a insistência. Sem paciência, ele diz: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora. ")
+        escreverLentamente("\n   Calistus zomba com a insistência. Sem paciência, ele diz: 'Acho que suas cotas de perguntas já acabaram, detetive' e vai embora. ")
 
     time.sleep(3)
-    os.system("cls")
+    limparConsole()
             
     # Exibe as proposições ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
@@ -96,9 +96,9 @@ def interrogar_personagensFase1():
     # Captura as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
-    proposicoes_escolhidas.extend(escolhas)
+    proposicoesEscolhidas.extend(escolhas)
  
-def interrogar_personagensFase2():
+def interrogar2():
     
      # Armazenamento de proposições com suas verdades
     proposicoes = {
@@ -131,14 +131,14 @@ def interrogar_personagensFase2():
     falaGerhard = random.choice(falasGerhard)
 
     # Pergunta padrão
-    escrever_lentamente("   Depois dos dois primeiros interrogatórios, Samanta volta novamente a estalagem para encontrar Mariana. Não demora muito para encontrá-la e deixar claro a intenção de questioná-la. ")
-    escrever_lentamente("\n   Mariana está encolhida em um canto da estalagem, os dedos finos torcendo-se nervosamente enquanto Samanta se aproxima. Seus olhos grandes parecem oscilar entre medo e hesitação, como se cada pergunta fosse um peso invisível aumentando sua angústia. A maneira como ela abaixa a cabeça e evita contato visual deixa evidente que algo a perturba. ")
-    escrever_lentamente("\n   Seus movimentos são rápidos e nervosos — ajeita a barra do vestido, toca nas tranças e seus pés se mexem inquietos, como se quisesse escapar dali. Quando Samanta fala da manhã do incidente, seus dedos apertam o tecido do vestido com tanta força que os nós dos dedos ficam brancos. Está claro que a memória do encontro com Baldwin a assombra, mas ela parece estar se debatendo entre o medo de falar demais e a necessidade de ser honesta. ")
-    escrever_lentamente("   O corpo de Samanta está à beira da exaustão, e a dor de cabeça se mistura ao gosto amargo que Samanta não consegue tirar da boca. Mariana percebe a sua condição e, por um momento, parece se compadecer, mas sua própria ansiedade logo a consome novamente. Ela sabe porque Samanta está ali, na frente dela. ")
-    escrever_lentamente(f"\n    Samanta pergunta a ela se ela se lembra de ter visto algo suspeito nos dias que se antecederam a morte de Baldwin")
+    escreverLentamente("   Depois dos dois primeiros interrogatórios, Samanta volta novamente a estalagem para encontrar Mariana. Não demora muito para encontrá-la e deixar claro a intenção de questioná-la. ")
+    escreverLentamente("\n   Mariana está encolhida em um canto da estalagem, os dedos finos torcendo-se nervosamente enquanto Samanta se aproxima. Seus olhos grandes parecem oscilar entre medo e hesitação, como se cada pergunta fosse um peso invisível aumentando sua angústia. A maneira como ela abaixa a cabeça e evita contato visual deixa evidente que algo a perturba. ")
+    escreverLentamente("\n   Seus movimentos são rápidos e nervosos — ajeita a barra do vestido, toca nas tranças e seus pés se mexem inquietos, como se quisesse escapar dali. Quando Samanta fala da manhã do incidente, seus dedos apertam o tecido do vestido com tanta força que os nós dos dedos ficam brancos. Está claro que a memória do encontro com Baldwin a assombra, mas ela parece estar se debatendo entre o medo de falar demais e a necessidade de ser honesta. ")
+    escreverLentamente("   O corpo de Samanta está à beira da exaustão, e a dor de cabeça se mistura ao gosto amargo que Samanta não consegue tirar da boca. Mariana percebe a sua condição e, por um momento, parece se compadecer, mas sua própria ansiedade logo a consome novamente. Ela sabe porque Samanta está ali, na frente dela. ")
+    escreverLentamente(f"\n    Samanta pergunta a ela se ela se lembra de ter visto algo suspeito nos dias que se antecederam a morte de Baldwin")
     
     # Respostas dos personagens
-    escrever_lentamente(f"\n   Mariana diz, tímida: '{falaMariana}'")
+    escreverLentamente(f"\n   Mariana diz, tímida: '{falaMariana}'")
     
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
  
@@ -147,22 +147,22 @@ def interrogar_personagensFase2():
         probRevelacaoMariana = random.random()
 
         if probRevelacaoMariana > 0.5:
-            escrever_lentamente("\n   Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela muda de assunto: 'Se me permite dizer, detetive, de mulher para mulher, seu hálito cheira a licor. Você bebe?'. Samanta pisca por um momento e, então, entendendo a dica, vai embora. ")
+            escreverLentamente("\n   Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela muda de assunto: 'Se me permite dizer, detetive, de mulher para mulher, seu hálito cheira a licor. Você bebe?'. Samanta pisca por um momento e, então, entendendo a dica, vai embora. ")
             
         else:
-            escrever_lentamente("\n   Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, acho que não consigo responder mais perguntas por hoje. Samanta pisca por um momento e, então, entendendo a dica, vai embora. ")
+            escreverLentamente("\n   Mariana se encolhe, meio desconfortável com a insistência. Hesitante, ela confessa: 'Se me permite dizer, detetive, de mulher para mulher, acho que não consigo responder mais perguntas por hoje. Samanta pisca por um momento e, então, entendendo a dica, vai embora. ")
         
     time.sleep(2)
-    os.system("cls")
-    escrever_lentamente("   Com um suspiro, Samanta vai para o lado de fora da estalagem, onde sabe que encontrará seu próximo suspeito: Gerhard. ")
+    limparConsole()
+    escreverLentamente("   Com um suspiro, Samanta vai para o lado de fora da estalagem, onde sabe que encontrará seu próximo suspeito: Gerhard. ")
     time.sleep(2)
-    os.system("cls")
+    limparConsole()
     
-    escrever_lentamente("   Ela o encontra rapidamente. Gerhard está de pé, as mãos grossas descansando nos quadris, como se a força de sua presença fosse suficiente para intimidar qualquer um. Há algo incerto em seus movimentos, no modo como ajusta a postura mais de uma vez, tentando parecer seguro, mas falhando em disfarçar a tensão quando a vê. ")
-    escrever_lentamente("   Ao mencionar a manhã em que ele acompanhou Mariana e o momento dos gritos que se seguiram, Gerhard franze a testa e desvia o olhar por um instante, pensativo. Ele cruza os braços e, em seguida, muda de posição, como se quisesse acabar logo com aquela conversa. Embora relutante em se envolver, é claro que a memória do que aconteceu o incomoda. Ou a falta dela. ")
-    escrever_lentamente("\n   Samanta o questiona acerca da mesma coisa sobre o que questionou Mariana. ")
+    escreverLentamente("   Ela o encontra rapidamente. Gerhard está de pé, as mãos grossas descansando nos quadris, como se a força de sua presença fosse suficiente para intimidar qualquer um. Há algo incerto em seus movimentos, no modo como ajusta a postura mais de uma vez, tentando parecer seguro, mas falhando em disfarçar a tensão quando a vê. ")
+    escreverLentamente("   Ao mencionar a manhã em que ele acompanhou Mariana e o momento dos gritos que se seguiram, Gerhard franze a testa e desvia o olhar por um instante, pensativo. Ele cruza os braços e, em seguida, muda de posição, como se quisesse acabar logo com aquela conversa. Embora relutante em se envolver, é claro que a memória do que aconteceu o incomoda. Ou a falta dela. ")
+    escreverLentamente("\n   Samanta o questiona acerca da mesma coisa sobre o que questionou Mariana. ")
         
-    escrever_lentamente(f"\n   Suspirando, Gerhard admite: '{falaGerhard}'")
+    escreverLentamente(f"\n   Suspirando, Gerhard admite: '{falaGerhard}'")
         
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
  
@@ -170,14 +170,14 @@ def interrogar_personagensFase2():
         probRevelacaoGerhard = random.random()
  
         if probRevelacaoGerhard > 0.5:
-            escrever_lentamente("\n   Gerhard, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Você sempre usa essa roupa vermelha, senhorita? É uma escolha ousada para alguém que se aventura em lugares como este. Não sabia que você vinha de uma família boa' e vai embora. ")
+            escreverLentamente("\n   Gerhard, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Você sempre usa essa roupa vermelha, senhorita? É uma escolha ousada para alguém que se aventura em lugares como este. Não sabia que você vinha de uma família boa' e vai embora. ")
 
         else:
-            escrever_lentamente("\n   Gerhard, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Acredito que tenho mais coisas para fazer do que ficar respondendo perguntas, senhorita' e vai embora. ")
+            escreverLentamente("\n   Gerhard, com um sorriso cansado, se afasta da conversa insistente, dizendo apenas: 'Acredito que tenho mais coisas para fazer do que ficar respondendo perguntas, senhorita' e vai embora. ")
             
 
     time.sleep(3)
-    os.system("cls")
+    limparConsole()
     
     # Exibe as proposições ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
@@ -187,9 +187,9 @@ def interrogar_personagensFase2():
     # Captura as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
-    proposicoes_escolhidas.extend(escolhas)
+    proposicoesEscolhidas.extend(escolhas)
 
-def interrogar_personagensFase3():
+def interrogar3():
     
     proposicoes = {
         "P11": {"descricao": "O tecido é da capa de Madame Morgana. Ela pode ser culpada. ", "verdade": False},
@@ -212,14 +212,14 @@ def interrogar_personagensFase3():
     falaMorgana = random.choice(falasLavinia)
 
     # Pergunta padrão
-    escrever_lentamente("   No dia seguinte, Samanta se aventura na casa de Madame Morgana após conseguir uma licença para investigar mais afundo o caso de Baldwin. ")
-    escrever_lentamente("\n   Madame Morgana a recebe com a frieza de um mármore esculpido. Seus olhos, calculistas e atentos, a medem como se ela estivesse ali para uma negociação que já estivesse decidida antes mesmo de começar. Sua postura é impecável, sem um único gesto que não seja deliberadamente controlado. ")
-    escrever_lentamente("\n   Quando Samanta mostra o pedaço de tecido vermelho silenciosamente, seus dedos finos e adornados com anéis mal se movem, mas há uma rigidez sutil nos ombros, como se aquela evidência fosse uma afronta inesperada. O rosto dela permanece impassível, embora seus olhos brilhem brevemente com uma sombra de irritação. Ela entende a insinuação que Samanta faz silenciosamente. ")
-    escrever_lentamente("   Os músculos de Samanta protestam com cada movimento que ela faz ao ver o desprezo de Madame Morgana sobre ela. Sua dor de cabeça latejante aumenta, deixado tudo levemente desfocado. Morgana continua imperturbável, a analisando como se tentasse adivinhar seus próximos passos, jogando um xadrez mental onde cada palavra vale uma jogada. ")
-    escrever_lentamente(f"\n   Samanta questiona Madame Morgana sobre Baldwin e seu comportamento. ")
+    escreverLentamente("   No dia seguinte, Samanta se aventura na casa de Madame Morgana após conseguir uma licença para investigar mais afundo o caso de Baldwin. ")
+    escreverLentamente("\n   Madame Morgana a recebe com a frieza de um mármore esculpido. Seus olhos, calculistas e atentos, a medem como se ela estivesse ali para uma negociação que já estivesse decidida antes mesmo de começar. Sua postura é impecável, sem um único gesto que não seja deliberadamente controlado. ")
+    escreverLentamente("\n   Quando Samanta mostra o pedaço de tecido vermelho silenciosamente, seus dedos finos e adornados com anéis mal se movem, mas há uma rigidez sutil nos ombros, como se aquela evidência fosse uma afronta inesperada. O rosto dela permanece impassível, embora seus olhos brilhem brevemente com uma sombra de irritação. Ela entende a insinuação que Samanta faz silenciosamente. ")
+    escreverLentamente("   Os músculos de Samanta protestam com cada movimento que ela faz ao ver o desprezo de Madame Morgana sobre ela. Sua dor de cabeça latejante aumenta, deixado tudo levemente desfocado. Morgana continua imperturbável, a analisando como se tentasse adivinhar seus próximos passos, jogando um xadrez mental onde cada palavra vale uma jogada. ")
+    escreverLentamente(f"\n   Samanta questiona Madame Morgana sobre Baldwin e seu comportamento. ")
     
     # Resposta de Madame Morgana
-    escrever_lentamente(f"\n   Madame Morgana, com uma careta, responde: '{falaMorgana}'")
+    escreverLentamente(f"\n   Madame Morgana, com uma careta, responde: '{falaMorgana}'")
 
     # Pergunta se o jogador deseja insistir em mais perguntas
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
@@ -229,13 +229,13 @@ def interrogar_personagensFase3():
         probRevelacaoLavinia = random.random()
 
         if probRevelacaoLavinia > 0.5:
-            escrever_lentamente("\n   Madame Morgana, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo: 'É curioso, detetive, muito curioso você ter a audácia de me acusar e, ainda assim, eu ter te visto na companhia de Baldwin diversas vezes, bebendo com ele' e fecha a porta. ")
+            escreverLentamente("\n   Madame Morgana, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo: 'É curioso, detetive, muito curioso você ter a audácia de me acusar e, ainda assim, eu ter te visto na companhia de Baldwin diversas vezes, bebendo com ele' e fecha a porta. ")
 
         else:
-            escrever_lentamente("\n   Madame Morgana, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e fecha a porta. ")
+            escreverLentamente("\n   Madame Morgana, com mãos pesadas, a empurra levemente para fora de sua casa após perceber a insistência, dizendo apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e fecha a porta. ")
 
     time.sleep(3)
-    os.system("cls")
+    limparConsole()
     
     # Exibe as proposições ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
@@ -245,9 +245,9 @@ def interrogar_personagensFase3():
     # Captura as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
-    proposicoes_escolhidas.extend(escolhas)
+    proposicoesEscolhidas.extend(escolhas)
 
-def interrogar_personagensFase4():
+def interrogar4():
     
     proposicoes = {
         "P16": {"descricao": "O licor achado junto ao corpo de Baldwin foi comprado por intermédio de uma mulher. ", "verdade": True},
@@ -270,14 +270,14 @@ def interrogar_personagensFase4():
     falaFloris = random.choice(falasFloris)
 
     # Pergunta padrão
-    escrever_lentamente("   No último dia de sua investigação, Samanta parte para a adega onde costuma-se vender o licor que foi encontrado junto ao corpo de Baldwin. ")
-    escrever_lentamente("\n   Quando Samanta entra pela porta, Floris se encontra encostado preguiçosamente em um barril, os braços musculosos cruzados sobre o peito. Seu olhar é pesado, mas desinteressado. Ele se movimenta devagar, sem pressa, como quem tem certeza de que nada o atinge. ")
-    escrever_lentamente("\n   Ao mencionar o  licor encontrado com o corpo de Baldwin para o mesmo, ele apenas ergue uma sobrancelha com uma mistura de enfado e curiosidade. ELe ajusta a faixa vermelha na cintura, como se quisesse enfatizar que nada o preocupa. A respiração dele é tranquila e ele não parece intimidado com a acusação silenciosa que é feita, embora a postura relaxada esconda certa vigilância. ")
-    escrever_lentamente("   A sensação de peso nos ombros é quase insuportável, e o gosto amargo da bebida na boca nos faz sentir cada vez mais exaustos. Floris continua ali, imperturbável, como se estivesse disposto a ouvir o tempo que fosse necessário, sem nunca se envolver mais do que o estritamente necessário. ")
-    escrever_lentamente(f"\n   Samanta questiona Floris sobre seu conhecimento a respeito de Baldwin e sobre o licor que ela se lembra de ver na cena do crime")
+    escreverLentamente("   No último dia de sua investigação, Samanta parte para a adega onde costuma-se vender o licor que foi encontrado junto ao corpo de Baldwin. ")
+    escreverLentamente("\n   Quando Samanta entra pela porta, Floris se encontra encostado preguiçosamente em um barril, os braços musculosos cruzados sobre o peito. Seu olhar é pesado, mas desinteressado. Ele se movimenta devagar, sem pressa, como quem tem certeza de que nada o atinge. ")
+    escreverLentamente("\n   Ao mencionar o  licor encontrado com o corpo de Baldwin para o mesmo, ele apenas ergue uma sobrancelha com uma mistura de enfado e curiosidade. ELe ajusta a faixa vermelha na cintura, como se quisesse enfatizar que nada o preocupa. A respiração dele é tranquila e ele não parece intimidado com a acusação silenciosa que é feita, embora a postura relaxada esconda certa vigilância. ")
+    escreverLentamente("   A sensação de peso nos ombros é quase insuportável, e o gosto amargo da bebida na boca nos faz sentir cada vez mais exaustos. Floris continua ali, imperturbável, como se estivesse disposto a ouvir o tempo que fosse necessário, sem nunca se envolver mais do que o estritamente necessário. ")
+    escreverLentamente(f"\n   Samanta questiona Floris sobre seu conhecimento a respeito de Baldwin e sobre o licor que ela se lembra de ver na cena do crime")
     
     # Resposta de Floris
-    escrever_lentamente(f"\n   Floris, depois de pensar por um momento, responde: '{falaFloris}'")
+    escreverLentamente(f"\n   Floris, depois de pensar por um momento, responde: '{falaFloris}'")
 
     # Pergunta se o jogador deseja insistir em mais perguntas
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
@@ -287,13 +287,13 @@ def interrogar_personagensFase4():
         probRevelacaoFloris = random.random()
 
         if probRevelacaoFloris > 0.8:
-            escrever_lentamente("\n   Floris boceja com a insistência. Ao ver que alguns clientes entram na loja, ele diz apenas: 'Você sabe os efeitos colaterais que esse licor causa, detetive? Como é muito forte, depois que é tomado, as pessoas costumam reclamar de dores e amnésia' e a deixa para atender os clientes. ")
+            escreverLentamente("\n   Floris boceja com a insistência. Ao ver que alguns clientes entram na loja, ele diz apenas: 'Você sabe os efeitos colaterais que esse licor causa, detetive? Como é muito forte, depois que é tomado, as pessoas costumam reclamar de dores e amnésia' e a deixa para atender os clientes. ")
 
         else:
-            escrever_lentamente("\n   Floris boceja com a insistência. Ao ver que alguns clientes entram na loja, ele diz apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e a deixa para atender os clientes. ")
+            escreverLentamente("\n   Floris boceja com a insistência. Ao ver que alguns clientes entram na loja, ele diz apenas: 'Acho que suas cotas de perguntas já acabaram, detetive' e a deixa para atender os clientes. ")
 
     time.sleep(3)
-    os.system("cls")
+    limparConsole()
     
     # Exibe as proposições ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
@@ -303,15 +303,15 @@ def interrogar_personagensFase4():
     # Captura as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
-    proposicoes_escolhidas.extend(escolhas)
+    proposicoesEscolhidas.extend(escolhas)
 
 
-def interrogar_personagensFase5():
+def interrogar5():
     
-    os.system("cls")
-    escrever_lentamente("   Chegou a hora de escolher um assassino: ")
+    limparConsole()
+    escreverLentamente("   Chegou a hora de escolher um assassino: ")
     time.sleep(2)
-    os.system("cls")
+    limparConsole()
     
     # Proposições corretas para desbloquear a opção "Ninguém é culpado"
     proposicoes_corretas = [
@@ -324,7 +324,7 @@ def interrogar_personagensFase5():
     ]
   
     # Verifica se o jogador selecionou todas as proposições corretas
-    desbloqueiaNinguem = all(proposicao in proposicoes_escolhidas for proposicao in proposicoes_corretas)
+    desbloqueiaNinguem = all(proposicao in proposicoesEscolhidas for proposicao in proposicoes_corretas)
     
     # Lista de suspeitos interrogados
     suspeitos = ["Isolde", "Calistus", "Mariana", "Gerhard", "Madame Morgana", "Floris"]
@@ -345,67 +345,75 @@ def interrogar_personagensFase5():
     if escolha.isdigit():
         escolha = int(escolha)
         if escolha in range(1, len(suspeitos) + 1):
-            suspeito_escolhido = suspeitos[escolha - 1]
-            print(f"\n   Você escolheu {suspeito_escolhido}. ")
+            suspeitoEscolhido = suspeitos[escolha - 1]
+            print(f"\n   Você escolheu {suspeitoEscolhido}. ")
             # Final individual para cada suspeito
-            if suspeito_escolhido == "Isolde":
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Isolde perde o controle. Seu rosto, normalmente endurecido, se contorce de raiva. Ela grita e se debate como se lutasse contra uma injustiça, os braços tentando se livrar das amarras. O olhar que ela lança sobre Samanta é cheio de ódio — não pela prisão, mas pelo insulto à sua honra. ")
+            if suspeitoEscolhido == "Isolde":
+                limparConsole()
+                escreverLentamente("   Quando a algema é colocada e a sentença é feita, Isolde perde o controle. Seu rosto, normalmente endurecido, se contorce de raiva. Ela grita e se debate como se lutasse contra uma injustiça, os braços tentando se livrar das amarras. O olhar que ela lança sobre Samanta é cheio de ódio — não pela prisão, mas pelo insulto à sua honra. ")
                 time.sleep(2)
-                os.system("cls")
-                escrever_lentamente("   Você perdeu... Isolde não é a assassina. ")
+                limparConsole()
+                escreverLentamente("   Você perdeu... Isolde não é a assassina. ")
                 
-            elif suspeito_escolhido == "Calistus":
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Calistus não se debate. Seus olhos se estreitam, no entanto, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo. ")
+            elif suspeitoEscolhido == "Calistus":
+                limparConsole()
+                escreverLentamente("   Quando a algema é colocada e a sentença é feita, Calistus não se debate. Seus olhos se estreitam, no entanto, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo. ")
                 time.sleep(2)
-                os.system("cls")
-                escrever_lentamente("   Você perdeu... Calistus não é o assassino. ")
+                limparConsole()
+                escreverLentamente("   Você perdeu... Calistus não é o assassino. ")
                 
-            elif suspeito_escolhido == "Mariana":
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero e traição, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo. ")
+            elif suspeitoEscolhido == "Mariana":
+                limparConsole()
+                escreverLentamente("   Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero e traição, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo. ")
                 time.sleep(2)
-                os.system("cls")
-                escrever_lentamente("   Você perdeu... Mariana não é a assassina. ")
+                limparConsole()
+                escreverLentamente("   Você perdeu... Mariana não é a assassina. ")
                 
-            elif suspeito_escolhido == "Gerhard":
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita,  Gerhard permanece em silêncio, mas a tensão em seu corpo é evidente. Ele aperta os punhos e respira fundo, como se estivesse segurando toda a frustração para não explodir. O olhar que ele dirige a Samanta é frio e cheio de decepção, como se esperasse mais dela. ")
-                time.sleep(2)
-                os.system("cls")
-                escrever_lentamente("   Você perdeu... Gerhard não é o assassino. ")
+            elif suspeitoEscolhido == "Gerhard":
                 
-            elif suspeito_escolhido == "Madame Morgana":
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Morgana mantém a compostura até o último instante. Não há lágrimas, nem gritos. Apenas um olhar de puro desprezo direcionado a Samanta, como se ela fosse um verme ousando perturbá-la. Ela caminha com dignidade, mas seus olhos prometem uma vingança silenciosa. ")
+                limparConsole()
+                escreverLentamente("   Quando a algema é colocada e a sentença é feita,  Gerhard permanece em silêncio, mas a tensão em seu corpo é evidente. Ele aperta os punhos e respira fundo, como se estivesse segurando toda a frustração para não explodir. O olhar que ele dirige a Samanta é frio e cheio de decepção, como se esperasse mais dela. ")
                 time.sleep(2)
-                os.system("cls")
-                escrever_lentamente("   Você perdeu... Madame Morgana não é a assassina. ")
+                limparConsole()
+                escreverLentamente("   Você perdeu... Gerhard não é o assassino. ")
                 
-            elif suspeito_escolhido == "Floris":
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Floris se deixa levar sem resistência, um sorriso cansado e cínico dorme em seus lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo. ")
+            elif suspeitoEscolhido == "Madame Morgana":
+                limparConsole()
+                escreverLentamente("   Quando a algema é colocada e a sentença é feita, Morgana mantém a compostura até o último instante. Não há lágrimas, nem gritos. Apenas um olhar de puro desprezo direcionado a Samanta, como se ela fosse um verme ousando perturbá-la. Ela caminha com dignidade, mas seus olhos prometem uma vingança silenciosa. ")
                 time.sleep(2)
-                os.system("cls")
-                escrever_lentamente("   Você perdeu... Floris não é o assassino. ")
+                limparConsole()
+                escreverLentamente("   Você perdeu... Madame Morgana não é a assassina. ")
+                
+            elif suspeitoEscolhido == "Floris":
+                limparConsole()
+                escreverLentamente("   Quando a algema é colocada e a sentença é feita, Floris se deixa levar sem resistência, um sorriso cansado e cínico dorme em seus lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo. ")
+                time.sleep(2)
+                limparConsole()
+                escreverLentamente("   Você perdeu... Floris não é o assassino. ")
                 
         elif desbloqueiaNinguem and escolha == len(suspeitos) + 1:
             
-            escrever_lentamente("   A verdade surge na mente de Samanta como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante dela — Isolde furiosa, Calistus cauteloso, Mariana desesperada, Gerhard incerto, Morgana arrogante e um Floris indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é dela. ")
-            escrever_lentamente("   A dor de cabeça lateja com mais força agora, como se as próprias lembranças, até então fragmentadas e distantes, finalmente se alinhassem. O gosto metálico que insiste em não sair da boca de Samanta é mais do que um reflexo da fadiga. É o sabor da culpa. ")
-            escrever_lentamente("\n   Samanta se lembra do licor. Ela se lembra de ter passado a noite bebendo na estalagem e Baldwin, como um bartender adequado, se aproximando dela. Ela se lembra do jeito que Baldwin sorriu e lhe ofereceu uma bebibda, confiante e cruel, enquanto despejava o líquido âmbar em um copo e dava. 'Apenas um pouco para relaxar' foi o que ele disse — uma gentileza traiçoeira, que ela só foi perceber, muito cansada e exausta de trabalhos e de expectativas, um pouco tarde demais. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais, sobre ela naquela madrugada. ")
-            escrever_lentamente("   Ele tentou a silenciar com o álcool. Tentou transformar a sua resistência em obediência quando estavam a sós. Mas ela não deixou. Agimndo antes que ele pudesse tomar o que queria. Agindo sem pensar, com uma mão trêmula e um coração disparado. Samanta pegou a faca mais próxima. A lâmina perfurou a carne dele como um ato desesperado — rápido, brutal e inevitável. ")
-            escrever_lentamente("\n   Agora, tudo parecia mais claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si mesma também. ")
-            escrever_lentamente("\n   E ela não sabe como se sentir a respeito disso... ")
+            limparConsole()
+            escreverLentamente("   A verdade surge na mente de Samanta como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante dela — Isolde furiosa, Calistus cauteloso, Mariana desesperada, Gerhard incerto, Morgana arrogante e um Floris indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é dela. ")
+            escreverLentamente("   A dor de cabeça lateja com mais força agora, como se as próprias lembranças, até então fragmentadas e distantes, finalmente se alinhassem. O gosto metálico que insiste em não sair da boca de Samanta é mais do que um reflexo da fadiga. É o sabor da culpa. ")
+            escreverLentamente("\n   Samanta se lembra do licor. Ela se lembra de ter passado a noite bebendo na estalagem e Baldwin, como um bartender adequado, se aproximando dela. Ela se lembra do jeito que Baldwin sorriu e lhe ofereceu uma bebibda, confiante e cruel, enquanto despejava o líquido âmbar em um copo e dava. 'Apenas um pouco para relaxar' foi o que ele disse — uma gentileza traiçoeira, que ela só foi perceber, muito cansada e exausta de trabalhos e de expectativas, um pouco tarde demais. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais, sobre ela naquela madrugada. ")
+            escreverLentamente("   Ele tentou a silenciar com o álcool. Tentou transformar a sua resistência em obediência quando estavam a sós. Mas ela não deixou. Agimndo antes que ele pudesse tomar o que queria. Agindo sem pensar, com uma mão trêmula e um coração disparado. Samanta pegou a faca mais próxima. A lâmina perfurou a carne dele como um ato desesperado — rápido, brutal e inevitável. ")
+            escreverLentamente("\n   Agora, tudo parecia mais claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si mesma também. ")
+            escreverLentamente("\n   E ela não sabe como se sentir a respeito disso... ")
             
             time.sleep(2)
-            os.system("cls")
-            escrever_lentamente("   Você ganhou... Você é a assassina... ")
+            limparConsole()
+            escreverLentamente("   Você ganhou... Você é a assassina... ")
             
         else:
             print("Escolha inválida. ")
     else:
         print("Escolha inválida. ")
         
-    mostrar_tabelas(proposicoes_escolhidas)
+    mostrarTabela(proposicoesEscolhidas)
 
-def mostrar_tabelas(proposicoes_escolhidas):
-    todas_proposicoes = {
+def mostrarTabela(proposicoesEscolhidas):
+    todasProposicoes = {
         "P1": {"descricao": "A faca não pertence a Isolde, a cozinheira. ", "verdade": True},
         "P2": {"descricao": "Calistus não gostava de Baldwin. ", "verdade": True},
         "P3": {"descricao": "Isolde não gostava de Baldwin. ", "verdade": True},
@@ -429,20 +437,18 @@ def mostrar_tabelas(proposicoes_escolhidas):
     }
 
     time.sleep(2)
-    os.system("cls")
+    limparConsole()
 
     resposta = input("\n      Você gostaria de ver as respostas que deu e compará-las com as respostas verdadeiras? (S/N): ").strip().lower()
     if resposta == 's':
-        os.system("cls")
+        limparConsole()
         tabela = PrettyTable()
         tabela.field_names = ["Proposição", "Descrição", "Verdade", "Sua Resposta"]
 
-        for chave, info in todas_proposicoes.items():
+        for chave, info in todasProposicoes.items():
             estado = "Verdadeiro" if info["verdade"] else "Falso"
-            resposta_jogador = "Verdadeiro" if chave in proposicoes_escolhidas else "Falso"
-            tabela.add_row([chave, info["descricao"], estado, resposta_jogador])
+            respostaJogador = "Verdadeiro" if chave in proposicoesEscolhidas else "Falso"
+            tabela.add_row([chave, info["descricao"], estado, respostaJogador])
 
-        time.sleep(10)
-        os.system("cls")
-        escrever_lentamente(tabela)
-        
+        print(tabela)
+        time.sleep(20)

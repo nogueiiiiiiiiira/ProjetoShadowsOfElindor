@@ -1,13 +1,13 @@
 import os
 import time
 import curses
-from colorama import init, Fore
+from colorama import init
 import pyfiglet
 from game.fases import fase1, fase2, fase3, fase4, fase5
 
 init(autoreset=True)
 
-def center_text(text, width):
+def textoCentralizado(text, width):
     return text.center(width)
 
 def print_title(stdscr):
@@ -19,7 +19,7 @@ def print_title(stdscr):
         "KAREN NOGUEIRA"
     ]
 
-    centered_title = "\n".join(center_text("                            " + line, 80) for line in pyfiglet.figlet_format(title, width=80).splitlines())
+    tituloCentralizado = "\n".join(textoCentralizado("                            " + line, 80) for line in pyfiglet.figlet_format(title, width=80).splitlines())
 
     height, width = stdscr.getmaxyx()
 
@@ -30,21 +30,21 @@ def print_title(stdscr):
         
         try:
             # Borda superior
-            stdscr.addstr(center_text("=" * 70, max_line_width) + "\n", curses.color_pair(1))
-            stdscr.addstr(center_text("||" + "=" * 66 + "||", max_line_width) + "\n", curses.color_pair(1))
+            stdscr.addstr(textoCentralizado("=" * 70, max_line_width) + "\n", curses.color_pair(1))
+            stdscr.addstr(textoCentralizado("||" + "=" * 66 + "||", max_line_width) + "\n", curses.color_pair(1))
             stdscr.addstr("\n")
 
-            # Título centralizado
-            stdscr.addstr(centered_title + "\n", curses.color_pair(1))
-            stdscr.addstr(center_text("JOGO FEITO POR:", max_line_width) + "\n\n", curses.color_pair(1))
+            # Título centralizado com cor verde
+            stdscr.addstr(tituloCentralizado + "\n", curses.color_pair(2))  # Usando o par de cores 2 (verde)
+            stdscr.addstr(textoCentralizado("\n                                                    JOGO FEITO POR:", max_line_width) + "\n\n", curses.color_pair(1))
 
             # Nomes dos criadores
             for creator in creators:
-                stdscr.addstr(center_text(creator, max_line_width) + "\n", curses.color_pair(1))
+                stdscr.addstr(textoCentralizado(creator, max_line_width) + "\n", curses.color_pair(1))
 
             # Borda inferior
-            stdscr.addstr("\n" + center_text("||" + "=" * 66 + "||", max_line_width) + "\n", curses.color_pair(1))
-            stdscr.addstr(center_text("=" * 70, max_line_width) + "\n\n", curses.color_pair(1))
+            stdscr.addstr("\n" + textoCentralizado("||" + "=" * 66 + "||", max_line_width) + "\n", curses.color_pair(1))
+            stdscr.addstr(textoCentralizado("=" * 70, max_line_width) + "\n\n", curses.color_pair(1))
             stdscr.refresh()
         except curses.error:
             pass  # Ignora erros caso o texto não caiba na tela
@@ -54,38 +54,32 @@ def print_title(stdscr):
         stdscr.refresh()
     time.sleep(2)
 
-def countdown_timer(stdscr, seconds):
-    height, width = stdscr.getmaxyx()
-    timer_y = 26
-    timer_x = (width // 2) - 15
-
-    if height > timer_y and width >= 40:
-        for remaining_time in range(seconds, 0, -1):
-            try:
-                stdscr.addstr(timer_y, timer_x, f"O jogo iniciará em {remaining_time} segundos", curses.color_pair(1))
-                stdscr.refresh()
-                time.sleep(1)
-            except curses.error:
-                pass
-    else:
-        stdscr.clear()
-        stdscr.addstr(0, 0, "Aumente a janela para exibir o contador.")
-        stdscr.refresh()
-        time.sleep(2)
+def mostrar_mensagem_final(stdscr):
+    stdscr.clear()
+    mensagem_final = "                              OBRIGADO                                                 POR                                                  JOGAR !"
+    mensagem_ascii = pyfiglet.figlet_format(mensagem_final, width=80)
+    stdscr.addstr(mensagem_ascii, curses.color_pair(2))  # Mensagem em verde
+    stdscr.refresh()
+    time.sleep(10)  # Espera 5 segundos para o jogador ver a mensagem
 
 def main(stdscr):
     curses.start_color()
-    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
+    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)  # Branco no fundo preto
+    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)  # Verde no fundo preto
     
     print_title(stdscr)  
-    countdown_timer(stdscr, 9)
     
     stdscr.clear()
 
 if __name__ == "__main__":
-    curses.wrapper(main)  
+    curses.wrapper(main)  # Inicializa a interface curses
+    
+    # Executa as fases do jogo
     fase1()
     fase2()
     fase3()
     fase4()
     fase5()
+    
+    # Mostra a mensagem de agradecimento ao final do jogo
+    curses.wrapper(mostrar_mensagem_final)
