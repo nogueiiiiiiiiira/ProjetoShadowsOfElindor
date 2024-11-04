@@ -7,16 +7,16 @@ import os
 
 LARGURA_TERMINAL = 110
 
-def escreverLentamente(texto, delay=0.000000000000000000005, espacosEsquerda=4):
+def escreverLentamente(texto, delay=0.05, espacosEsquerda=4):
     linhas = texto.split('\n')
-    primeiraLinha = True  # Controla se está na primeira linha do terminal
+    primeiraLinha = True  # controla se está na primeira linha do terminal
 
     for linha in linhas:
         partes = textwrap.wrap(linha, width = LARGURA_TERMINAL - espacosEsquerda)
         for parte in partes:
             if primeiraLinha:
                 
-                # Pula duas linhas se estiver na primeira linha
+                # pula duas linhas se estiver na primeira linha, dando um ar mais organizado ao jogo
                 sys.stdout.write('\n\n')
                 primeiraLinha = False 
 
@@ -28,30 +28,29 @@ def escreverLentamente(texto, delay=0.000000000000000000005, espacosEsquerda=4):
                 sys.stdout.flush()
                 time.sleep(delay)
             sys.stdout.write('\n') 
-            sys.stdout.flush()  # Atualiza a tela
+            sys.stdout.flush()  # atualiza a tela
 
-# Função para mostrar a imagem do personagem
+# mostra a imagem do personagem
 def mostrarImagem(nomeImagem):
-    # Carrega a imagem da pasta 'imagens'
+    
+    # carrega a imagem 
     img = mpimg.imread(f'imagens/{nomeImagem}')  
     
-    # Cria uma nova figura com fundo preto
+    # cria uma nova figura com fundo preto
     fig, ax = plt.subplots()
-    fig.patch.set_facecolor('black')  # Define o fundo da figura como preto
+    fig.patch.set_facecolor('black') 
     ax.imshow(img)
-    ax.axis('off')  # Remove os eixos
+    ax.axis('off') 
     
-    # Define o fundo do eixo como preto
+    # define o fundo do eixo como preto
     ax.set_facecolor('black')
     plt.show()
     
 def limparConsole():
-    # Verifica o sistema operacional
+    
+    # verifica o sistema operacional
     if os.name == 'nt':  # Windows
         os.system('cls')
         
     else:  # macOS e Linux
         os.system('clear')
-
-# Exemplo de uso
-limparConsole()

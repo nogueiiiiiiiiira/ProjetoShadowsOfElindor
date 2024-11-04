@@ -1,4 +1,3 @@
-import os
 import time
 import curses
 from colorama import init
@@ -29,52 +28,73 @@ def print_title(stdscr):
         max_line_width = width - 2
         
         try:
-            # Borda superior
+            # borda superior com os ===================
             stdscr.addstr(textoCentralizado("=" * 70, max_line_width) + "\n", curses.color_pair(1))
             stdscr.addstr(textoCentralizado("||" + "=" * 66 + "||", max_line_width) + "\n", curses.color_pair(1))
             stdscr.addstr("\n")
 
-            # Título centralizado com cor verde
-            stdscr.addstr(tituloCentralizado + "\n", curses.color_pair(2))  # Usando o par de cores 2 (verde)
+            # titulo centralizado com cor verde
+            stdscr.addstr(tituloCentralizado + "\n", curses.color_pair(2)) # verde
             stdscr.addstr(textoCentralizado("\n                                                    JOGO FEITO POR:", max_line_width) + "\n\n", curses.color_pair(1))
 
-            # Nomes dos criadores
+            # nomes dos criadores
             for creator in creators:
                 stdscr.addstr(textoCentralizado(creator, max_line_width) + "\n", curses.color_pair(1))
 
-            # Borda inferior
+            # borda inferior com os ========================
             stdscr.addstr("\n" + textoCentralizado("||" + "=" * 66 + "||", max_line_width) + "\n", curses.color_pair(1))
             stdscr.addstr(textoCentralizado("=" * 70, max_line_width) + "\n\n", curses.color_pair(1))
             stdscr.refresh()
         except curses.error:
-            pass  # Ignora erros caso o texto não caiba na tela
+            pass  # ignora erros caso o texto não caiba na tela
     else:
         stdscr.clear()
         stdscr.addstr(0, 0, "Por favor, aumente o tamanho da janela para pelo menos 80x15.")
         stdscr.refresh()
     time.sleep(2)
 
-def mostrar_mensagem_final(stdscr):
+def mensagemFinal(stdscr):
     stdscr.clear()
     mensagem_final = "                              OBRIGADO                                                 POR                                                  JOGAR !"
     mensagem_ascii = pyfiglet.figlet_format(mensagem_final, width=80)
-    stdscr.addstr(mensagem_ascii, curses.color_pair(2))  # Mensagem em verde
+    stdscr.addstr(mensagem_ascii, curses.color_pair(2)) 
     stdscr.refresh()
-    time.sleep(10)  # Espera 5 segundos para o jogador ver a mensagem
+    time.sleep(10)  
+    
+def contador(stdscr, segundos):
+    height, width = stdscr.getmaxyx()
+    timer_y = 26
+    timer_x = (width // 2) - 15
+
+    if height > timer_y and width >= 40:
+        for tempoRestante in range(segundos, 0, -1):
+            try:
+                stdscr.addstr(timer_y, timer_x, f"O jogo iniciará em {tempoRestante} segundos", curses.color_pair(1))
+                stdscr.refresh()
+                time.sleep(1)
+            except curses.error:
+                pass
+    else:
+        stdscr.clear()
+        stdscr.addstr(0, 0, "Aumente a janela para exibir o contador.")
+        stdscr.refresh()
+        time.sleep(2)
 
 def main(stdscr):
     curses.start_color()
-    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)  # Branco no fundo preto
-    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)  # Verde no fundo preto
+    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK) 
+    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK) 
     
     print_title(stdscr)  
+    
+    contador(stdscr, 9)
+
     
     stdscr.clear()
 
 if __name__ == "__main__":
-    curses.wrapper(main)  # Inicializa a interface curses
     
-    # Executa as fases do jogo
+    curses.wrapper(main) 
     
     instrucoes()
     fase1()
@@ -83,5 +103,4 @@ if __name__ == "__main__":
     fase4()
     fase5()
     
-    # Mostra a mensagem de agradecimento ao final do jogo
-    curses.wrapper(mostrar_mensagem_final)
+    curses.wrapper(mensagemFinal)

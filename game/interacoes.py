@@ -2,17 +2,15 @@
 
 import random
 import time
-import os
-import ttg
 from game.utils import escreverLentamente, limparConsole
 from prettytable import PrettyTable
 
-# Armazenamento de respostas do jogador para análise posterior
+# armazenamento de respostas do jogador
 proposicoesEscolhidas = []
 
 def interrogar1():
     
-    # Armazenamento de proposições com suas verdades
+    # armazenamento de proposiçoes com suas verdades
     proposicoes = {
         "P1": {"descricao": "A faca não pertence a Isolde, a cozinheira. ", "verdade": True},
         "P2": {"descricao": "Calistus não gostava de Baldwin", "verdade": True},
@@ -22,7 +20,7 @@ def interrogar1():
     }
 
 
-    # Opções de falas para Isolde e Calistus
+    # opçces de falas
     falasIsolde = [
         "Você está sugerindo que eu o matei? Com uma faca pequena inda? Céus! Mesmo que Baldwin fosse um canalha e um pervertido, não é como se eu tivesse a coragem de tirar uma vida, detetive. ",
         "Não sei de nada sobre essa lâmina pequena. Posso não estar lamentando a morte dele, mas isso não significa que estou comemorando também. Entendo o que você está insinuando, detetive. ",
@@ -39,18 +37,18 @@ def interrogar1():
         "Você está me acusando, detetive? Eu não usaria algo assim para matar Baldwin. Usaria algo, na verdade, que o fizesse se arrepender por todas as vezes que ele mexeu com minha esposa. "
     ]
     
-    # Seleciona falas aleatórias para Isolde e Calistus
+    # seleciona falas aleatorias 
     falaIsolde = random.choice(falasIsolde)
     falaCalistus = random.choice(falasCalistus)
 
-    # Pergunta padrão
+    # pergunta padrão
     escreverLentamente("   Depois de esperar os clientes sairem da estalagem, Samanta aproveita a brecha e se aproxima de sua primeira suspeita. ")
     escreverLentamente(f"\n   Isolde, a Cozinheira da Estalagem, cruza os braços com força, o tecido velho do avental esticado sob a pressão de seus músculos enquanto seus olhos encontram os de Samanta. Um olhar afiado, cheio de desconfiança, a examina como se ela tivesse acabado de insultar sua comida. Seu corpo inteiro emana irritação contida — as sobrancelhas cerradas, a boca apertada numa linha dura e o peso de sua respiração se arrasta, como se estivesse contando mentalmente até dez para não explodir. ")
     escreverLentamente("\n    Quando percebe o brilho metálico da faca que Samanta segura, sua expressão muda num instante. Ela é inteligente. Ela sabe porque que Samanta está ali. Há um lampejo de surpresa que rapidamente se transforma em frustração. A incredulidade salta de seus olhos, como se a mera sugestão de que ela poderia estar envolvida na morte de Baldwin fosse uma afronta pessoal. Ela aperta os lábios até formarem uma linha reta, os dedos batendo impacientemente na lateral do avental, indicando que não toleria a conversa que se seguiria por muito tempo. ")
     escreverLentamente("   O corpo de Samanta reclama com a provação que sabe que virá a seguir — músculos pesados e tensos, uma dor latejante na têmpora esquerda. O ar parece espesso e ela sente um gosto de metal na boca, reflexo do esforço e da exaustão. Isolde a observa com a mesma rigidez de uma panela fervente prestes a transbordar, mas, por fim, sua expressão volta a uma calma tensa. Está claro que ela não pretende facilitar a investigação. ")
     escreverLentamente("\n   Independenetemente disso, no entanto, Samanta a questiona acerca da faca encontrada ao lado do corpo de Baldwin, observando tudo o que é dito e não dito por parte dela. ")
 
-    # Respostas dos personagens
+    # respostas aleatorias dos personagens
     escreverLentamente(f"\n   Isolde responde, mal-humorada: '{falaIsolde}' ")
     insistir = input("\n       Você deseja continuar com a conversa? (S/N): ").strip().lower()
     
@@ -88,19 +86,19 @@ def interrogar1():
     time.sleep(3)
     limparConsole()
             
-    # Exibe as proposições ao jogador
+    # exibe as proposiçoes ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
     for chave, info in proposicoes.items():
         print(f"    {chave}: {info['descricao']}")
     
-    # Captura as escolhas do jogador
+    # armazena as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
     proposicoesEscolhidas.extend(escolhas)
  
 def interrogar2():
     
-     # Armazenamento de proposições com suas verdades
+     # armazenamento de proposiçoes 
     proposicoes = {
         "P6": {"descricao": "Gerhard não está mentindo conscientemente. Ele não pode ser culpado. ", "verdade": True},
         "P7": {"descricao": "Mariana não parece guardar rancor de Baldwin. Ela não é culpada. ", "verdade": True},
@@ -109,7 +107,7 @@ def interrogar2():
         "P10": {"descricao": "Dado a sua idade, não é possível confiar no que Gerhard fala", "verdade": False}
     }
     
-    # Opções de falas para Mariana e Gerhard
+    # opçoes de falas 
     falasMariana = [
         "Admito que não me lembro de muita coisa daquele dia ou do dia anterior e sei como isso soa meio... Estranho. Mas foram dias corridos e muito chocantes, sabe, detetive? Mas acho que vi alguém saindo pela portas do fundo antes de encontrar o corpo do senhor Baldwin. Acho que poderia ser uma mulher... ",
         "Reconheço que tenho poucas lembranças daquele dia. E sei como isso me faz parecer. Mas foi um dia agitado e bastante impactante, entende, detetive? Mas creio que avistei alguém saindo pela porta dos fundos antes de descobrir o corpo do senhor Baldwin. Havia também algumas pegadas pequenas, não é? Talvez de uma mulher...?",
@@ -126,24 +124,25 @@ def interrogar2():
         "Lembro de ter visto um homem sair da estalagem pouco antes dos gritos da senhorita Mariana, mas minha memória é vaga. E, sendo um homem mais velho, senhorita, desculpe-me por não conseguir ajudar mais neste momento. "
     ]
     
-    # Seleciona falas aleatórias para Mariana e Gerhard
+    # seleciona falas aleatorias 
     falaMariana = random.choice(falasMariana)
     falaGerhard = random.choice(falasGerhard)
 
-    # Pergunta padrão
+    # pergunta padrao
     escreverLentamente("   Depois dos dois primeiros interrogatórios, Samanta volta novamente a estalagem para encontrar Mariana. Não demora muito para encontrá-la e deixar claro a intenção de questioná-la. ")
     escreverLentamente("\n   Mariana está encolhida em um canto da estalagem, os dedos finos torcendo-se nervosamente enquanto Samanta se aproxima. Seus olhos grandes parecem oscilar entre medo e hesitação, como se cada pergunta fosse um peso invisível aumentando sua angústia. A maneira como ela abaixa a cabeça e evita contato visual deixa evidente que algo a perturba. ")
     escreverLentamente("\n   Seus movimentos são rápidos e nervosos — ajeita a barra do vestido, toca nas tranças e seus pés se mexem inquietos, como se quisesse escapar dali. Quando Samanta fala da manhã do incidente, seus dedos apertam o tecido do vestido com tanta força que os nós dos dedos ficam brancos. Está claro que a memória do encontro com Baldwin a assombra, mas ela parece estar se debatendo entre o medo de falar demais e a necessidade de ser honesta. ")
     escreverLentamente("   O corpo de Samanta está à beira da exaustão, e a dor de cabeça se mistura ao gosto amargo que Samanta não consegue tirar da boca. Mariana percebe a sua condição e, por um momento, parece se compadecer, mas sua própria ansiedade logo a consome novamente. Ela sabe porque Samanta está ali, na frente dela. ")
     escreverLentamente(f"\n    Samanta pergunta a ela se ela se lembra de ter visto algo suspeito nos dias que se antecederam a morte de Baldwin")
     
-    # Respostas dos personagens
+    # respostas aleatorias dos personagens
     escreverLentamente(f"\n   Mariana diz, tímida: '{falaMariana}'")
     
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
  
     if insistir == 's' or insistir == 'S':
-        # Simulação de probabilidade para revelar mais informações
+        
+        # simulação de probabilidade para revelar mais informações
         probRevelacaoMariana = random.random()
 
         if probRevelacaoMariana > 0.5:
@@ -179,12 +178,12 @@ def interrogar2():
     time.sleep(3)
     limparConsole()
     
-    # Exibe as proposições ao jogador
+    # exibe as proposiçoes ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
     for chave, info in proposicoes.items():
         print(f"    {chave}: {info['descricao']}")
     
-    # Captura as escolhas do jogador
+    # armazena as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
     proposicoesEscolhidas.extend(escolhas)
@@ -199,7 +198,7 @@ def interrogar3():
         "P15": {"descricao": "Baldwin era um homem violento. Madame Morgana dá a entender que ele se aproveitava de mulheres. ", "verdade": True}
     }
      
-    # Opções de falas para Madame Morgana
+    # opcoes de falas
     falasLavinia = [
         "Baldwin sempre foi um homem... peculiar, detetive. Ele frequentemente procurava consolo e autoestima em locais que não eram apropriados e muitas vezes a força. E, se eu estiver entendendo bem o que a senhorita está insinuando, posso lhe dizer, sem dúvidas, que eu não sou a única vitíma de Baldwin que tem certo prestigío na vida. ",
         "O Baldwin sempre foi um sujeito... peculiar, detetive. Ele buscava conforto e autoestima em lugares pouco apropriados e muitas vezes a força. Se estou captando o que a senhorita está errôneamente insinuando, posso lhe garantir que não sou a única pessoa de prestígio que sofreu nas mãos de Baldwin. ",
@@ -208,24 +207,25 @@ def interrogar3():
         "Baldwin sempre teve um jeito... singular, detetive. Ele buscava apoio e validação em contextos que não eram apropriados e muitas vezes a força. E se eu estiver interpretando corretamente o que a senhorita insinua, posso afirmar que não sou a única pessoa de prestígio a quem ele causou transtornos. "
     ]
     
-    # Seleciona uma fala aleatória para Madame Morgana
+    # seleciona uma fala aleatória 
     falaMorgana = random.choice(falasLavinia)
 
-    # Pergunta padrão
+    # pergunta padrão
     escreverLentamente("   No dia seguinte, Samanta se aventura na casa de Madame Morgana após conseguir uma licença para investigar mais afundo o caso de Baldwin. ")
     escreverLentamente("\n   Madame Morgana a recebe com a frieza de um mármore esculpido. Seus olhos, calculistas e atentos, a medem como se ela estivesse ali para uma negociação que já estivesse decidida antes mesmo de começar. Sua postura é impecável, sem um único gesto que não seja deliberadamente controlado. ")
     escreverLentamente("\n   Quando Samanta mostra o pedaço de tecido vermelho silenciosamente, seus dedos finos e adornados com anéis mal se movem, mas há uma rigidez sutil nos ombros, como se aquela evidência fosse uma afronta inesperada. O rosto dela permanece impassível, embora seus olhos brilhem brevemente com uma sombra de irritação. Ela entende a insinuação que Samanta faz silenciosamente. ")
     escreverLentamente("   Os músculos de Samanta protestam com cada movimento que ela faz ao ver o desprezo de Madame Morgana sobre ela. Sua dor de cabeça latejante aumenta, deixado tudo levemente desfocado. Morgana continua imperturbável, a analisando como se tentasse adivinhar seus próximos passos, jogando um xadrez mental onde cada palavra vale uma jogada. ")
     escreverLentamente(f"\n   Samanta questiona Madame Morgana sobre Baldwin e seu comportamento. ")
     
-    # Resposta de Madame Morgana
+    # resposta aleatoria
     escreverLentamente(f"\n   Madame Morgana, com uma careta, responde: '{falaMorgana}'")
 
-    # Pergunta se o jogador deseja insistir em mais perguntas
+    # pergunta se o jogador deseja insistir em mais perguntas
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
     
     if insistir == 's' or insistir == 'S':
-        # Simulação de probabilidade para revelar mais informações
+        
+        # simulaçao de probabilidade para revelar mais informações
         probRevelacaoLavinia = random.random()
 
         if probRevelacaoLavinia > 0.5:
@@ -237,12 +237,12 @@ def interrogar3():
     time.sleep(3)
     limparConsole()
     
-    # Exibe as proposições ao jogador
+    # exibe as proposições ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
     for chave, info in proposicoes.items():
         print(f"    {chave}: {info['descricao']}")
     
-    # Captura as escolhas do jogador
+    # armazena as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
     proposicoesEscolhidas.extend(escolhas)
@@ -257,7 +257,7 @@ def interrogar4():
         "P20": {"descricao": "O licor tem propriedades adormecedoras, indicando que poderia ser usado para dopar alguém. ", "verdade": True}
     }
     
-    # Opções de falas para Floris
+    # opcoes de falas
     falasFloris = [
         "Baldwin... Ele não era bem-vindo por aqui, então não vendi nada para ele. Não que eu saiba, ao menos. Quero dizer, não tenho nada contra ele, pessoalmente. Na verdade, tenho sim... Afinal, suas escolhas e ações com mulheres eram... digamos, questionáveis. A única pessoa que me lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - era uma mulher com vestes vermelhas, mas ela tinha alguma coisa no rosto, então... Não posso te falar quem era exatamente. ",
         "Baldwin… Ele não era exatamente bem-vindo por aqui, então não cheguei a vender nada para ele. Ou, pelo menos, não que eu lembre. Quer dizer, não tenho nada contra ele, pessoalmente. Bem, talvez até tenha… Afinal, suas atitudes com mulheres eram, digamos, duvidosas. Enfim, a única pessoa que me lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - foi uma mulher vestida de vermelho, mas ela tinha algo cobrindo o rosto, então… Não posso dizer quem era com certeza. ",
@@ -266,24 +266,25 @@ def interrogar4():
         "Baldwin… Ele não era bem-visto por aqui, então nunca vendi nada a ele, ao menos que eu saiba. Não que eu tivesse algo contra ele… Bem, talvez tenha, tivesse, sim. Suas ações com mulheres eram, afinal, questionáveis. Mas bem... A única pessoa que lembro de ter comprado esse licor - sabia que ele tem propriedades adormecedoras, detetive? - foi uma mulher de roupas vermelhas, mas ela tinha o rosto coberto por algo, então… Não posso afirmar quem era, exatamente. "
     ]
     
-    # Seleciona uma fala aleatória para Floris
+    # seleciona uma fala aleatória 
     falaFloris = random.choice(falasFloris)
 
-    # Pergunta padrão
+    # pergunta padrao
     escreverLentamente("   No último dia de sua investigação, Samanta parte para a adega onde costuma-se vender o licor que foi encontrado junto ao corpo de Baldwin. ")
     escreverLentamente("\n   Quando Samanta entra pela porta, Floris se encontra encostado preguiçosamente em um barril, os braços musculosos cruzados sobre o peito. Seu olhar é pesado, mas desinteressado. Ele se movimenta devagar, sem pressa, como quem tem certeza de que nada o atinge. ")
     escreverLentamente("\n   Ao mencionar o  licor encontrado com o corpo de Baldwin para o mesmo, ele apenas ergue uma sobrancelha com uma mistura de enfado e curiosidade. ELe ajusta a faixa vermelha na cintura, como se quisesse enfatizar que nada o preocupa. A respiração dele é tranquila e ele não parece intimidado com a acusação silenciosa que é feita, embora a postura relaxada esconda certa vigilância. ")
     escreverLentamente("   A sensação de peso nos ombros é quase insuportável, e o gosto amargo da bebida na boca nos faz sentir cada vez mais exaustos. Floris continua ali, imperturbável, como se estivesse disposto a ouvir o tempo que fosse necessário, sem nunca se envolver mais do que o estritamente necessário. ")
     escreverLentamente(f"\n   Samanta questiona Floris sobre seu conhecimento a respeito de Baldwin e sobre o licor que ela se lembra de ver na cena do crime")
     
-    # Resposta de Floris
+    # resposta aleatoria
     escreverLentamente(f"\n   Floris, depois de pensar por um momento, responde: '{falaFloris}'")
 
-    # Pergunta se o jogador deseja insistir em mais perguntas
+    # pergunta se o jogador deseja insistir em mais perguntas
     insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower()
     
     if insistir == 's' or insistir == 'S':
-        # Simulação de probabilidade para revelar mais informações
+        
+        # simulaçao de probabilidade para revelar mais informações
         probRevelacaoFloris = random.random()
 
         if probRevelacaoFloris > 0.8:
@@ -295,12 +296,12 @@ def interrogar4():
     time.sleep(3)
     limparConsole()
     
-    # Exibe as proposições ao jogador
+    # exibe as proposições ao jogador
     print("\n   Escolha as proposições que você considera verdadeiras:\n ")
     for chave, info in proposicoes.items():
         print(f"    {chave}: {info['descricao']}")
     
-    # Captura as escolhas do jogador
+    # armazena as escolhas do jogador
     escolhas = input("\n   Digite as letras das proposições que considera verdadeiras, separadas por vírgula: ").split(",")
     escolhas = [e.strip().upper() for e in escolhas]
     proposicoesEscolhidas.extend(escolhas)
@@ -313,7 +314,7 @@ def interrogar5():
     time.sleep(2)
     limparConsole()
     
-    # Proposições corretas para desbloquear a opção "Ninguém é culpado"
+    # proposiçoes corretas para desbloquear a opção correta do jogo
     proposicoes_corretas = [
         "P1",  # "A faca não pertence a Isolde, a cozinheira. "
         "P4",  # "Independentemente de suas intrigas com Baldwin, Calistus provavelmente não o matou. "
@@ -323,31 +324,32 @@ def interrogar5():
         "P18"  # "Floris, apesar de parecer não gostar de Baldwin, não parece estar ligado a sua morte. "
     ]
   
-    # Verifica se o jogador selecionou todas as proposições corretas
+    # verifica se o jogador selecionou todas as proposições corretas
     desbloqueiaNinguem = all(proposicao in proposicoesEscolhidas for proposicao in proposicoes_corretas)
     
-    # Lista de suspeitos interrogados
+    # lista de suspeitos interrogados
     suspeitos = ["Isolde", "Calistus", "Mariana", "Gerhard", "Madame Morgana", "Floris"]
     
-    # Opção final de escolha do assassino
+    # opcao final de escolha do assassino
     print("\n   Com base em suas investigações, quem você acredita ser o assassino?\n")
     for idx, suspeito in enumerate(suspeitos, 1):
         print(f"    {idx}. {suspeito}")
     
-    # Adiciona a opção de "ninguém é culpado" se o jogador tiver desbloqueado essa possibilidade
+    # adiciona a opção de "ninguém é culpado" se o jogador tiver desbloqueado essa possibilidade
     if desbloqueiaNinguem:
         print(f"    {len(suspeitos) + 1}. Ninguém é culpado")
     
-    # Captura a escolha final do jogador
+    # armazena a escolha final do jogador
     escolha = input("\n   Digite o número correspondente à sua escolha: ").strip()
     
-    # Define finais diferentes para cada escolha
+    # define finais diferentes para cada escolha
     if escolha.isdigit():
         escolha = int(escolha)
         if escolha in range(1, len(suspeitos) + 1):
             suspeitoEscolhido = suspeitos[escolha - 1]
             print(f"\n   Você escolheu {suspeitoEscolhido}. ")
-            # Final individual para cada suspeito
+            
+            # final para cada suspeito
             if suspeitoEscolhido == "Isolde":
                 limparConsole()
                 escreverLentamente("   Quando a algema é colocada e a sentença é feita, Isolde perde o controle. Seu rosto, normalmente endurecido, se contorce de raiva. Ela grita e se debate como se lutasse contra uma injustiça, os braços tentando se livrar das amarras. O olhar que ela lança sobre Samanta é cheio de ódio — não pela prisão, mas pelo insulto à sua honra. ")
@@ -412,6 +414,7 @@ def interrogar5():
         
     mostrarTabela(proposicoesEscolhidas)
 
+# mostra as tabelas
 def mostrarTabela(proposicoesEscolhidas):
     todasProposicoes = {
         "P1": {"descricao": "A faca não pertence a Isolde, a cozinheira. ", "verdade": True},

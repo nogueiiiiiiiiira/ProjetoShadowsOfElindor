@@ -11,7 +11,7 @@ def instrucoes():
         
     limparConsole()
     
-    escreverLentamente("    Bem-vindo, detetive! Prepare-se para desvendar um mistério ambientado na era medieval, onde cada detalhe pode esconder uma pista crucial. Siga as instruções abaixo e embarque nessa intrigante jornada. ", espacosEsquerda = 4) 
+    escreverLentamente("    Bem-vindo ao jogo, detetive! Prepare-se para desvendar um mistério ambientado na era medieval, onde cada detalhe pode esconder uma pista crucial. Siga as instruções abaixo e embarque nessa intrigante jornada. ", espacosEsquerda = 4) 
     escreverLentamente("    Você é Samanta, uma detetive astuta e sagaz, conhecida por seu faro aguçado para desvendar segredos e intrigas. O jogo se passa em uma pequena vila medieval cercada por bosques misteriosos e imponentes castelos de pedra. A calmaria da vila foi interrompida por um crime, e cabe a você descobrir quem é o responsável. Mas cuidado: nem tudo é o que parece, e os suspeitos são mestres na arte de esconder suas verdadeiras intenções. ", espacosEsquerda = 4)
     escreverLentamente("    Seu objetivo é resolver o mistério principal identificando o culpado e o motivo por trás do crime. Para isso, você precisará examinar todas as pistas, decidir entre o que é verdadeiro e falso e interrogar os suspeitos com cuidado. ", espacosEsquerda = 4)
     
@@ -71,17 +71,17 @@ def fase1():
     time.sleep(2)
     limparConsole()
     
-    mostrarImagem("../data/isolde.webp")  # Exibe a imagem de Samanta
+    mostrarImagem("../data/isolde.webp")  # exibe a imagem de Samanta
     escreverLentamente("     - Isolde, a Cozinheira da Estalagem: uma mulher de porte robusto, com braços fortes e mãos marcadas pelo manuseio constante de facas e panelas. Sua expressão é dura e suas sobrancelhas cerradas passam um ar de desconfiança e irritação. Ela veste um avental de tecido grosso e velho, levemente manchado, indicando as longas horas que passa na cozinha da estalagem. Isolde raramente sorri e seu olhar afiado parece cortar tão fundo quanto as facas que ela domina. Murmura-se que, apesar de seu temperamento difícil, Isolde tem um coração bondoso, mas que ela é conhecida por sua hostilidade com homens desordeiros, especialmente Baldwin, com quem já teve discussões acaloradas acerca de sua reputação e seu modo de lidar com suas hóspedes femininas. ", espacosEsquerda = 4)
-    mostrarImagem("../data/calistus.webp")  # Exibe a imagem de Calistus
+    mostrarImagem("../data/calistus.webp")  # exibe a imagem de Calistus
     escreverLentamente("\n   - Calistus, o Caçador: um homem magro e ágil, com olhos afiados como os de uma raposa. Ele usa uma capa marrom suja de terra e folhas, sugerindo que passou a maior parte do dia na floresta. Ele sempre carrega uma pequena faca de caça presa ao cinto e suas botas estão cobertas de lama seca. Calistus evita contato visual e parece estar sempre inquieto, como se estivesse pronto para desaparecer na floresta a qualquer instante. Embora reservado, os aldeões o respeitam por seu conhecimento das matas e de tudo o que vive nelas, mas sua relação com Baldwin, o ferreiro, era tensa, pois Baldwin costumava atrapalhar seus negócios com armas e mexer com sua esposa de tempos em tempos. ", espacosEsquerda = 4)
-    mostrarImagem("../data/mariana.webp")  # Exibe a imagem de Mariana
+    mostrarImagem("../data/mariana.webp")  # exibe a imagem de Mariana
     escreverLentamente("\n   - Mariana, a Donzela da Estalagem: uma jovem de aparência delicada, com cabelos castanhos trançados e um vestido simples, embora bem cuidado. Ela é ágil e discreta, movendo-se com a graça de alguém acostumada a servir e a observar em silêncio. Mariana tem um semblante nervoso e seus dedos finos se retorcem enquanto fala, o que sugere que algo a preocupa profundamente. Rumores dizem que Baldwin dava alguns avanços indesejados nela, mas que ela nunca deu indicíos de desprezá-lo. Foi ela quem encontrou o corpo de Baldwin quando entrou na estalagem, cuja porta estava destrancada, pela manhã. ", espacosEsquerda = 4)
-    mostrarImagem("../data/gerhard.webp")  # Exibe a imagem de Gerhard
+    mostrarImagem("../data/gerhard.webp")  # exibe a imagem de Gerhard
     escreverLentamente("\n   - Gerhard, o Guardião da Vila: com uma expressão carrancuda e um corpo grande e musculoso, Gerhard é a imagem do típico guardião. Suas roupas de couro grosso e suas mãos calejadas mostram que está acostumado a trabalhos pesados. Ele usa uma barba bem aparada, e seus olhos severos revelam uma autoridade silenciosa, que poucos ousam questionar. Gerhard é direto e econômico nas palavras, falando apenas o necessário. Ele é conhecido por sua lealdade, mas também por seu comportamento discreto e relutante em se envolver em questões alheias. Mais de uma vez, já entrou em brigas e discussões com Baldwin pelo mesmo não respeitar as mulheres. Foi ele quem, após socorrer uma Mariana desesperada, mandou a jovem estranha encontrar Samanta. ", espacosEsquerda = 4)
-    mostrarImagem("../data/morgana.webp")  # Exibe a imagem de Morgana
+    mostrarImagem("../data/morgana.webp")  # exibe a imagem de Morgana
     escreverLentamente("\n   - Madame Morgana, a Nobre da Vila: uma mulher de porte elegante, de pele pálida e cabelos loiros finamente arrumados. Veste-se com roupas de linho vermelho e jóias discretas e é sempre vista com uma postura altiva e fria. Madame Morgana raramente interage com os aldeões e poucos ousam se aproximar dela. Seus olhos calculistas analisam cada movimento das pessoas ao seu redor, como se tentassem prever cada pergunta. Aparentemente, Morgana guarda rancores, principalmente de Baldwin, por motivos que ninguém suspeita do porquê. ", espacosEsquerda = 4)
-    mostrarImagem("../data/floris.webp")  # Exibe a imagem de Calistus
+    mostrarImagem("../data/floris.webp")  # exibe a imagem de Calistus
     escreverLentamente("\n   - Floris, o Balcosnista: um homem robusto, com braços fortes e calejados pelo trabalho constante nas tavernas e armazéns. Ele veste roupas simples de couro marrom, manchadas por anos de manipulação de barris de vinho e licores. Uma túnica de linho grosso cobre seu peito e uma faixa de tecido vermelho em torno da cintura sugere um toque pessoal de orgulho em seu ofício. Seu cabelo é curto e escuro, já mostrando sinais de grisalho nas têmporas e uma barba rala cobre seu queixo, sempre perfumada pelo leve aroma de especiarias e álcool. O licor encontrado junto ao corpo de Baldwin provém de seus negócios. ", espacosEsquerda = 4)
     time.sleep(3)
     limparConsole()
