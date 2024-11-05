@@ -10,7 +10,7 @@ def textoCentralizado(text, width):
     return text.center(width)
 
 def print_title(stdscr):
-    title = "SHADOWS OF                            ELINDOR"  
+    title = "                   SHADOWS                                                OF                                                     ELINDOR"  
     creators = [
         "ABILIO BATISTA",
         "FELIPE CESCA",
@@ -35,7 +35,7 @@ def print_title(stdscr):
 
             # titulo centralizado com cor verde
             stdscr.addstr(tituloCentralizado + "\n", curses.color_pair(2)) # verde
-            stdscr.addstr(textoCentralizado("\n                                                    JOGO FEITO POR:", max_line_width) + "\n\n", curses.color_pair(1))
+            stdscr.addstr(textoCentralizado("\n                                                              JOGO FEITO POR:", max_line_width) + "\n\n", curses.color_pair(1))
 
             # nomes dos criadores
             for creator in creators:
@@ -63,7 +63,7 @@ def mensagemFinal(stdscr):
     
 def contador(stdscr, segundos):
     height, width = stdscr.getmaxyx()
-    timer_y = 26
+    timer_y = 32
     timer_x = (width // 2) - 15
 
     if height > timer_y and width >= 40:
