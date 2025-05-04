@@ -12,7 +12,7 @@ def escrever_lentamente(texto, delay=0.05, espacosEsquerda=4):
     primeira_linha = True  # controla se está na primeira linha do terminal
 
     for linha in linhas:
-        partes = textwrap.wrap(linha, largura = LARGURA_TERMINAL - espacosEsquerda) # divide a linha em partes para caber no terminal
+        partes = textwrap.wrap(linha, width = LARGURA_TERMINAL - espacosEsquerda) # divide a linha em partes para caber no terminal
         for parte in partes:
             if primeira_linha:
                 

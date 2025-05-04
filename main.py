@@ -19,7 +19,7 @@ def print_titulo(tela): # função para imprimir o título e os criadores do jog
     ]
 
     # converte o título para arte ASCII
-    titulo_centralizado = "\n".join(texto_centralizado("                            " + line, 80) for line in pyfiglet.figlet_format(titulo, largura=80).splitlines())
+    titulo_centralizado = "\n".join(texto_centralizado("                            " + line, 80) for line in pyfiglet.figlet_format(titulo, width=80).splitlines())
 
     # inicializa a tela
     altura, largura = tela.getmaxyx()
@@ -58,7 +58,7 @@ def print_titulo(tela): # função para imprimir o título e os criadores do jog
 def mensagem_final(tela):
     tela.clear()
     mensagem_final = "                              OBRIGADO                                                 POR                                                  JOGAR !"
-    mensagem_ascii = pyfiglet.figlet_format(mensagem_final, largura=80) # converte a mensagem para arte ASCII
+    mensagem_ascii = pyfiglet.figlet_format(mensagem_final, width=80) # converte a mensagem para arte ASCII
     tela.addstr(mensagem_ascii, curses.color_pair(2)) # verde
     tela.refresh()
     time.sleep(10)  

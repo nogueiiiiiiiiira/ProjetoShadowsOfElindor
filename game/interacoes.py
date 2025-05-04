@@ -75,6 +75,9 @@ def interrogar1():
     
     insistir = input("\n       Você deseja continuar com a conversa? (S/N): ").strip().lower() # pergunta ao jogador se ele deseja continuar com a conversa
 
+    while insistir not in ['s', 'n']:
+        insistir = input("Resposta inválida. Por favor, digite 'S' para sim ou 'N' para não: ").strip().lower()
+
     prob_revelacao_calistus = random.random() # probabilidade de Calistus revelar a verdade
 
     if prob_revelacao_calistus > 0.5: # se a probabilidade for maior que 0.5
@@ -138,9 +141,12 @@ def interrogar2():
     # respostas aleatorias dos personagens
     escrever_lentamente(f"\n   Mariana diz, tímida: '{fala_mariana}'") 
     
-    insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower() # pergunta ao jogador se ele deseja continuar com a conversa
- 
-    if insistir == 's' or insistir == 'S': # se o jogador escolher continuar com a conversa
+    insistir = input("\n       Você deseja continuar com a conversa? (S/N): ").strip().lower()
+
+    while insistir not in ['s', 'n']:
+        insistir = input("Resposta inválida. Por favor, digite 'S' para sim ou 'N' para não: ").strip().lower()
+
+    if insistir == 's': # se o jogador escolher continuar com a conversa
         
         # simulação de probabilidade para revelar mais informações
         prob_revelacao_mariana = random.random()
@@ -163,7 +169,7 @@ def interrogar2():
         
     escrever_lentamente(f"\n   Suspirando, Gerhard admite: '{fala_gerhard}'") 
         
-    insistir = input("\n        Você deseja na conversa? (S/N): ").strip().lower() # pergunta ao jogador se ele deseja continuar com a conversa
+    insistir = input("\n       Você deseja continuar com a conversa? (S/N): ").strip().lower() # pergunta ao jogador se ele deseja continuar com a conversa
  
     if insistir == 's' or insistir == 'S': # se o jogador escolher continuar com a conversa
         prob_revelacao_gerhard = random.random() # probabilidade de Gerhard revelar a verdade
@@ -342,76 +348,75 @@ def interrogar5():
     # armazena a escolha final do jogador
     escolha = input("\n   Digite o número correspondente à sua escolha: ").strip()
     
-    # define finais diferentes para cada escolha
-    if escolha.isdigit():
-        escolha = int(escolha)
-        if escolha in range(1, len(suspeitos) + 1):
-            suspeito_escolhido = suspeitos[escolha - 1]
-            print(f"\n   Você escolheu {suspeito_escolhido}. ")
-            
-            # final para cada suspeito
-            if suspeito_escolhido == "Isolde":
-                limpar_console()
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Isolde perde o controle. Seu rosto, normalmente endurecido, se contorce de raiva. Ela grita e se debate como se lutasse contra uma injustiça, os braços tentando se livrar das amarras. O olhar que ela lança sobre Samanta é cheio de ódio — não pela prisão, mas pelo insulto à sua honra. ")
-                time.sleep(2)
-                limpar_console()
-                escrever_lentamente("   Você perdeu... Isolde não é a assassina. ")
-                
-            elif suspeito_escolhido == "Calistus":
-                limpar_console()
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Calistus não se debate. Seus olhos se estreitam, no entanto, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo. ")
-                time.sleep(2)
-                limpar_console()
-                escrever_lentamente("   Você perdeu... Calistus não é o assassino. ")
-                
-            elif suspeito_escolhido == "Mariana":
-                limpar_console()
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero e traição, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo. ")
-                time.sleep(2)
-                limpar_console()
-                escrever_lentamente("   Você perdeu... Mariana não é a assassina. ")
-                
-            elif suspeito_escolhido == "Gerhard":
-                
-                limpar_console()
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita,  Gerhard permanece em silêncio, mas a tensão em seu corpo é evidente. Ele aperta os punhos e respira fundo, como se estivesse segurando toda a frustração para não explodir. O olhar que ele dirige a Samanta é frio e cheio de decepção, como se esperasse mais dela. ")
-                time.sleep(2)
-                limpar_console()
-                escrever_lentamente("   Você perdeu... Gerhard não é o assassino. ")
-                
-            elif suspeito_escolhido == "Madame Morgana":
-                limpar_console()
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Morgana mantém a compostura até o último instante. Não há lágrimas, nem gritos. Apenas um olhar de puro desprezo direcionado a Samanta, como se ela fosse um verme ousando perturbá-la. Ela caminha com dignidade, mas seus olhos prometem uma vingança silenciosa. ")
-                time.sleep(2)
-                limpar_console()
-                escrever_lentamente("   Você perdeu... Madame Morgana não é a assassina. ")
-                
-            elif suspeito_escolhido == "Floris":
-                limpar_console()
-                escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Floris se deixa levar sem resistência, um sorriso cansado e cínico dorme em seus lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo. ")
-                time.sleep(2)
-                limpar_console()
-                escrever_lentamente("   Você perdeu... Floris não é o assassino. ")
-                
-        elif desbloqueia_ninguem and escolha == len(suspeitos) + 1:
-            
+    while not (escolha.isdigit() and (1 <= int(escolha) <= len(suspeitos) + (1 if desbloqueia_ninguem else 0))):
+        escolha = input("Escolha inválida. Digite um número válido: ").strip()
+    
+    escolha = int(escolha)
+    if escolha in range(1, len(suspeitos) + 1):
+        suspeito_escolhido = suspeitos[escolha - 1]
+        print(f"\n   Você escolheu {suspeito_escolhido}. ")
+        
+        # final para cada suspeito
+        if suspeito_escolhido == "Isolde":
             limpar_console()
-            escrever_lentamente("   A verdade surge na mente de Samanta como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante dela — Isolde furiosa, Calistus cauteloso, Mariana desesperada, Gerhard incerto, Morgana arrogante e um Floris indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é dela. ")
-            escrever_lentamente("   A dor de cabeça lateja com mais força agora, como se as próprias lembranças, até então fragmentadas e distantes, finalmente se alinhassem. O gosto metálico que insiste em não sair da boca de Samanta é mais do que um reflexo da fadiga. É o sabor da culpa. ")
-            escrever_lentamente("\n   Samanta se lembra do licor. Ela se lembra de ter passado a noite bebendo na estalagem e Baldwin, como um bartender adequado, se aproximando dela. Ela se lembra do jeito que Baldwin sorriu e lhe ofereceu uma bebibda, confiante e cruel, enquanto despejava o líquido âmbar em um copo e dava. 'Apenas um pouco para relaxar' foi o que ele disse — uma gentileza traiçoeira, que ela só foi perceber, muito cansada e exausta de trabalhos e de expectativas, um pouco tarde demais. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais, sobre ela naquela madrugada. ")
-            escrever_lentamente("   Ele tentou a silenciar com o álcool. Tentou transformar a sua resistência em obediência quando estavam a sós. Mas ela não deixou. Agimndo antes que ele pudesse tomar o que queria. Agindo sem pensar, com uma mão trêmula e um coração disparado. Samanta pegou a faca mais próxima. A lâmina perfurou a carne dele como um ato desesperado — rápido, brutal e inevitável. ")
-            escrever_lentamente("\n   Agora, tudo parecia mais claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si mesma também. ")
-            escrever_lentamente("\n   E ela não sabe como se sentir a respeito disso... ")
-            
+            escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Isolde perde o controle. Seu rosto, normalmente endurecido, se contorce de raiva. Ela grita e se debate como se lutasse contra uma injustiça, os braços tentando se livrar das amarras. O olhar que ela lança sobre Samanta é cheio de ódio — não pela prisão, mas pelo insulto à sua honra. ")
             time.sleep(2)
             limpar_console()
-            escrever_lentamente("   Você ganhou... Você é a assassina... ")
+            escrever_lentamente("   Você perdeu... Isolde não é a assassina. ")
             
-        else:
-            print("Escolha inválida. ")
+        elif suspeito_escolhido == "Calistus":
+            limpar_console()
+            escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Calistus não se debate. Seus olhos se estreitam, no entanto, frios e calculistas, como se estivesse medindo todas as rotas de fuga possíveis. Há um desprezo silencioso enquanto é levado, mas ele sabe que brigar não ajudaria. Mesmo assim, o olhar que ele lança para Samanta é um aviso: ela cometeu um erro ao acusá-lo. ")
+            time.sleep(2)
+            limpar_console()
+            escrever_lentamente("   Você perdeu... Calistus não é o assassino. ")
+            
+        elif suspeito_escolhido == "Mariana":
+            limpar_console()
+            escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Mariana desmorona ao ser levada. Os olhos marejam e seu corpo parece perder toda a força. Ela olha para Samanta com uma expressão de desespero e traição, como se esperasse que tudo fosse um engano e que ainda pudesse acordar daquele pesadelo. ")
+            time.sleep(2)
+            limpar_console()
+            escrever_lentamente("   Você perdeu... Mariana não é a assassina. ")
+            
+        elif suspeito_escolhido == "Gerhard":
+            
+            limpar_console()
+            escrever_lentamente("   Quando a algema é colocada e a sentença é feita,  Gerhard permanece em silêncio, mas a tensão em seu corpo é evidente. Ele aperta os punhos e respira fundo, como se estivesse segurando toda a frustração para não explodir. O olhar que ele dirige a Samanta é frio e cheio de decepção, como se esperasse mais dela. ")
+            time.sleep(2)
+            limpar_console()
+            escrever_lentamente("   Você perdeu... Gerhard não é o assassino. ")
+            
+        elif suspeito_escolhido == "Madame Morgana":
+            limpar_console()
+            escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Morgana mantém a compostura até o último instante. Não há lágrimas, nem gritos. Apenas um olhar de puro desprezo direcionado a Samanta, como se ela fosse um verme ousando perturbá-la. Ela caminha com dignidade, mas seus olhos prometem uma vingança silenciosa. ")
+            time.sleep(2)
+            limpar_console()
+            escrever_lentamente("   Você perdeu... Madame Morgana não é a assassina. ")
+            
+        elif suspeito_escolhido == "Floris":
+            limpar_console()
+            escrever_lentamente("   Quando a algema é colocada e a sentença é feita, Floris se deixa levar sem resistência, um sorriso cansado e cínico dorme em seus lábios. Ele encara tudo como uma inconveniência temporária. Mas o brilho nos olhos mostra que ele não pretende ser uma vítima passiva por muito tempo. ")
+            time.sleep(2)
+            limpar_console()
+            escrever_lentamente("   Você perdeu... Floris não é o assassino. ")
+            
+    elif desbloqueia_ninguem and escolha == len(suspeitos) + 1:
+        
+        limpar_console()
+        escrever_lentamente("   A verdade surge na mente de Samanta como uma faca fria atravessando a neblina da exaustão. Não há mais dúvidas. Enquanto cada rosto acusado desfilava diante dela — Isolde furiosa, Calistus cauteloso, Mariana desesperada, Gerhard incerto, Morgana arrogante e um Floris indiferente — a conclusão era inevitável. Nenhum deles matou Baldwin. Eles carregam seus segredos e pecados, sim, mas a culpa verdadeira... é dela. ")
+        escrever_lentamente("   A dor de cabeça lateja com mais força agora, como se as próprias lembranças, até então fragmentadas e distantes, finalmente se alinhassem. O gosto metálico que insiste em não sair da boca de Samanta é mais do que um reflexo da fadiga. É o sabor da culpa. ")
+        escrever_lentamente("\n   Samanta se lembra do licor. Ela se lembra de ter passado a noite bebendo na estalagem e Baldwin, como um bartender adequado, se aproximando dela. Ela se lembra do jeito que Baldwin sorriu e lhe ofereceu uma bebibda, confiante e cruel, enquanto despejava o líquido âmbar em um copo e dava. 'Apenas um pouco para relaxar' foi o que ele disse — uma gentileza traiçoeira, que ela só foi perceber, muito cansada e exausta de trabalhos e de expectativas, um pouco tarde demais. Samanta sentiu a tensão crescente em seu próprio corpo quando percebeu o ardor falso na garganta e o olhar predador de Baldwin, fixo demais, invasivo demais, sobre ela naquela madrugada. ")
+        escrever_lentamente("   Ele tentou a silenciar com o álcool. Tentou transformar a sua resistência em obediência quando estavam a sós. Mas ela não deixou. Agimndo antes que ele pudesse tomar o que queria. Agindo sem pensar, com uma mão trêmula e um coração disparado. Samanta pegou a faca mais próxima. A lâmina perfurou a carne dele como um ato desesperado — rápido, brutal e inevitável. ")
+        escrever_lentamente("\n   Agora, tudo parecia mais claro e, ao mesmo tempo, distorcido. Recordar não traz alívio. Só torna o peso mais insuportável. Ela fez aquilo para sobreviver, mas não foi apenas a lâmina que cortou Baldwin. Com ele, ela matou uma parte de si mesma também. ")
+        escrever_lentamente("\n   E ela não sabe como se sentir a respeito disso... ")
+        
+        time.sleep(2)
+        limpar_console()
+        escrever_lentamente("   Você ganhou... Você é a assassina... ")
+        
     else:
         print("Escolha inválida. ")
-        
+    
     mostrar_tabela(proposicoes_escolhidas)
 
 # mostra as tabelas
